@@ -13,4 +13,4 @@ Click [Lesson1 here] to begin the tutorial.
 You can also use the sidebar to select specific tutorial pages.
 
 =Wiki=
-For the original wiki list, click [https://code.google.com/p/thisisaretrovirus/w/list here].
+For the original wiki list, click [https://code.google.com/p/hot67-programming-resources/w/list here].
