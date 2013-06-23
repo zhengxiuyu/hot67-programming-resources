@@ -1,0 +1,86 @@
+#summary Using User Input
+#labels Tutorial
+
+Now that we have laid the foundation, it is time to build upon that foundation. This chapter will teach you how to make the robot move.
+
+One of the important things for this, however, is to understand how the operator interface works. So, we will not actually make the robot do anything until the next chapter.
+
+<wiki:toc max_depth="2">
+
+=Quick Note=
+
+Now that we're diving into specific functions, it is important that you understand how they are given to you in this tutorial. Whenever you are first given a function, its format will be like this:
+
+{{{
+RETURN_TYPE ComponentClass::FunctionName(OPTIONS);
+}}}
+
+where:
+
+  * `RETURN_TYPE` is the type of variable the function returns.
+  * `ComponentClass` is the class the function originates from.
+  * `FunctionName` is the actual name of the function.
+  * `OPTIONS` will always be in capital letters, and their number and purpose will be explained with the function.
+  
+What you see printed is NOT exactly what you type in. It is shown in this format for informative purposes.
+
+=The Game Controller=
+
+There are really two different kinds of devices available for controlling the robot -- a game controller and a joystick. They have different programming interfaces. However, since we use the game controller, this tutorial will cover how to program for the game controller.
+
+==Functions==
+
+If you will recall from [Lesson3#Game%20Controller the last lesson], the game controller uses the `Joystick` class (the joystick does use this class, but it is programmed in a different way), and you need to provide the joystick ID in the constructor. For the purposes of this tutorial, let's say that you declared a pointer to a `Joystick` called `m_gamepad` at ID 1.
+
+===Buttons===
+
+Buttons are the simplest to program. They use the following function:
+
+{{{
+bool Joystick::GetRawButton(BUTTON_INDEX);
+}}}
+
+where `BUTTON_INDEX` is the numerical index of the desired button. For the xbox controller, this is the mapping:
+
+  * A = 1
+  * B = 2
+  * X = 3
+  * Y = 4
+  * Left Bumper = 5
+  * Right Bumper = 6
+  * Back = 7
+  * Start = 8
+  * Left Stick = 9
+  * Right Stick = 10
+  
+_TIP! Check out Defines.h in 2013.zip in the source code!_
+
+*WARNING*: The left and right stick buttons are pressed when the actual joystick on the controller is pressed down. Because they are tied in with the controller, a driver can hit either button inadvertantly. Use these with extreme caution, if at all.
+
+Note that the triggers are not here. This is because they can return specific values (and as such do not have distinct on/off states), and so they are treated as joysticks.
+
+===Joysticks===
+_Not to be confused with the alternative controller._
+
+The joysticks on the game controller are accessed differently than you might think at first. Each joystick device is accessed in terms of its axes, and not the joystick as a whole (doing that would cause too many headaches).
+
+To access the value on any axis, use the following function:
+
+{{{
+float Joystick::GetRawAxis(AXIS_INDEX);
+}}}
+
+where `AXIS_INDEX` is the numerical index of the desired axis. This is the mapping:
+
+  * Left stick / X axis = 1
+  * Left stick / Y axis = 2
+  * Triggers = 3
+  * Right stick / X axis = 4
+  * Right stick / Y axis = 5
+  
+_These mappings are available as header definitions in Defines.h as well._
+
+You may notice that the triggers are included in this mix. This is, again, due to their ability to measure how far the trigger is held down. The triggers only have one axis because one trigger registers as negative values, and the other registers as positive values (see [Lesson4#Implementing%20Controller%20Functions how to implement] for more).
+
+*This page is unfinished, check back later.*
+  

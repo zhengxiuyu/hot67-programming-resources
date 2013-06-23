@@ -16,7 +16,7 @@ In terms of general coding style, stick with a general C++ style. That is, keepi
 
 ==Naming==
 
-This is likely the most important piece of style. Every variable you declare does something (if it doesn't, get rid of it), but others need to know what it does in order for them to be able to help you with your program (single-letter names for looping variables, such as `x`, `y`, `z`, or `i` are fine, [Lesson2#Periodic%20Routines but you will *never* use loops in robotics programming]). Thus, we follow a specific naming scheme:
+This is likely the most important piece of style. Every variable you declare does something (if it doesn't, get rid of it), but others need to know what it does in order for them to be able to help you with your program (single-letter names for looping variables, such as `x`, `y`, `z`, or `i` are fine, [Lesson2#Periodic_Routines but you will *never* use loops in robotics programming]). Thus, we follow a specific naming scheme:
 
 {{{
 TypeIdentifier m_DescriptiveLabel;
@@ -318,8 +318,8 @@ Joystick *m_driver;
 Joystick *m_operator;
 
 /** Note: Use more general names for the two joysticks (such as Joystick1 and Joystick2) 
-  * to keep things simple and easy to remember. 'm_driver' and 'm_operator' are only used 
-  * here for clarity purposes.
+  * to keep things simple, copy 'n'paste-friendly, and easy to remember. 'm_driver' and 
+  * 'm_operator' are only used here for clarity purposes.
   */
 
 //Game controller initialization
@@ -421,6 +421,11 @@ class BuiltinDefaultCode : public IterativeRobot
 {
         // Declare object for the robot drive system
         RobotDrive *m_robotDrive;
+        
+        /** Remember: INITIALIAZATION is the only thing that RobotDrive
+          * must be after your drive motors for your code to work. 
+          * Declaration does not matter as much.
+          */
 
         //Declare Drive Motors
         Victor *m_lDrive;

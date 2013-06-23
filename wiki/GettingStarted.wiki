@@ -4,7 +4,7 @@
 
 Welcome to the WPILib Tutorial!
 
-This is written by a member of a robotics team, and as such is not written by nor endorsed by WPI.
+This is written by a student programmer, and as such is not written by nor endorsed by WPI.
 
 It is intended to be a robot programming tutorial that is easy for new robot programmers to understand.
 
