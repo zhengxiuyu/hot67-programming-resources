@@ -4,7 +4,7 @@
       * [Lesson2 Lesson 2: Program Structure]
       * [Lesson3 Lesson 3: Parts of the Robot -- In Code]
     * Chapter 2: Driving and User Input
-      * Lesson 4: Using User Input
+      * [Lesson4 Lesson 4: Using User Input]
       * Lesson 5: Controlling Motors
       * Lesson 6: Earning Your Driver's License: Driving
     * Chapter 3: Control
