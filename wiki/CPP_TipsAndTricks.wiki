@@ -45,7 +45,7 @@ mystring = "hello";
 printf("I would like to say %s", mystring.c_str());
 }}}
 
-Another way to do this would be to declare a [CPP_Lesson6#C%20Strings C string]; however, you need to have learned the concepts in lesson 6 in order to do that.
+Another way to do this would be to declare a [CPP_Lesson6#C_Strings C string]; however, you need to have learned the concepts in lesson 6 in order to do that.
 
 =getchar=
 *Required Level: Lesson 1*
@@ -59,7 +59,7 @@ Note that, when you use this function, the character the user inputs will *not* 
 {{{
 int std::getchar()
 }}}
-_This function returns an `int` to deal with errors. You can still put the value in a char using the `=` operator ([CPP_TipsAndTricks#getchar%20use See below])_
+_This function returns an `int` to deal with errors. You can still put the value in a char using the `=` operator ([CPP_TipsAndTricks#getchar_use See below])_
 
 ==getchar use==
 Simply set your `char` variable equal to `getchar`.
