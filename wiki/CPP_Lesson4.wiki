@@ -15,7 +15,7 @@ http://www.cprogramming.com/tutorial/lesson5.html
 
 Once you understand the content, complete this assignment.
 
-Rewrite the '[CPP_Lesson2#Doors_and_Potions Doors and Potions]' program using switch/case statements.
+Rewrite the '[CPP_Lesson2#Fate Fate]' program using switch/case statements.
 
  Give the user the option to drink a yellow potion or a green potion (please use a `string`). Give the user the option to open to pick door one or two (use either an `int` or a `string`)
  
@@ -32,4 +32,3 @@ Rewrite the '[CPP_Lesson2#Doors_and_Potions Doors and Potions]' program using sw
  If user fails to enter either door; user runs INTO A DOOR!.
  
 || <-[CPP_Lesson3 Lesson 3 - Looping] || *Lesson 4* || [CPP_Lesson5 Chapter 2: Organization - Lesson 5 - Functions]-> ||
-
