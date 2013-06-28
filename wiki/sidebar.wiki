@@ -1,5 +1,5 @@
   * C++ Guided Tutorial
-    * [CPP_Setup Setup]
+    * [CPP_GettingReady Getting Ready]
     * Chapter 1: Basic C++
       * [CPP_Lesson1 Intro to C++]
       * [CPP_Lesson2 If/Else statements]
@@ -28,4 +28,4 @@
       * Lesson 9: PID Part 1: Concepts of the PID
       * Lesson 10: PID Part 2: Using a PID on the Robot
       * Lesson 11: PID Part 3: Advanced PID Programming
-  * [https://code.google.com/p/thisisaretrovirus/w/list Wiki List]
+  * [https://code.google.com/p/hot67-programming-resources/w/list Wiki List]
