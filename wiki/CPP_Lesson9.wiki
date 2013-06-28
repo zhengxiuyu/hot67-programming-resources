@@ -114,4 +114,14 @@ For example, you could set the suit like this:
 	}
 }}}
 
+===Extra Practice===
+Do any of the following:
+
+  * Make the cards dynamic memory (pointers), if you haven't already
+  * Add multiplayer capability (still leave single player)
+    * If you do this, put single player game and multiplayer game in separate functions.
+  * Have the user set the starting money
+    * Do not allow them to start with $1000
+    * For multiplayer: All players must start with the same money
+
 || <-[CPP_Lesson8 Lesson 8 - Pointers] || *Lesson 9* || [WPI_Lesson1 WPI Tutorial]-> ||

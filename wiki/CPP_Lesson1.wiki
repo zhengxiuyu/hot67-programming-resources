@@ -27,4 +27,4 @@ Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number a
 ==Math 2== 
 Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number and divide it by the 2nd number.  Display the output of that function.  Make sure your output has decimals.
 
-|| <-[Setup] || *Lesson 1* || [CPP_Lesson2 Lesson 2 - If/Else Statements]-> ||
+|| <-[CPP_GettingReady Getting Ready] || *Lesson 1* || [CPP_Lesson2 Lesson 2 - If/Else Statements]-> ||

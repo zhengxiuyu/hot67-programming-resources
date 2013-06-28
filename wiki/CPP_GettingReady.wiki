@@ -10,7 +10,7 @@ You may also want to read the tutorial's [http://www.cplusplus.com/doc/tutorial/
 
 You may notice sections labeled 'Extra Practice' or 'Extra Reading'. These are not required, but are put there *for your benefit*. You do not need to complete them.
 
-Extra Practice should be completed AFTER you complete the main assignment.
+Extra Practice should be completed AFTER you complete the main assignment. It will not be checked unless you deem it necessary.
 
 ==Code::Blocks==
 

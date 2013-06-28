@@ -21,10 +21,11 @@ Write a function `celsius()` to convert degrees Fahrenheit to degrees Celsius (T
 Remember that %f is the `printf()` format to use for printing floating-point numbers. Also, it is important to note that the expression 5/9 is 0, so you won't want to use integer division - divide 5.0 by 9.0 instead.
 
 ===Extra Practice===
-Rewrite the program in any of these ways: 
+Do any of the following: 
 
   * Allow the user to input a desired temperature to convert
-    * You can also have them input a starting number and an ending number, and get a table from that. *WARNING!* This is tricky!
+    * You can also have them input a starting number and an ending number, and get a table from that. 
+      * *WARNING!* This is tricky!
   * Convert from Celsius to Fahrenheit
 
 ==Rectangle==
