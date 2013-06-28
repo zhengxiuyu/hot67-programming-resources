@@ -188,7 +188,7 @@ iomanip::setw(int width)
 Place this function *before* the desired output operation.
 
 || *Code* || *Output* ||
-|| `cout<<"Not affected"<<setw(30);` <br /> `cout<<"Affected"<<" Not affected"<<endl;` || `Not affected                      Affected Not affected` ||
+|| `cout<<"Not affected"<<setw(30);` <br /> `cout<<"Affected"<<" Not affected"<<endl;` || `Not affected`                      `Affected Not affected` ||
 
 
 ==setfill==
