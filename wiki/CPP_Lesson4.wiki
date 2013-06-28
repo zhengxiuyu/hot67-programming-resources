@@ -15,7 +15,7 @@ http://www.cprogramming.com/tutorial/lesson5.html
 
 Once you understand the content, complete this assignment.
 
-Rewrite the '[CPP_Lesson2#Doors%20and%20Potions Doors and Potions]' program using switch/case statements.
+Rewrite the '[CPP_Lesson2#Doors_and_Potions Doors and Potions]' program using switch/case statements.
 
  Give the user the option to drink a yellow potion or a green potion (please use a `string`). Give the user the option to open to pick door one or two (use either an `int` or a `string`)
  

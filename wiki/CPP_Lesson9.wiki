@@ -101,7 +101,7 @@ is a true statement. The suit has no effect on how the cards are compared. Your 
 
 The default constructor for the Card class should assign a random suit and rank to the card. This allows us to "draw" a new card every time we call the constructor. 
 
-In order to generate random numbers, use the [CPP_TipsAndTricks#Random%20Numbers `rand()`] function. The `cstdlib` and `ctime` libraries have already been included for you in cards.h, so you don't have to.
+In order to generate random numbers, use the [CPP_TipsAndTricks#Random_Numbers `rand()`] function. The `cstdlib` and `ctime` libraries have already been included for you in cards.h, so you don't have to.
 
 For example, you could set the suit like this:
 {{{

@@ -11,7 +11,7 @@ and read through the page.
 
 http://www.cprogramming.com/tutorial/lesson8.html
 
-=Special Note: C Strings=
+=C Strings=
 
 You are likely aware of this, but C++ is actually derived from another language called C. In C, there is no `string` data type. Instead, C programmers use an array of `chars`. 
 
