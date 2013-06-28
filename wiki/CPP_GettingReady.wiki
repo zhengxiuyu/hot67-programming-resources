@@ -36,4 +36,4 @@ Most distributions should carry Code::Blocks in their repositories.
 
   * [http://sourceforge.net/projects/codeblocks/files/Binaries/12.11/Linux%20%2832%20bit%29/codeblocks-12.11.suse122-19.1.i586.rpm/download 32-bit RPM]
 
-|| <-[Main_Page Main Page] || *Setup* || [CPP_Lesson1 Lesson 1 - Intro to C++]-> ||
+|| <-[Main_Page Main Page] || *Getting Ready* || [CPP_Lesson1 Lesson 1 - Intro to C++]-> ||
