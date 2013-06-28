@@ -6,8 +6,8 @@
 
 Read the following pages *thorougly*:
 
-[http://www.cplusplus.com/doc/tutorial/classes/ Classes I]
-[http://www.cplusplus.com/doc/tutorial/classes2/ Classes II]
+  * [http://www.cplusplus.com/doc/tutorial/classes/ Classes I]
+  * [http://www.cplusplus.com/doc/tutorial/classes2/ Classes II]
 
 =Extra Reading=
 

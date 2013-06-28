@@ -31,10 +31,11 @@ What would you like to know about //(Display first and last name here):
 >>> //1, 2, or 3
 }}}
 
+You may want to take a look at [CPP_TipsAndTricks#Input_Validation input validation].
+
 ===Extra Practice===
 
 Allow the user to input information on any number of people. (HINT: use an array!)
 
-You may want to take a look at [CPP_TipsAndTricks#Input_Validation input validation].
 
 || <-[CPP_Lesson6 Lesson 6 - Arrays] || *Lesson 7* || [CPP_Lesson8 Chapter 3 - Advanced C++ - Lesson 8 - Pointers]-> ||

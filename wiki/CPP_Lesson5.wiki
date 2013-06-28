@@ -3,8 +3,8 @@
 
 Read the following pages all the way through:
 
-[http://www.cplusplus.com/doc/tutorial/functions/ Functions I]
-[http://www.cplusplus.com/doc/tutorial/functions2/ Functions II]
+  * [http://www.cplusplus.com/doc/tutorial/functions/ Functions I]
+  * [http://www.cplusplus.com/doc/tutorial/functions2/ Functions II]
 
 =Extra Reading=
 
@@ -16,7 +16,7 @@ Once you understand the content, complete these assignments.
 
 ==Temperature Converter==
 
-Write a function `celsius()` to convert degrees Fahrenheit to degrees Celsius (The conversion formula is °C = 5/9 * (°F - 32)). Use it to print a Fahrenheit-to-Centigrade table for -40 to 220 degrees Fahrenheit, in increments of 10 degrees. 
+Write a function `celsius()` to convert degrees Fahrenheit to degrees Celsius (The conversion formula is `°C = 5/9 * (°F - 32)`). Use it to print a Fahrenheit-to-Centigrade table for -40 to 220 degrees Fahrenheit, in increments of 10 degrees. 
 
 Remember that %f is the `printf()` format to use for printing floating-point numbers. Also, it is important to note that the expression 5/9 is 0, so you won't want to use integer division - divide 5.0 by 9.0 instead.
 
@@ -49,6 +49,6 @@ Rewrite the program so that it can do any of the following:
 
   * Allow the user to change the size of the rectangle
   * Allow the user to create multiple rectangles in the same run (meaning the program cannot exit)
-  * Allow the user to put a message in the rectangle *without* changing its dimensions (pre-defined or user-defined, but the rectangle must stay a rectangle)
+  * Allow the user to put a message in the rectangle *without* changing its dimensions (pre-defined or user-defined dimensions, but the rectangle must stay a rectangle)
   
 || <-[CPP_Lesson4 Chapter 1 - Basic C++ - Lesson 4 - Switch/Case] || *Lesson 5* || [CPP_Lesson6 Lesson 6 - Arrays]-> ||
