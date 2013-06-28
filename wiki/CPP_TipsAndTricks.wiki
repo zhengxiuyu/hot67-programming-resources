@@ -347,4 +347,4 @@ _Note that you may need to double the `cin.ignore()` statement_
 Despite the fact that the `cin` statement is inside the parentheses for the `while` loop, the program still looks for input at that point. If the user inputs the wrong data type, `cin` throws a couple of flags (`fail` and/or `bad`, to be exact). The computer interprets this to be a `false` value, so it runs the loop.
 
 
-_This resource was compiled with reference to the reference pages at http://www.cplusplus.com_
+_This resource was compiled with reference to the reference pages at [http://www.cplusplus.com]_
