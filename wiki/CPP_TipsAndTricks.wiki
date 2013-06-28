@@ -1,7 +1,5 @@
 #summary Tips and Tricks
 
-=Introduction=
-
 This page details a few tips and tricks you can employ to make your programs faster and more robust. These tips require a certain level of understanding. That level will be written under each heading.
 
 <wiki:toc max_depth="1">
