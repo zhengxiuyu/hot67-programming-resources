@@ -19,7 +19,7 @@ Once you understand the content, complete these assignments.
 ==Doors==
 Give the user the option to open to pick door one or two.  If door one is picked, user gets Eaten by Zombies.  If door two is picked, user gets Pummeled by Trolls.
 
-==Doors and Potions==
+==Fate==
 Give the user the option to drink a yellow potion or a green potion.
 (Please use a `string`)
 Give the user the option to open to pick door one or two.
