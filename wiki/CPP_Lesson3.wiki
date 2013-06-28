@@ -17,7 +17,7 @@ Once you understand the content, complete these assignments.
 
 =Tip: `printf`=
 
-You are strongly encouraged to give the [CPP_TipsAndTricks#printf `printf()`] function some consideration when completing the assignments.
+You are strongly encouraged to give the [CPP_TipsAndTricks#printf printf()] function some consideration when completing the assignments.
 
 ==Counter==
 Create a *For Loop* that counts 1 to 102.  Count up by 4.  Display the number each time it goes through the loop.
