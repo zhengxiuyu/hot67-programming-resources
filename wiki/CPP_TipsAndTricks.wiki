@@ -187,16 +187,9 @@ iomanip::setw(int width)
 ===setw use===
 Place this function *before* the desired output operation.
 
-*Code*
-{{{
-cout<<"Not affected"<<setw(30);
-cout<<"Affected"<<" Not affected"<<endl;
-}}}
+|| *Code* || *Output* ||
+|| `cout<<"Not affected"<<setw(30);` <br /> `cout<<"Affected"<<" Not affected"<<endl;` || `Not affected                      Affected Not affected` ||
 
-*Output*
-{{{
-Not affected                      Affected Not affected
-}}}
 
 ==setfill==
 The `setfill()` function allows you to set the fill character (normally a whitespace). The fill character is used if an output operation contains fewer characters than the [CPP_TipsAndTricks#setw field width].
@@ -214,15 +207,8 @@ iomanip::setfill(char_type c)
 ===setfill use===
 Place this function *before* the desired output operation.
 
-*Code*
-{{{
-cout<<setfill('+')<<setw(10)<<"hi"<<endl;
-}}}
-
-*Output*
-{{{
-++++++++hi
-}}}
+|| *Code* || *Output* ||
+|| cout<<setfill('+')<<setw(10)<<"hi"<<endl; || ++++++++hi ||
 
 ==Text alignment==
 
@@ -243,53 +229,32 @@ The parameter for `left` is the following output operation, therefore, parenthes
 ====left use====
 Use `left` before the output operations to be left-aligned.
 
-*Code*
-{{{
-cout<<setfill('+')<<setw(10)<<left<<"hi"<<endl;
-}}}
-
-*Output*
-{{{
-hi++++++++
-}}}
+|| *Code* || *Output* ||
+|| `cout<<setfill('+')<<setw(10)<<left<<"hi"<<endl;` || `hi++++++++` ||
 
 ===right===
 Sets the output stream to put fill characters before successive output operations (causing a right alignment).
 
 ====right parameters====
-The parameter for `left` is the following output operation, therefore, parentheses are unneccessary.
+The parameter for `right` is the following output operation, therefore, parentheses are unneccessary.
  
 ====right use====
 Use `right` before the output operations to be left-aligned.
 
-*Code*
-{{{
-cout<<setfill('+')<<setw(10)<<right<<"hi"<<endl;
-}}}
-
-*Output*
-{{{
-++++++++hi
-}}}
+|| *Code* || *Output* ||
+|| `cout<<setfill('+')<<setw(10)<<right<<"hi"<<endl;` || `++++++++hi` ||
 
 ===internal===
 Sets the output stream to put fill characters in the middle of successive output operations (splitting the readout in two).
 
 ====internal parameters====
-The parameter for `left` is the following output operation, therefore, parentheses are unneccessary.
+The parameter for `internal` is the following output operation, therefore, parentheses are unneccessary.
  
 ====internal use====
-Use `right` before the output operations to be left-aligned.
+Use `internal` before the output operations to be left-aligned.
 
-*Code*
-{{{
-cout<<setfill('+')<<setw(10)<<internal<<"hi"<<endl;
-}}}
-
-*Output*
-{{{
-h++++++++i
-}}}
+|| *Code* || *Output* ||
+|| `cout<<setfill('+')<<setw(10)<<internal<<"hi"<<endl;` || `h++++++++i` ||
 
 =Input Validation=
 *Required Level: Lesson 3*
