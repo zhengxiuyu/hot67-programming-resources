@@ -308,11 +308,9 @@ int main () {
   unsigned myUInt;
   //note that this is the same as unsigned int myUInt;
 
-  cout<<">>> ";
-  //this is so the user knows there is input required here.
   while (!cin>>myUInt)
   {
-    cout<<"Please input a positive integer."<<endl<<">>> ";
+    cout<<"Please input a positive integer."<<endl;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>.max(),'\n');
   }
@@ -326,19 +324,12 @@ int main () {
 
 The above code would run like this:
 
-{{{
-//SAMPLE RUN 1
+|| *Input* || *Output* ||
+|| `2` || `You input a positive 2.` ||
+|| `abc` || `Please input a positive integer.` ||
+|| `-9` || `Please input a positive integer.` ||
+|| `0.25` || `Please input a positive integer.` ||
 
->>> 2
-You input a positive 2.
-
-//SAMPLE RUN 2
-
->>> abc
-Please input a positive integer.
->>> 2
-You input a positive 2.
-}}}
 
 _Note that you may need to double the `cin.ignore()` statement_
 
