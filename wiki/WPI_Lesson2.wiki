@@ -52,7 +52,7 @@ BuiltinDefaultCode::BuiltinDefaultCode()
 }
 }}}
 
-The class constructor is used to initialize parts of the robot and to set variables for their initial run. This is called before the [Lesson2#RobotInit RobotInit()] method in the program. An example usage of the constructor:
+The class constructor is used to initialize parts of the robot and to set variables for their initial run. This is called before the [WPI_Lesson2#RobotInit RobotInit()] method in the program. An example usage of the constructor:
 
 {{{
 BultinDefaultCode::BuiltinDefaultCode()
@@ -62,14 +62,14 @@ BultinDefaultCode::BuiltinDefaultCode()
 }
 }}}
 
-Again, how to initialize specific robot components will be reviewed in [Lesson3 Lesson 3].
+Again, how to initialize specific robot components will be reviewed in [WPI_Lesson3 Lesson 3].
 
 You may notice the `public:` keyword before the class constructor. Everything declared before is private, to avoid memory overflow.
 
 =Initialization Routines=
-_Not to be confused with the component initialization in the [Lesson2#Class%20Constructor constructor]_
+_Not to be confused with the component initialization in the [WPI_Lesson2#Class%20Constructor constructor]_
 
-The following routines are called once before their corresponding [Lesson2#Periodic%20Routines periodic routines] are called. Note that [Lesson2#RobotInit RobotInit] does not have a periodic routine.
+The following routines are called once before their corresponding [WPI_Lesson2#Periodic%20Routines periodic routines] are called. Note that [WPI_Lesson2#RobotInit RobotInit] does not have a periodic routine.
 
 One important concept to note at this point is that the cRIO operates in loops. It runs an init routine in one loop, then it switches to the corresponding periodic routine (which runs once every loop until the robot is disabled).
 
@@ -435,4 +435,4 @@ class BuiltinDefaultCode: public IterativeRobot
 START_ROBOT_CLASS(BuiltinDefaultCode);
 }}}
 
-|| <- [Lesson1 Lesson 1: Parts of the Robot] || *Lesson 2* || [Lesson3 Lesson 3: Parts of the Robot: In Code] -> ||
+|| <- [WPI_Lesson1 Lesson 1: Parts of the Robot] || *Lesson 2* || [WPI_Lesson3 Lesson 3: Parts of the Robot: In Code] -> ||

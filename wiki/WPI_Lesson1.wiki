@@ -52,7 +52,7 @@ This is connected to the cRIO through one of the cRIO's modules. You actually do
     * These are located along the left side of the device, labeled 'PWM'
   * Digital I/O (input/output) (1-14), for sensors
     * These are along the upper right of the device, labeled 'DIGITAL I/O'
-  * Relays (1-16), which provide commands for controllers (like a [Lesson1#Spikes%2FRelays Spike]) for devices that have an on-or off state (e.g. lights).
+  * Relays (1-16), which provide commands for controllers (like a [WPI_Lesson1#Spikes%2FRelays Spike]) for devices that have an on-or off state (e.g. lights).
     * These are located along the the lower right of the device, labeled 'RELAY'
 
 There are more ports and uses for a digital sidecar, which are listed [http://www.usfirst.org/sites/default/files/uploadedFiles/Robotics_Programs/FRC/Game_and_Season__Info/2012_Assets/Digital%20Sidecar.pdf here].
@@ -60,7 +60,7 @@ There are more ports and uses for a digital sidecar, which are listed [http://ww
 ==Analog Breakout==
 <img src="http://team358.org/files/programming/ControlSystem2009-/AnalogModule.JPG" width=200px height=212px />
 
-This is a cRIO module that usually receives sensor data in non-digital format. For example, potentiometers (see [Lesson1#Potentiometer Potentiometers] for more) provide their data in the format of voltage. This device measures the analog input and converts it into a digital signal for the cRIO to process.
+This is a cRIO module that usually receives sensor data in non-digital format. For example, potentiometers (see [WPI_Lesson1#Potentiometer Potentiometers] for more) provide their data in the format of voltage. This device measures the analog input and converts it into a digital signal for the cRIO to process.
 
 There are 8 analog channels, located along the top of the module.
 
@@ -121,7 +121,7 @@ Window motors are different from most other motors in that they run off of a rel
 ===Servos and Vex Motors===
 <img src="http://www.servocity.com/assets/images/HS-311.jpg" width=180px height=164px />
 
-Servos are special types of motors. These have built-in sensors (e.g. a [Lesson1#Potentiometer potentiometer]) that help with control.
+Servos are special types of motors. These have built-in sensors (e.g. a [WPI_Lesson1#Potentiometer potentiometer]) that help with control.
 
 ====Vex Motors====
 <img src="http://www.pickmarked.net/Robotics/images/2wire269.jpg" width=193px height=214px />
@@ -132,7 +132,7 @@ Vex motors are very similar to a servo motor (and some are servo motors), but th
 Sensors are crucial parts to the robot. They provide important information pertaining to the robot's (or a part of the robot's) position. Note that what is listed here is not necessarily what can be used on the robot.
 
 ===Digital Inputs===
-The following sensors are attached to the [Lesson1#Digital%20Sidecar Digital Sidecar], and provide their data digitally.
+The following sensors are attached to the [WPI_Lesson1#Digital%20Sidecar Digital Sidecar], and provide their data digitally.
 
 ====Encoder====
 <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Gray_code_rotary_encoder_13-track_opened.jpg/125px-Gray_code_rotary_encoder_13-track_opened.jpg">
@@ -157,7 +157,7 @@ These digital devices are simple, in that they have two states: on and off (pres
 This device is basically sonar. It sends out a super-high-pitched sound and waits for the echo to determine the distance to an object.
 
 ===Analog Inputs===
-The following sensors can all be found plugged into the [Lesson1#Analog%20Breakout analog breakout box]. They provide their data by varying voltage. 
+The following sensors can all be found plugged into the [WPI_Lesson1#Analog%20Breakout analog breakout box]. They provide their data by varying voltage. 
 
 ====Potentiometer====
 <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Potentiometer.jpg/225px-Potentiometer.jpg" />
@@ -178,7 +178,7 @@ Gyroscopes are sensors that determine rotation about all three axes: essentially
 ====Accelerometer====
 <img src="http://www.pyroelectro.com/tutorials/accel_intro/img/accel.jpg" />
 
-Accelerometers are sensors that measure acceleration, but can also be used to measure rotation (similar to a [Lesson1#Gyroscope gyroscope]). The use of an accelerometer versus a gyroscope depends on the application.
+Accelerometers are sensors that measure acceleration, but can also be used to measure rotation (similar to a [WPI_Lesson1#Gyroscope gyroscope]). The use of an accelerometer versus a gyroscope depends on the application.
 
 ===Other sensors===
 
@@ -190,7 +190,7 @@ A camera's video feed can be used for various purposes -- in recent years, teams
 The cameras available to robotics teams are hooked up directly to the radio, with no cRIO processing.
 
 ==Controls==
-_Not to be confused with [Lesson1#Motor%20Controllers motor controllers]._
+_Not to be confused with [WPI_Lesson1#Motor%20Controllers motor controllers]._
 
 These devices are what controls the robot from the driver station.
 
@@ -220,7 +220,7 @@ FRC provides XBOX 360 controllers, so those are the game controllers used by ess
 In this case, each button runs a certain function, either started by a button press or only while a button is being held. The joysticks are used to drive the robot (Left Y axis and right X axis, to allow precision driving), and to perform manual operations.
 
 ===Joystick===
-_Not to be confused with [Lesson1#Game%20Controller game controller] joysticks_
+_Not to be confused with [WPI_Lesson1#Game%20Controller game controller] joysticks_
 
 <img src="http://www.logitech.com/assets/35368/attack-3-joystick53.png" />
 
@@ -270,33 +270,33 @@ Hint: it's a digital input.
   
 ==Answers==
 
-  # [Lesson1#cRIO cRIO]
+  # [WPI_Lesson1#cRIO cRIO]
     * Robot controller/Programmed device
     * Houses the code for the robot, processes input and sends out output
-  # [Lesson1#Victors Victor]
+  # [WPI_Lesson1#Victors Victor]
     * Drive controller
     * Controls the speed of a motor
-  # [Lesson1#Potentiometer Potentiometer]
+  # [WPI_Lesson1#Potentiometer Potentiometer]
     * Analog sensor
     * Measures rotation
-  # [Lesson1#Gyroscope Gyroscope]
+  # [WPI_Lesson1#Gyroscope Gyroscope]
     * Analog sensor
     * Measures rotation compared to the Earth
-  # [Lesson1#Analog%20Breakout Analog Breakout]
+  # [WPI_Lesson1#Analog%20Breakout Analog Breakout]
     * cRIO module
     * Converts analog signals into digital signals
-  # [Lesson1#Encoder Encoder]
+  # [WPILesson1#Encoder Encoder]
     * Digital sensor
     * Measures distance in pulses
-  # [Lesson1#CIM CIM Motor]
+  # [WPI_Lesson1#CIM CIM Motor]
     * Motor
-  # [Lesson1#Notification%20light Notification light]
+  # [WPI_Lesson1#Notification%20light Notification light]
     * Light that blinks given the robot's connection state
-  # [Lesson1#Limit%20switch Limit switch]
+  # [WPI_Lesson1#Limit%20switch Limit switch]
     * Digital sensor
     * On/off, depending whether switch is pressed
-  # [Lesson1#Digital%20Sidecar Digital Sidecar]
+  # [WPI_Lesson1#Digital%20Sidecar Digital Sidecar]
     * Connected to cRIO through module
     * Handles all digital input and output
     
-|| <- [GettingStarted Getting Started] || *Lesson 1*|| [Lesson2 Lesson 2: Program Structure] -> ||
+|| <- [Main_Page Main Page] || *Lesson 1* || [WPI_Lesson2 Lesson 2: Program Structure] -> ||

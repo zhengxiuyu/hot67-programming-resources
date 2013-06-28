@@ -30,7 +30,7 @@ There are really two different kinds of devices available for controlling the ro
 
 ==Functions==
 
-If you will recall from [Lesson3#Game%20Controller the last lesson], the game controller uses the `Joystick` class (the joystick does use this class, but it is programmed in a different way), and you need to provide the joystick ID in the constructor. For the purposes of this tutorial, let's say that you declared a pointer to a `Joystick` called `m_gamepad` at ID 1.
+If you will recall from [WPI_Lesson3#Game%20Controller the last lesson], the game controller uses the `Joystick` class (the joystick does use this class, but it is programmed in a different way), and you need to provide the joystick ID in the constructor. For the purposes of this tutorial, let's say that you declared a pointer to a `Joystick` called `m_gamepad` at ID 1.
 
 ===Buttons===
 
@@ -80,7 +80,7 @@ where `AXIS_INDEX` is the numerical index of the desired axis. This is the mappi
   
 _These mappings are available as header definitions in Defines.h as well._
 
-You may notice that the triggers are included in this mix. This is, again, due to their ability to measure how far the trigger is held down. The triggers only have one axis because one trigger registers as negative values, and the other registers as positive values (see [Lesson4#Implementing%20Controller%20Functions how to implement] for more).
+You may notice that the triggers are included in this mix. This is, again, due to their ability to measure how far the trigger is held down. The triggers only have one axis because one trigger registers as negative values, and the other registers as positive values (see [WPI_Lesson4#Implementing%20Controller%20Functions how to implement] for more).
 
 *This page is unfinished, check back later.*
   

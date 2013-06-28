@@ -16,7 +16,7 @@ In terms of general coding style, stick with a general C++ style. That is, keepi
 
 ==Naming==
 
-This is likely the most important piece of style. Every variable you declare does something (if it doesn't, get rid of it), but others need to know what it does in order for them to be able to help you with your program (single-letter names for looping variables, such as `x`, `y`, `z`, or `i` are fine, [Lesson2#Periodic_Routines but you will *never* use loops in robotics programming]). Thus, we follow a specific naming scheme:
+This is likely the most important piece of style. Every variable you declare does something (if it doesn't, get rid of it), but others need to know what it does in order for them to be able to help you with your program (single-letter names for looping variables, such as `x`, `y`, `z`, or `i` are fine, [WPI_Lesson2#Periodic_Routines but you will *never* use loops in robotics programming]). Thus, we follow a specific naming scheme:
 
 {{{
 TypeIdentifier m_DescriptiveLabel;
@@ -75,11 +75,11 @@ _!RobotBuilder Note: If you are using !RobotBuilder, this is done automatically.
 
 =Robot Parts=
 
-Only parts listed in the [Lesson1#Programmed%20Components Programmed Components] section of Lesson 1 can be declared. Even then, the [Lesson1#cRIO cRIO], [Lesson1#Digital%20Sidecar Digital Sidecar], [Lesson1#Analog%20Breakout Analog Breakout box], and [Lesson1#Motors motors] are not declared.
+Only parts listed in the [WPI_Lesson1#Programmed%20Components Programmed Components] section of Lesson 1 can be declared as components in the program. Even then, the [WPI_Lesson1#cRIO cRIO], [WPI_Lesson1#Digital%20Sidecar Digital Sidecar], [WPI_Lesson1#Analog%20Breakout Analog Breakout box], and [WPI_Lesson1#Motors motors] are not declared.
 
 Note that you do not need to declare all of the parts on the robot for your code to work. Of course, you will only be able to control what is declared. Also note that !WindRiver cannot possibly detect the correct address (e.g. PWM or relay channel) of various components, so make sure that your assignment is correct.
 
-Most parts are fairly straightforward. The tricky parts come in with the address assignment. Your electrical team should be able to tell you what is mounted where, but you should keep a wiring table and know how to find the relevant port, if necessary (see [Lesson1#Digital%20Sidecar] or [Lesson1#Analog%20Breakout]).
+Most parts are fairly straightforward. The tricky parts come in with the address assignment. Your electrical team should be able to tell you what is mounted where, but you should keep a wiring table and know how to find the relevant port, if necessary (see [WPI_Lesson1#Digital%20Sidecar] or [WPI_Lesson1#Analog%20Breakout]).
 
 Note that the location of each statement is not shown in the declaration example. The actual declaration belongs in the class list, and the initialization belongs in the class constructor.
 
@@ -155,7 +155,7 @@ m_motor3 = new Talon (3);
 }}}
 
 ===Servo===
-This category includes generic servos but not VEX motors (see [Lesson3#Victor Victors]), as VEX motors are managed differently.
+This category includes generic servos but not VEX motors (see [WPI_Lesson3#Victor Victors]), as VEX motors are managed differently.
 
 A servo is of type `Servo` (with a capital S). In the initialization, provide the servo's PWM channel.
 
@@ -181,7 +181,7 @@ m_relay1 = new Relay (1);
 }}}
 
 ===Digital Outputs===
-In some cases, you have a controller/motor that is digital yet does not fall into this category. As long as it uses the [Lesson1#Digital%20Sidecar digital output] on the Digital Sidecar, use this class.
+In some cases, you have a controller/motor that is digital yet does not fall into this category. As long as it uses the [WPI_Lesson1#Digital%20Sidecar digital output] on the Digital Sidecar, use this class.
 
 A digital output is of type `DigitalOutput` (with a capital D and O, no space). In the initialization, provide the digital output channel on the Digital Sidecar.
 
@@ -210,7 +210,7 @@ m_analogDev = new AnalogChannel (1);
 }}}
 
 ====!AnalogChannel Devices====
-The most common device used in this category is a [Lesson1#Potentiometer potentiometer]. If you have a general analog device, use this class (unless otherwise specified).
+The most common device used in this category is a [WPI_Lesson1#Potentiometer potentiometer]. If you have a general analog device, use this class (unless otherwise specified).
 
 ===!DigitalInput===
 The class `DigitalInput` (capital D, I; no space) manages generic digital sensors.
@@ -226,7 +226,7 @@ m_digitalDev = new DigitalInput (1);
 }}}
 
 ====!DigitalInput Devices====
-The most common device used in this category is a [Lesson1#Limit%20Switch limit switch]. If you have a general digital device, use this class (unless otherwise specified).
+The most common device used in this category is a [WPI_Lesson1#Limit%20Switch limit switch]. If you have a general digital device, use this class (unless otherwise specified).
 
 ===Encoder===
 An encoder is of type `Encoder` (capital E). In the initialization, do the following: 
@@ -377,7 +377,7 @@ m_timer = new Timer;
 
 =Activity=
 
-Working alone or with a partner, declare and initialize everything in the activity from [Lesson2#Activity lesson 2]. Assume the following:
+Working alone or with a partner, declare and initialize everything in the activity from [WPI_Lesson2#Activity lesson 2]. Assume the following:
 
   * The `RobotDrive` object is a 2-controller drivetrain
   * The climber is *NOT* on a `RobotDrive` object
@@ -536,4 +536,4 @@ START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
 
-|| <- [Lesson2 Lesson 2: Program Structure] || *Lesson 3* || [Lesson4 Chapter 2: Driving and User Input - Using User Input] ->||
+|| <- [WPI_Lesson2 Lesson 2: Program Structure] || *Lesson 3* || [WPI_Lesson4 Chapter 2: Driving and User Input - Using User Input] ->||

@@ -1,0 +1,21 @@
+#summary Lesson 6 - Pointers
+=Reading=
+
+Read these pages thoroughly:
+
+http://www.cplusplus.com/doc/tutorial/pointers/
+http://www.cplusplus.com/doc/tutorial/dynamic/
+
+=Extra Reading=
+
+http://www.cprogramming.com/tutorial/lesson6.html
+
+=Assignments=
+
+At this point, it is hard to assign anything on pointers. Regardless, this is still one of the most important concepts in terms of robotics programming.
+
+In the next lesson, you can write the assignment using pointers (where applicable), and, as a matter of fact, it is the better way of completing that task (due to memory issues).
+
+If you need extra practice in the meantime, you can rewrite any previous assignment using pointers and dynamic memory.
+
+|| <-[CPP_Lesson7 Chapter 2 - Organization - Lesson 7 - Structures] || *Lesson 8* || [CPP_Lesson9 Lesson 9 - Classes] ||
