@@ -450,7 +450,7 @@ public:
     m_dsLCD->Printf(DriverStationLCD::kUser_Line1,1,"Counter: %d",m_pressCounter);
     m_dsLCD->Printf(DriverStationLCD::kUser_Line2,1,"Float: %f",m_stickControl);
   }
-}
+};
 START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
