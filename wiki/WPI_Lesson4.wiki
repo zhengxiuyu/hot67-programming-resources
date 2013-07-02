@@ -451,6 +451,7 @@ public:
     m_dsLCD->Printf(DriverStationLCD::kUser_Line2,1,"Float: %f",m_stickControl);
   }
 }
+START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
 || <-[WPI_Lesson3 Chapter 1: The Basics - Lesson 3: Parts of the Robot -- In Code] || *Lesson 4* || [WPI_Lesson5 Lesson 5: Controlling Motors]-> ||
