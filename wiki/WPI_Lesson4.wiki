@@ -320,9 +320,9 @@ As for actually downloading the code, this is how you do it:
     # Select "FIRST Downloader Preferences"
     # Click "Browse..."
     # Navigate to this path in your project:
-      * PPC603gnu/<ProjectName>/Debug
+      * PPC603gnu/(ProjectName)/Debug
     # Select this file:
-      * <ProjectName.out>
+      * (ProjectName).out
     # Click "OK"
   # Make sure you are connected to the robot -- either by tether or wifi
   # Download the code (FIRST > Deploy)
