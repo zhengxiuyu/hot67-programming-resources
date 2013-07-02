@@ -536,4 +536,4 @@ START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
 
-|| <- [WPI_Lesson2 Lesson 2: Program Structure] || *Lesson 3* || [WPI_Lesson4 Chapter 2: Driving and User Input - Using User Input] ->||
+|| <- [WPI_Lesson2 Lesson 2: Program Structure] || *Lesson 3* || [WPI_Lesson4 Chapter 2: Driving and User Input - Lesson 4: Using User Input] ->||

@@ -78,4 +78,4 @@ Do any of the following:
   * Create a dynamic map (the map changes between runs)
     * HINT: [CPP_TipsAndTricks#Random_Numbers rand()]
 
-|| <-[CPP_Lesson5 Lesson 5 - Functions] || *Lesson 6* || [CPP_Lesson7 Lesson 7 - Data Structures]-> ||
+|| <-[CPP_Lesson5 Lesson 5: Functions] || *Lesson 6* || [CPP_Lesson7 Lesson 7: Data Structures]-> ||

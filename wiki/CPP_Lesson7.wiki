@@ -38,4 +38,4 @@ You may want to take a look at [CPP_TipsAndTricks#Input_Validation input validat
 Allow the user to input information on any number of people. (HINT: use an array!)
 
 
-|| <-[CPP_Lesson6 Lesson 6 - Arrays] || *Lesson 7* || [CPP_Lesson8 Chapter 3 - Advanced C++ - Lesson 8 - Pointers]-> ||
+|| <-[CPP_Lesson6 Lesson 6: Arrays] || *Lesson 7* || [CPP_Lesson8 Chapter 3: Advanced C++ - Lesson 8: Pointers]-> ||

@@ -30,5 +30,5 @@ Rewrite the '[CPP_Lesson2#Fate Fate]' program using switch/case statements.
  If user fails to drink a potion; user dies.
  
  If user fails to enter either door; user runs INTO A DOOR!.
- 
-|| <-[CPP_Lesson3 Lesson 3 - Looping] || *Lesson 4* || [CPP_Lesson5 Chapter 2: Organization - Lesson 5 - Functions]-> ||
+
+|| <-[CPP_Lesson3 Lesson 3: Looping] || *Lesson 4* || [CPP_Lesson5 Chapter 2: Organization - Lesson 5: Functions]-> ||

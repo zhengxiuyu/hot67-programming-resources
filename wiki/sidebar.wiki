@@ -1,17 +1,17 @@
   * C++ Guided Tutorial
     * [CPP_GettingReady Getting Ready]
     * Chapter 1: Basic C++
-      * [CPP_Lesson1 Intro to C++]
-      * [CPP_Lesson2 If/Else statements]
-      * [CPP_Lesson3 Looping]
-      * [CPP_Lesson4 Switch/Case]
+      * [CPP_Lesson1 Lesson 1: Intro to C++]
+      * [CPP_Lesson2 Lesson 2: If/Else statements]
+      * [CPP_Lesson3 Lesson 3: Looping]
+      * [CPP_Lesson4 Lesson 4: Switch/Case]
     * Chapter 2: Organization
-      * [CPP_Lesson5 Functions]
-      * [CPP_Lesson6 Arrays]
-      * [CPP_Lesson7 Structures]
+      * [CPP_Lesson5 Lesson 5: Functions]
+      * [CPP_Lesson6 Lesson 6: Arrays]
+      * [CPP_Lesson7 Lesson 7: Structures]
     * Chapter 3: Advanced C++
-      * [CPP_Lesson8 Pointers]
-      * [CPP_Lesson9 Classes]
+      * [CPP_Lesson8 Lesson 8: Pointers]
+      * [CPP_Lesson9 Lesson 9: Classes]
     * [CPP_TipsAndTricks Tips and Tricks]
   * WPI Tutorial
     * Chapter 1: The Basics

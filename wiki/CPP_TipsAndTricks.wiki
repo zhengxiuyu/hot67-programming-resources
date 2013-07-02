@@ -31,7 +31,18 @@ int main()
 
 The code above prints "I have 5 puppies!"
 
-See [http://www.cplusplus.com/reference/cstdio/printf/ here] for more information on `printf`. 
+Here is a shortened table of format specifiers (the `%d` above is an example) that `printf()` accepts:
+
+_This table is from the !www.cplusplus.com reference page on `printf()`_
+
+|| *Specifier* || *Type* || *Example* ||
+|| `d` or `i` || Signed integer || `-49` ||
+|| `u` || Unsigned integer || `435` ||
+|| `f` || Floating point number || `58.9784` ||
+|| `c` || Character || `g` ||
+|| `s` || C String || `hello` ||
+
+See [http://www.cplusplus.com/reference/cstdio/printf/ here] for a complete table and more details on `printf`. 
 
 Please note that printf will not accept C++ strings (variable type `string`) If you need to output a `string` in this manner, use this method for now:
 

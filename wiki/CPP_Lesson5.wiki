@@ -51,4 +51,4 @@ Rewrite the program so that it can do any of the following:
   * Allow the user to create multiple rectangles in the same run (meaning the program cannot exit)
   * Allow the user to put a message in the rectangle *without* changing its dimensions (pre-defined or user-defined dimensions, but the rectangle must stay a rectangle)
   
-|| <-[CPP_Lesson4 Chapter 1 - Basic C++ - Lesson 4 - Switch/Case] || *Lesson 5* || [CPP_Lesson6 Lesson 6 - Arrays]-> ||
+|| <-[CPP_Lesson4 Chapter 1: Basic C++ - Lesson 4: Switch/Case] || *Lesson 5* || [CPP_Lesson6 Lesson 6: Arrays]-> ||
