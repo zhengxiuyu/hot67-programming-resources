@@ -53,7 +53,7 @@ where `BUTTON_INDEX` is the numerical index of the desired button. For the xbox 
   * Left Stick = 9
   * Right Stick = 10
   
-_TIP! Check out [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/2013/Defines.h Defines.h] in in the source code for 2013!_
+_TIP! Check out [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h] in in the source code for 2013!_
 
 *WARNING*: The left and right stick buttons are pressed when the actual joystick on the controller is pressed down. Because they are tied in with the controller, a driver can hit either button inadvertantly. Use these with extreme caution, if at all.
 
@@ -77,7 +77,7 @@ where `AXIS_INDEX` is the numerical index of the desired axis. This is the mappi
   * Right stick / X axis = 4
   * Right stick / Y axis = 5
   
-_These mappings are available as header definitions in [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/2013/Defines.h Defines.h] as well._
+_These mappings are available as header definitions in [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h] as well._
 
 ====The Joysticks====
 
