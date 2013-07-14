@@ -2,6 +2,8 @@
 
 This page details a few tips and tricks you can employ to make your programs faster and more robust. Some of them require a certain level of understanding. That level will be written under each heading.
 
+Note that the levels listed here are the *absolute minimum* levels of knowledge you will need to implement them. It may be easier for you to learn them at a later time.
+
 <wiki:toc max_depth="1">
 
 =printf=
@@ -33,7 +35,7 @@ The code above prints "I have 5 puppies!"
 
 Here is a shortened table of format specifiers (the `%d` above is an example) that `printf()` accepts:
 
-_This table is from the !www.cplusplus.com reference page on `printf()`_
+_This table is from the www.cplusplus.com reference page on `printf()`_
 
 || *Specifier* || *Type* || *Example* ||
 || `d` or `i` || Signed integer || `-49` ||
@@ -46,13 +48,8 @@ See [http://www.cplusplus.com/reference/cstdio/printf/ here] for a complete tabl
 
 Please note that printf will not accept C++ strings (variable type `string`) If you need to output a `string` in this manner, use this method for now:
 
-{{{
-string mystring;
-
-mystring = "hello";
-
-printf("I would like to say %s", mystring.c_str());
-}}}
+|| *Code* || *Output* ||
+|| `string mystring;` <br /><br /> `mystring = "hello";` <br /><br /> `printf("I would like to say %s", mystring.c_str());` || `I would like to say hello` ||
 
 Another way to do this would be to declare a [CPP_Lesson6#C_Strings C string]; however, you need to have learned the concepts in lesson 6 in order to do that.
 
@@ -191,7 +188,7 @@ iomanip::setw(int width)
 }}}
 
 ===setw parameters===
-  * width: The number of characters that the following output operation should contain. If there is an excess, the [CPP_TipsAndTricks#setfill fill character] is repeated and put before the characters output by the following operation.
+  * `width`: The number of characters that the following output operation should contain. If there is an excess, the [CPP_TipsAndTricks#setfill fill character] is repeated and put before the characters output by the following operation.
   
 ===setw use===
 Place this function *before* the desired output operation.
@@ -217,7 +214,7 @@ iomanip::setfill(char_type c)
 
 ===setfill parameters===
 
-  * c: Character to use as the fill character in the following output operation.
+  * `c`: Character to use as the fill character in the following output operation.
   
 ===setfill use===
 Place this function *before* the desired output operation.

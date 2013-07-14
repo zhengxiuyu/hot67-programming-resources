@@ -1,3 +1,4 @@
+  * [Main_Page Main Page]
   * C++ Guided Tutorial
     * [CPP_GettingReady Getting Ready]
     * Chapter 1: Basic C++
@@ -28,4 +29,5 @@
       * Lesson 9: PID Part 1: Concepts of the PID
       * Lesson 10: PID Part 2: Using a PID on the Robot
       * Lesson 11: PID Part 3: Advanced PID Programming
+    * [WPI_TipsAndTricks Tips and Tricks]
   * [https://code.google.com/p/hot67-programming-resources/w/list Wiki List]

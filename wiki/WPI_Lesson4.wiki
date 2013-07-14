@@ -57,6 +57,8 @@ _TIP! Check out [https://code.google.com/p/hot67-programming-resources/source/br
 
 *WARNING*: The left and right stick buttons are pressed when the actual joystick on the controller is pressed down. Because they are tied in with the controller, a driver can hit either button inadvertantly. Use these with extreme caution, if at all.
 
+Obviously, this function returns true if a button is pressed.
+
 Note that the triggers are not here. They are treated as controller joysticks (you will see why in a moment).
 
 ===Controller Joysticks===
@@ -339,7 +341,7 @@ Write a program that does the following:
   * Has a counter
     * Counts *UP* on press of the A button
     * Counts *DOWN* on press of the B button
-    * Note: you will need to use a timeout.
+    * Note: you will need to use a [WPI_TipsAndTricks#Timeouts timeout].
   * Controls a `float` with the left joystick and triggers as follows:
     * When the left joystick is pressed *FORWARD*, it counts *UP* at a speed determined by how far the stick is pressed forward.
     * When the left joystick is pulled *BACKWARD*, it counts *DOWN* at a speed determined by how far the stick is pulled back.
@@ -350,11 +352,107 @@ Write a program that does the following:
   
 *STOP SCROLLING UNTIL YOU ARE READY TO CHECK YOUR ANSWER*
 
-==Answer==
+==Answers==
 
 Remember that you should still put in the `RobotInit()`, `DisabledInit()`, `AutonomousInit()`, `TeleopInit()`, `AutonomousPeriodic()`, and `DisabledPeriodic()` so than nothing bad happens if the robot goes into a mode other than Teleop.
 
-What is shown here is an intelligent loop counter timeout.
+The following answers will disable both buttons during the timeout, but for now, this is fine.
+
+==Timer==
+
+{{{
+#include "WPILib.h"
+#include <cmath>
+
+class BuiltinDefaultCode: public Iterative Robot
+{
+public:
+  Joystick* m_gamepad;
+  DriverStationLCD* m_dsLCD;
+  Timer* m_timer;
+  
+  int m_pressCounter;
+  float m_stickControl;
+  
+  BuiltinDefaultCode ()
+  {
+    m_gamepad = new Joystick (1);
+    m_dsLCD = DriverStationLCD::GetInstance();
+    m_timer = new Timer;
+    
+    m_pressCounter = 0;
+    m_stickControl = 0.0;
+  }
+  
+  /** INIT ROUTINES **/
+  void RobotInit ()
+  {
+  }
+  
+  void DisabledInit ()
+  {
+  }
+  
+  void AutonomousInit ()
+  {
+  }
+  
+  void TeleopInit ()
+  {
+  }
+  
+  /** PERIODIC ROUTINES **/
+  
+  void DisabledPeriodic ()
+  {
+  }
+  
+  void AutonomousPeriodic ()
+  {
+  }
+  
+  void TeleopPeriodic ()
+  {
+    //First, we will write the counter
+    
+    if (m_timer->HasPeriodPassed(0.5) || m_timer->Get() == 0)
+    {
+      if (m_gamepad->GetRawButton(1))
+      {
+	m_pressCounter++;
+	m_timer->Stop();
+	m_timer->Start();
+	m_timer->Reset();
+      }
+      else if (m_gamepad->GetRawButton(2))
+      {  //This way, the user can press both buttons, but only the A button will register
+	m_pressCounter--;
+	m_timer->Stop();
+	m_timer->Start();
+	m_timer->Reset();
+      }
+    }
+    
+    //Now for the float
+    if (fabs(m_gamepad->GetRawAxis(2)) > 0.2)
+      m_stickControl += -m_gamepad->GetRawAxis(2)*5;
+      //remember that moving the stick up is negative, moving it down is positive
+      
+    if (m_gamepad->GetRawAxis(3) > 0)
+      m_stickControl = -fabs(m_stickControl);
+    else
+      m_stickControl = fabs(m_stickControl);
+      
+    //Finally, print the variables to the driver station
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line1,1,"Counter: %d",m_pressCounter);
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line2,1,"Float: %f",m_stickControl);
+    m_dsLCD->UpdateLCD();
+  }
+};
+START_ROBOT_CLASS(BuiltinDefaultCode)
+}}}
+
+===Intelligent Loop Counter===
 
 {{{
 #include "WPILib.h"
@@ -419,7 +517,7 @@ public:
 	  m_pressCounter++;
 	  m_teleopLoopCounter++;
 	}
-	else if (m_gamepad->GetRawButton(1))
+	else if (m_gamepad->GetRawButton(2))
 	{ 
 	  /** This way, the user can press 
 	    * both buttons, but only the 
@@ -429,7 +527,7 @@ public:
 	  m_teleopLoopCounter++;
 	}
 	break;
-      case 11:
+      case 16:
 	m_teleopLoopCounter = 0;
 	break;
       default:
@@ -449,6 +547,7 @@ public:
     //Finally, print the variables to the driver station
     m_dsLCD->Printf(DriverStationLCD::kUser_Line1,1,"Counter: %d",m_pressCounter);
     m_dsLCD->Printf(DriverStationLCD::kUser_Line2,1,"Float: %f",m_stickControl);
+    m_dsLCD->UpdateLCD();
   }
 };
 START_ROBOT_CLASS(BuiltinDefaultCode)

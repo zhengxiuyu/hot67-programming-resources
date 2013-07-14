@@ -1,12 +1,16 @@
 #summary Robot Programming: Getting Started
 
-You can use the sidebar to select specific pages.
+The sidebar has links to every lesson on this wiki.
 
 =C++ Guided Tutorial=
 
 New programmers should start here. This will guide you through [http://www.cplusplus.com/doc/tutorial the tutorial at cplusplus.com], as well as provide assignments to apply and test your knowledge.
 
 [CPP_GettingReady Begin->]
+
+<img src="http://imgs.xkcd.com/comics/goto.png" title="Neal Stephenson thinks it's cute to name his labels 'dengo'" />
+
+Seriously. Code right. You never know where those pesky velociraptors might be hiding.
 
 =WPILib Tutorial=
 
