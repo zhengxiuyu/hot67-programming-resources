@@ -119,7 +119,7 @@ This method is more robust than the previous one, as it relies purely on hard-co
 
   * An `int` to count CPU loops
   
-==Creating a Timeout with an Intelligent Loop Counter==
+===Creating a Timeout with an Intelligent Loop Counter===
 
 The first thing that should be noted is that this particular method relies on the fact that the timeout is underway if the loop counter is a non-zero value. Due to this, you need to increase the loop counter on the loop the button press was first detected. This loop should *not* be counted as part of the timeout, so you need to add 1 to your number of loops when you run a check.
 
