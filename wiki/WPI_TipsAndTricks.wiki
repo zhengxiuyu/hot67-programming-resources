@@ -72,7 +72,7 @@ The `HasPeriodPassed()` function is like checking to see if the timer has gone o
 =Timeouts=
 *Required Level: Lesson 4* 
 
-One of the downsides of the `GetRawButton()` function is that it returns true if there is a button pressed, regardless of how long that it has been pressed for. Because the cRIO is running the TeleopPeriodic() routine in a loop, one button press in the driver's point of view may register anywhere from 5 to 20 times in the cRIO. Due to that, manipulating variables by set amounts (incrementing/decrementing) is trickier than it sounds. This section discusses how to create a button timeout.
+One of the downsides of the `GetRawButton()` function is that it returns true if there is a button pressed, regardless of how long that it has been pressed for. Because the cRIO is running the `TeleopPeriodic()` routine in a loop, one button press in the driver's point of view may register anywhere from 5 to 20 times in the cRIO. Due to that, manipulating variables by set amounts (incrementing/decrementing) is trickier than it sounds. This section discusses how to create a button timeout.
 
 There are two methods to do this.
 
@@ -115,7 +115,7 @@ Because the timer is running on its own, that is all you need to do to implement
 
 This method is more robust than the previous one, as it relies purely on hard-coded logic and simple variables. However, the timeout will not be a constant value, it depends on how fast the cRIO loops -- which is loosely dependent on what you have the robot programmed to do.
 
-==Required Variable==
+===Required Variable===
 
   * An `int` to count CPU loops
   
