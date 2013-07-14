@@ -358,7 +358,7 @@ Remember that you should still put in the `RobotInit()`, `DisabledInit()`, `Auto
 
 The following answers will disable both buttons during the timeout, but for now, this is fine.
 
-==Timer==
+===Timer===
 
 {{{
 #include "WPILib.h"

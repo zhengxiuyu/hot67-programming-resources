@@ -49,7 +49,7 @@ See [http://www.cplusplus.com/reference/cstdio/printf/ here] for a complete tabl
 Please note that printf will not accept C++ strings (variable type `string`) If you need to output a `string` in this manner, use this method for now:
 
 || *Code* || *Output* ||
-|| `string mystring;` <br /><br /> `mystring = "hello";` <br /><br /> `printf("I would like to say %s", mystring.c_str());` || `I would like to say hello` ||
+|| `string mystring;` <br /> `mystring = "hello";` <br /> `printf("I would like to say %s", mystring.c_str());` || `I would like to say hello` ||
 
 Another way to do this would be to declare a [CPP_Lesson6#C_Strings C string]; however, you need to have learned the concepts in lesson 6 in order to do that.
 
