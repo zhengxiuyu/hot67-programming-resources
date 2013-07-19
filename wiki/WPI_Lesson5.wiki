@@ -144,7 +144,7 @@ Program the robot to do the following:
     * [WPI_TipsAndTricks#Timeouts Timeout]!
     
 Don't forget the controller deadband (0.2), as the controllers do not zero properly. To regain fine control, add the deadband (if the controller reading is negative) / subtract the deadband (if the controller reading is positive) and then multiply that value by 1.25.
-    
+
 *STOP SCROLLING UNTIL YOU ARE READY TO CHECK YOUR ANSWER*
 
 ==Answer==
