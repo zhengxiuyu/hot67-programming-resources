@@ -6,7 +6,7 @@ The sidebar has links to every lesson on this wiki.
 
 New programmers should start here. This will guide you through [http://www.cplusplus.com/doc/tutorial the tutorial at cplusplus.com], as well as provide assignments to apply and test your knowledge.
 
-[CPP_GettingReady Begin->]
+[CPP_GettingReady Begin →]
 
 <img src="http://imgs.xkcd.com/comics/goto.png" title="Neal Stephenson thinks it's cute to name his labels 'dengo'" />
 
@@ -20,7 +20,7 @@ This is written by a student, and as such is not written by nor endorsed by WPI.
 
 It is intended to be easy for new robot programmers to understand. If you have any questions, comments, concerns, or suggestions, leave them in the comments on the page it applies to.
 
-[WPI_Lesson1 Begin->]
+[WPI_Lesson1 Begin →]
 
 =Wiki=
 For the original wiki list, click [https://code.google.com/p/hot67-programming-resources/w/list here].

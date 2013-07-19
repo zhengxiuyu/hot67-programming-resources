@@ -75,11 +75,11 @@ _!RobotBuilder Note: If you are using !RobotBuilder, this is done automatically.
 
 =Robot Parts=
 
-Only parts listed in the [WPI_Lesson1#Programmed%20Components Programmed Components] section of Lesson 1 can be declared as components in the program. Even then, the [WPI_Lesson1#cRIO cRIO], [WPI_Lesson1#Digital%20Sidecar Digital Sidecar], [WPI_Lesson1#Analog%20Breakout Analog Breakout box], and [WPI_Lesson1#Motors motors] are not declared.
+Only parts listed in the [WPI_Lesson1#Programmed_Components Programmed Components] section of Lesson 1 can be declared as components in the program. Even then, the [WPI_Lesson1#cRIO cRIO], [WPI_Lesson1#Digital_Sidecar Digital Sidecar], [WPI_Lesson1#Analog_Breakout Analog Breakout box], and [WPI_Lesson1#Motors motors] are not declared.
 
 Note that you do not need to declare all of the parts on the robot for your code to work. Of course, you will only be able to control what is declared. Also note that !WindRiver cannot possibly detect the correct address (e.g. PWM or relay channel) of various components, so make sure that your assignment is correct.
 
-Most parts are fairly straightforward. The tricky parts come in with the address assignment. Your electrical team should be able to tell you what is mounted where, but you should keep a wiring table and know how to find the relevant port, if necessary (see [WPI_Lesson1#Digital%20Sidecar] or [WPI_Lesson1#Analog%20Breakout]).
+Most parts are fairly straightforward. The tricky parts come in with the address assignment. Your electrical team should be able to tell you what is mounted where, but you should keep a wiring table and know how to find the relevant port, if necessary (see [WPI_Lesson1#Digital_Sidecar] or [WPI_Lesson1#Analog_Breakout]).
 
 Note that the location of each statement is not shown in the declaration example. The actual declaration belongs in the class list, and the initialization belongs in the class constructor.
 
@@ -181,7 +181,7 @@ m_relay1 = new Relay (1);
 }}}
 
 ===Digital Outputs===
-In some cases, you have a controller/motor that is digital yet does not fall into this category. As long as it uses the [WPI_Lesson1#Digital%20Sidecar digital output] on the Digital Sidecar, use this class.
+In some cases, you have a controller/motor that is digital yet does not fall into this category. As long as it uses the [WPI_Lesson1#Digital_Sidecar digital output] on the Digital Sidecar, use this class.
 
 A digital output is of type `DigitalOutput` (with a capital D and O, no space). In the initialization, provide the digital output channel on the Digital Sidecar.
 
@@ -226,7 +226,7 @@ m_digitalDev = new DigitalInput (1);
 }}}
 
 ====!DigitalInput Devices====
-The most common device used in this category is a [WPI_Lesson1#Limit%20Switch limit switch]. If you have a general digital device, use this class (unless otherwise specified).
+The most common device used in this category is a [WPI_Lesson1#Limit_Switch limit switch]. If you have a general digital device, use this class (unless otherwise specified).
 
 ===Encoder===
 An encoder is of type `Encoder` (capital E). In the initialization, do the following: 

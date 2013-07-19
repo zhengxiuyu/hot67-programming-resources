@@ -132,7 +132,7 @@ Vex motors are very similar to a servo motor (and some are servo motors), but th
 Sensors are crucial parts to the robot. They provide important information pertaining to the robot's (or a part of the robot's) position. Note that what is listed here is not necessarily what can be used on the robot.
 
 ===Digital Inputs===
-The following sensors are attached to the [WPI_Lesson1#Digital%20Sidecar Digital Sidecar], and provide their data digitally.
+The following sensors are attached to the [WPI_Lesson1#Digital_Sidecar Digital Sidecar], and provide their data digitally.
 
 ====Encoder====
 <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Gray_code_rotary_encoder_13-track_opened.jpg/125px-Gray_code_rotary_encoder_13-track_opened.jpg">
@@ -147,7 +147,7 @@ Encoders work by emitting pulses every time a predefined distance has passed aft
 It may be hard to believe, but this sensor watches (with a magnet) a gear and counts the number of teeth that pass by in a given period of time.
 
 ====Limit Switch====
-<img src="http://www.switchgeardealers.in/images/logo2/spdt%20limit%20switch.jpg" width=214px height=214px />
+<img src="https://www.egr.msu.edu/eceshop/Parts_Inventory/images/spdt%20limit%20switch.jpg" width=214px height=214px />
 
 These digital devices are simple, in that they have two states: on and off (pressed and not pressed).
 
@@ -157,7 +157,7 @@ These digital devices are simple, in that they have two states: on and off (pres
 This device is basically sonar. It sends out a super-high-pitched sound and waits for the echo to determine the distance to an object.
 
 ===Analog Inputs===
-The following sensors can all be found plugged into the [WPI_Lesson1#Analog%20Breakout analog breakout box]. They provide their data by varying voltage. 
+The following sensors can all be found plugged into the [WPI_Lesson1#Analog_Breakout analog breakout box]. They provide their data by varying voltage. 
 
 ====Potentiometer====
 <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Potentiometer.jpg/225px-Potentiometer.jpg" />
@@ -190,7 +190,7 @@ A camera's video feed can be used for various purposes -- in recent years, teams
 The cameras available to robotics teams are hooked up directly to the radio, with no cRIO processing.
 
 ==Controls==
-_Not to be confused with [WPI_Lesson1#Motor%20Controllers motor controllers]._
+_Not to be confused with [WPI_Lesson1#Motor_Controllers motor controllers]._
 
 These devices are what controls the robot from the driver station.
 
@@ -220,7 +220,7 @@ FRC provides XBOX 360 controllers, so those are the game controllers used by ess
 In this case, each button runs a certain function, either started by a button press or only while a button is being held. The joysticks are used to drive the robot (Left Y axis and right X axis, to allow precision driving), and to perform manual operations.
 
 ===Joystick===
-_Not to be confused with [WPI_Lesson1#Game%20Controller game controller] joysticks_
+_Not to be confused with [WPI_Lesson1#Game_Controller game controller] joysticks_
 
 <img src="http://www.logitech.com/assets/35368/attack-3-joystick53.png" />
 
@@ -282,20 +282,20 @@ Hint: it's a digital input.
   # [WPI_Lesson1#Gyroscope Gyroscope]
     * Analog sensor
     * Measures rotation compared to the Earth
-  # [WPI_Lesson1#Analog%20Breakout Analog Breakout]
+  # [WPI_Lesson1#Analog_Breakout Analog Breakout]
     * cRIO module
     * Converts analog signals into digital signals
-  # [WPILesson1#Encoder Encoder]
+  # [WPI_Lesson1#Encoder Encoder]
     * Digital sensor
     * Measures distance in pulses
   # [WPI_Lesson1#CIM CIM Motor]
     * Motor
-  # [WPI_Lesson1#Notification%20light Notification light]
+  # [WPI_Lesson1#Notification_light Notification light]
     * Light that blinks given the robot's connection state
-  # [WPI_Lesson1#Limit%20switch Limit switch]
+  # [WPI_Lesson1#Limit_switch Limit switch]
     * Digital sensor
     * On/off, depending whether switch is pressed
-  # [WPI_Lesson1#Digital%20Sidecar Digital Sidecar]
+  # [WPI_Lesson1#Digital_Sidecar Digital Sidecar]
     * Connected to cRIO through module
     * Handles all digital input and output
     

@@ -318,7 +318,7 @@ As for actually downloading the code, this is how you do it:
   # Build the project - Ctrl+B x2
     * As the programs you write grow more complex, you may need to clean as well
   # Check the downloader preferences if you haven't already (you don't need to do this every time, only when you switch projects).
-    # Go to Windows -> Preferences
+    # Go to Windows → Preferences
     # Select "FIRST Downloader Preferences"
     # Click "Browse..."
     # Navigate to this path in your project:
@@ -327,7 +327,8 @@ As for actually downloading the code, this is how you do it:
       * (!ProjectName).out
     # Click "OK"
   # Make sure you are connected to the robot -- either by tether or wifi
-  # Download the code (FIRST > Deploy)
+  # Download the code (FIRST → Deploy)
+    * ENSURE A PROPER CONNECTION THROUGHOUT THE ENTIRETY OF THIS STEP!!!!
   # Open the FRC Driver Station
   # Navigate to the Diagnostics tab
   # Select "Reboot cRIO.."
