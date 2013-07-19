@@ -53,7 +53,7 @@ where `BUTTON_INDEX` is the numerical index of the desired button. For the xbox 
   * Left Stick = 9
   * Right Stick = 10
   
-_TIP! Check out [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h] in in the source code for 2013!_
+_TIP! Check out [https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h] under the 'Tutorial' folder in the source code!_
 
 *WARNING*: The left and right stick buttons are pressed when the actual joystick on the controller is pressed down. Because they are tied in with the controller, a driver can hit either button inadvertantly. Use these with extreme caution, if at all.
 
