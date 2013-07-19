@@ -54,4 +54,4 @@ Don't use ten printf statements; use *two nested loops* instead. You'll have to 
 ===Extra Practice===
 Rewrite this program to allow the user to pick the height of the triangle, still following the same line pattern. You may want to use an `unsigned int` in combination with an [CPP_TipsAndTricks#Input_Validation input check] to prevent the user from creating impossible triangles.
 
-|| <-[CPP_Lesson1 Lesson 2: If/Else Statements] || *Lesson 3* || [CPP_Lesson4 Lesson 4: Switch/Case]-> ||
+|| ← [CPP_Lesson1 Lesson 2: If/Else Statements] || *Lesson 3* || [CPP_Lesson4 Lesson 4: Switch/Case] → ||

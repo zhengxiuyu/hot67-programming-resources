@@ -18,4 +18,4 @@ In the next lesson, you can write the assignment using pointers (where applicabl
 
 If you need extra practice in the meantime, you can rewrite any previous assignment using pointers and dynamic memory.
 
-|| <-[CPP_Lesson7 Chapter 2: Organization - Lesson 7: Structures] || *Lesson 8* || [CPP_Lesson9 Lesson 9: Classes]-> ||
+|| ← [CPP_Lesson7 Chapter 2: Organization - Lesson 7: Structures] || *Lesson 8* || [CPP_Lesson9 Lesson 9: Classes] → ||

@@ -435,4 +435,4 @@ class BuiltinDefaultCode: public IterativeRobot
 START_ROBOT_CLASS(BuiltinDefaultCode);
 }}}
 
-|| <- [WPI_Lesson1 Lesson 1: Parts of the Robot] || *Lesson 2* || [WPI_Lesson3 Lesson 3: Parts of the Robot -- In Code] -> ||
+|| ← [WPI_Lesson1 Lesson 1: Parts of the Robot] || *Lesson 2* || [WPI_Lesson3 Lesson 3: Parts of the Robot -- In Code] → ||

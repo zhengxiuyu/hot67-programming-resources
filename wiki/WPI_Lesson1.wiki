@@ -299,4 +299,4 @@ Hint: it's a digital input.
     * Connected to cRIO through module
     * Handles all digital input and output
     
-|| <- [Main_Page Main Page] || *Lesson 1* || [WPI_Lesson2 Lesson 2: Program Structure] -> ||
+|| ← [Main_Page Main Page] || *Lesson 1* || [WPI_Lesson2 Lesson 2: Program Structure] → ||

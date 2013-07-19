@@ -124,4 +124,4 @@ Do any of the following:
     * Do not allow them to start with $1000
     * For multiplayer: All players must start with the same money
 
-|| <-[CPP_Lesson8 Lesson 8: Pointers] || *Lesson 9* || [WPI_Lesson1 WPI Tutorial]-> ||
+|| ← [CPP_Lesson8 Lesson 8: Pointers] || *Lesson 9* || [WPI_Lesson1 WPI Tutorial] → ||
