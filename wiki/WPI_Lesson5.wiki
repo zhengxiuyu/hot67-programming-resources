@@ -325,4 +325,4 @@ class BuiltinDefaultCode: public IterativeRobot
 START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
-|| ← [WPI_Lesson4 Lesson 4: Using User Input] || *Lesson 5* || [WPI_Lesson6 Lesson 6: Earning Your Driver's License Driving] → ||
+|| ← [WPI_Lesson4 Lesson 4: Using User Input] || *Lesson 5* || [WPI_Lesson6 Lesson 6: Earning Your Driver's License: Driving] → ||
