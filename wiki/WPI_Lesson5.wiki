@@ -65,6 +65,16 @@ else if (m_gamepad->GetRawButton(2)) //if the B button is pressed, cancel
 
 In this case, a button timeout would not be required, because you are setting the motor to the same value while the button is pressed.
 
+==How Fast?==
+
+If you set one motor to different speeds throughout your program, or the `Set()` function is controlled by a controller joystick, you may find yourself at some point needing to figure out what that motor is currently set to. There is a function for that.
+
+{{{
+float Victor::Get()
+float Jaguar::Get()
+float Talon::Get()
+}}}
+
 ==Physical Capabilities of the Robot==
 
 Now that you are programming things to move, you should, first of all, be aware that *things are moving*, so you should be even more certain that you and everyone around you know that the equipment you are working with can move and potentially cause serious injury. Secondly, you should be aware of the robot's physical capabilities while you are programming. For example, the 2013 bot's launcher system uses motors driving wheels via belts. If the motors spin up the belts too quickly, the belt pulleys will spin inside the belt, which in turn shreds the belt. In this case, the robot was programmed to spin up more slowly. At any rate, you should be aware of potential problems such as this.
@@ -126,6 +136,16 @@ else
 
 The above code will turn a light on if the Y button is held.
 
+==What State?==
+
+Similar to the previous three, Relays also have a method to get what the controller is currently set to.
+
+{{{
+enum Relay::Get()
+}}}
+
+This returns the enumeration (from [WPI_Lesson5#Relay_Set_Use above]) that represents the current state of the relay.
+
 =Activity=
 
 *This activity is designed for the 2013 robot. Talk to someone who is familiar with the setup of other robots to write something for another robot.*
@@ -176,7 +196,6 @@ class BuiltinDefaultCode: public IterativeRobot
     
     //Variables to manage the launcher and light
     bool m_launcherOn;
-    bool m_lightOn;
     int m_teleopLoopCounter;
     
     BuiltinDefaultCode()
@@ -200,7 +219,6 @@ class BuiltinDefaultCode: public IterativeRobot
       m_launchTimer = new Timer;
       
       m_launcherOn = false;
-      m_lightOn = false;
       m_teleopLoopCounter = 0;
     }
     
@@ -242,13 +260,9 @@ class BuiltinDefaultCode: public IterativeRobot
       if (fabs(m_gamepad->GetRawAxis(2)) > 0.2)
       {
 	if (m_gamepad->GetRawAxis(2) > 0.0)
-	{
 	  PlateSet((m_gamepad->GetRawAxis(2) - 0.2)*1.25);
-	}
 	else
-	{
 	  PlateSet((m_gamepad->GetRawAxis(2) + 0.2)*1.25);
-	}
       }
       else //ensure that the motor is not moving
 	PlateSet(0.0);
@@ -268,8 +282,10 @@ class BuiltinDefaultCode: public IterativeRobot
 	
       if (m_launcherOn)
       {
-	if (m_launchTimer->HasPeriodPassed(2.0))
+	if (!m_launchTimer->HasPeriodPassed(2.0))
 	  LauncherSet(m_launchTimer->Get()/2.0);
+	else
+	  LauncherSet(1.0);
       }
       else
 	LauncherSet(0.0);
@@ -282,16 +298,10 @@ class BuiltinDefaultCode: public IterativeRobot
 	case 0:
 	  if (m_gamepad->GetRawButton(3))
 	  {
-	    if (m_lightOn)
-	    {
-	      m_lightOn = false;
+	    if (m_light->Get == Relay::kOff)
 	      m_light->Set(Relay::kForward);
-	    }
 	    else
-	    {
-	      m_lightOn = true;
 	      m_light->Set(Relay::kOff);
-	    }
 	    
 	    m_teleopLoopCounter++;
 	  }
