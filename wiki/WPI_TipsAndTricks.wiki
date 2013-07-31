@@ -56,6 +56,8 @@ For one, you should keep in mind that the `Reset()` function does *not* stop the
 
 Secondly, the `Timer` object does not always function as planned. It has some issues, and as such, it should become habitual that you call the `Stop()` and `Reset()` functions (back-to-back, in that order) if you need to reset the timer, anyway. Should that not work, then call `Stop()`, `Start()`, and `Reset()` (the first two can switch, depending if you need the timer to continue running or not). Should that not work, then another course of action might be advisable.
 
+You should note that an initialized timer that has not been started yet will have a value of 0, so, depending on what exactly you are using the `Timer` for, you may need to call the `Start()` function in the class constructor after in initializing the timer.
+
 ==Checking the timer==
 
 Of course, a timer would be not useful if it did not have some way to access its time.
@@ -92,13 +94,15 @@ For simplicity's sake, let's assume that you have already declared and initializ
 
 The first thing that you should do when creating any timeout is check to see if the timeout has passed. This may seem odd at first, as when the `TeleopPeriodic()` routine is first entered, the timeout will not have occurred. However, you need to rembember that the same code will run over and over. Think 4^th^-dimensionally!
 
-Here, we will use the `HasPeriodPassed()` function. A half a second should do for the timeout period. You should not forget that the timer will have a value of 0 upon entering the `TeleopPeriodic()` routine, so you need to cover that contingency as well.
+Here, we will use the `HasPeriodPassed()` function. A half a second should do for the timeout period. You should not forget that the timer will have a value of 0 upon entering the `TeleopPeriodic()` routine unless you start the timer at initialization.
 
 Once you have confirmed that it is OK to check for a button press (either the timer has past the timeout or the timeout has not been started yet), check for one. If there is a button press, then run the action you need to run on the button press, then stop, start, and reset the timer (to ensure proper function).
 
 {{{
-if (m_timer->HasPeriodPassed(0.5) || m_timer->Get() == 0)
-{ //this code will run if the timeout has passed or if the timer has not been started
+//Assume that the Timer m_timer has been initialized and started in the class constructor.
+
+if (m_timer->HasPeriodPassed(0.5))
+{
   if (m_joystick->GetRawButton(1))
   { 
     //run the action...

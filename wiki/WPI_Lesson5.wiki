@@ -191,12 +191,12 @@ class BuiltinDefaultCode: public IterativeRobot
     //Declare game controllers
     Joystick* m_gamepad;
     
-    //Declare timer
+    //Declare timers
     Timer* m_launchTimer;
+    Timer* m_buttonTimer;
     
-    //Variables to manage the launcher and light
+    //Variable to manage the launcher
     bool m_launcherOn;
-    int m_teleopLoopCounter;
     
     BuiltinDefaultCode()
     {
@@ -215,11 +215,14 @@ class BuiltinDefaultCode: public IterativeRobot
       //Initialize game controller
       m_gamepad = new Joystick (1); //can also be 2
       
-      //Initialize timer
+      //Initialize timers
       m_launchTimer = new Timer;
+      m_buttonTimer = new Timer;
+      
+      //Start the button timer, so that it's not 0 on the first run
+      m_buttonTimer->Start();
       
       m_launcherOn = false;
-      m_teleopLoopCounter = 0;
     }
     
     /** Init Routines**/
@@ -293,25 +296,19 @@ class BuiltinDefaultCode: public IterativeRobot
     
     void TeleopLight()
     {
-      switch (m_teleopLoopCounter)
+      if (m_timer->HasPeriodPassed(0.5))
       {
-	case 0:
-	  if (m_gamepad->GetRawButton(3))
-	  {
-	    if (m_light->Get == Relay::kOff)
-	      m_light->Set(Relay::kForward);
-	    else
-	      m_light->Set(Relay::kOff);
+	if (m_gamepad->GetRawButton(3))
+	{ 
+	  if (m_light->Get() == Relay::kForward)
+	    m_light->Set(Relay::kOff);
+	  else
+	    m_light->Set(Relay::kForward);
 	    
-	    m_teleopLoopCounter++;
-	  }
-	  break;
-	case 16:
-	  m_teleopLoopCounter = 0;
-	  break;
-	default:
-	  m_teleopLoopCounter++;
-	  break;
+	  m_timer->Stop();
+	  m_timer->Start();
+	  m_timer->Reset();
+	}
       }
     }
     
