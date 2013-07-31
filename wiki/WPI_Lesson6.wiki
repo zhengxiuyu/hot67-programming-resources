@@ -1,0 +1,205 @@
+#summary Earning Your Driver's License: Driving
+
+Up to this point, you have learned the various components of the robot, how they are represented by software, and how to use some of those components. Now, you will learn how to program one of the essential functions of any robot: driving. 
+
+<wiki:toc max_depth="2">
+
+=`RobotDrive`=
+
+You may remember the [WPI_Lesson6#RobotDrive RobotDrive] object from lesson 3. This object provides various functions to make managing the drive system simpler. There are two functions that you will see most often: `ArcadeDrive()` and `TankDrive()`. 
+
+For all of the following examples, use this set of declarations:
+{{{
+//Declarations
+Victor* m_lDrive;
+Victor* m_rDrive;
+
+RobotDrive* m_robotDrive;
+
+Timer* m_timer;
+
+//Initialization
+m_lDrive = new Victor (1);
+m_rDrive = new Victor (2);
+ 
+m_robotDrive = new RobotDrive (m_lDrive, m_rDrive);
+
+m_timer = new Timer;
+}}}
+
+==Arcade Drive==
+
+This is the drive method that we most commonly use.
+
+{{{
+void RobotDrive::ArcadeDrive(float velocity, float rotation)
+}}}
+
+===`ArcadeDrive()` parameters===
+
+  * `float velocity`: The desired relative velocity of the robot (forwards/backwards)
+  * `float rotation` the relative velocity at which the robot rotates (left/right)
+
+===`ArcadeDrive()` use===
+
+How you use `ArcadeDrive()` depends on which routine you are programming. If you are programming in Teleop, you give it the opposite of the left Y axis and the right X axis (so that the robot doesn't drift sideways if the left Y is being used), like so:
+
+{{{
+m_robotDrive->ArcadeDrive(-m_gamepad->GetRawAxis(2), -m_gamepad->GetRawAxis(4));
+}}}
+
+However, in autonomous, you would feed `ArcadeDrive()` either set or calculated values. If you are using set values, you would use it in conjunction with a `Timer` or an encoder.
+
+{{{
+if (!m_timer->HasPeriodPassed(2.0))
+   m_robotDrive->ArcadeDrive(0.75,0.75);
+else
+   m_robotDrive->ArcadeDrive(0.0,0.0);
+}}}
+
+The above code will run the robot in a curve to the right for two seconds, and then stop. 
+
+==Tank Drive==
+
+The other driving function can achieve essentially the same effect as the `ArcadeDrive()`, but the mechanism it uses is different. 
+
+{{{
+void RobotDrive::TankDrive(float left_power, float right_power)
+}}}
+
+===`TankDrive()` parameters===
+
+  * `float left_power`: The relative power (-1.0 to 1.0) going to the left drive. 
+  * `float right_power`: The relative power going to the right drive. 
+
+===`TamkDrive()` use===
+
+How you use `TankDrive()` is determined in the same way as `ArcadeDrive()`. However, the game controllers do not lend themselves to this driving method. However, `TankDrive()` is actually the preferred method for driving in autonomous (since it makes the most sense).
+
+{{{
+if (m_timer->HasPeriodPassed(2.0))
+   m_robotDrive->TankDrive(0.0,0.0);
+else
+   m_robotDrive(0.0,0.0);
+}}}
+
+The above code will run the robot in a left turn, moving forward. 
+
+=Activity=
+
+Program the robot to do the following:
+
+  * Drive forward and backward with the left stick. 
+  * Move left and right with the right stick. 
+  * When the start button pressed, toggle between the above "mode" and the following:
+    * Drive forward at half power when Y is held. 
+    * *Rotate* the robot counterclockwise (to the left) when the X button is held
+    * *Rotate* the robot clockwise (to the right) when the B button is held. 
+    * Drive backwards at half power when the A button is held. 
+
+_The joystick drive and the button drive *cannot* be enabled at the same time!_
+
+*STOP SCROLLING UNTIL YOU ARE READY TO CHECK YOUR ANSWER*
+
+==Answer==
+
+{{{
+#include <WPILib.h>
+#include <cstdlib>
+ 
+class BuiltinDefaultCode: public IterativeRobot
+{
+public:
+   Victor* m_lDrive;
+   Victor* m_rDrive;
+
+   RobotDrive* m_robotDrive;
+   
+   Joystick* m_gamepad;
+   
+   int m_teleopLoopCounter;
+   bool m_buttonDrive;  //Drive mode toggle
+
+   //Calculated values of the requested drive speed (to reduce complexity)
+   float m_speed, m_rotation;
+
+   BuiltinDefaultCode ()
+   {
+      m_lDrive = new Victor (1);
+      m_rDrive = new Victor (2);
+
+      m_robotDrive = new RobotDrive (m_lDrive,m_rDrive);
+      m_robotDrive->SetSafetyEnabled(false);
+
+     m_gamepad = new Joystick (1);
+
+     m_teleopLoopCounter = 0;
+     m_buttonDrive = false;
+     m_speed = 0.0;
+     m_rotation = 0.0;
+   } 
+
+   /** Init Routines **/
+
+   void RobotInit ()
+   {
+   }
+
+   void AutonomousInit ()
+   {
+   }
+
+   void TeleopInit ()
+   {
+   }
+
+   /** Periodic Routines **/
+
+   void AutonomousPeriodic()
+   {
+   }
+
+   void TeleopPeriodic()
+   {
+      if (m_buttonDrive)
+      {
+         if (m_gamepad->GetRawButton(1))
+            m_robotDrive->TankDrive(-0.5,-0.5);
+         else if (m_gamepad->GetRawButton(2))
+            m_robotDrive->TankDrive(0.5,-0.5);
+         else if (m_gamepad->GetRawButton(3))
+            m_robotDrive->TankDrive(-0.5,0.5);
+         else if (m_gamepad->GetTawButton(4))
+            m_robotDrive->TankDrive(0.5,-0.5);
+         else
+            m_robotDrive->TankDrive(0.0,0.0);
+      }
+      else
+      {  
+      /** Since implementing a deadband for 
+	* driving is rather complicated, you may simply 
+	* do the following:
+	*  m_robotDrive->ArcadeDrive(-m_gamepad->GetRawAxis(2), -m_gamepad->GetRawAxis(4));
+	*/
+	   
+          if ((fabs(m_gamepad->GetRawAxis(2)) > 0.2) && (fabs(m_gamepad->GetTawAxis(4)) > 0.2))
+            {
+               if (m_gamepad->GetRawAxis(2) > 0.0)
+                  m_speed = (m_gamepad->GetRawAxis(2)-0.2)*1.25;
+               else
+                  m_speed = (m_gamepad->GetRawAxis(2)+0.2)*1.25;
+
+               if (m_gamepad->GetRawAxis(4) > 0.0)
+                  m_rotation = (-m_gamepad->GetRawAxis(4)-0.2)*1.25;
+               else
+                  m_rotation = (-m_gamepad->GetRawAxis(4)+0.2)*1.25;
+
+               m_robotDrive->ArcadeDrive(m_speed,m_rotation);
+            }
+      }
+   }
+};
+START_ROBOT_CLASS(BuiltinDefaultCode)
+}}}
+
+|| <- [WPI_Lesson5 Lesson 5: Controlling Motors || *Lesson 6* || [WPI_Lesson7 Chapter 3: Control - Lesson 7: Providing Information] -> ||

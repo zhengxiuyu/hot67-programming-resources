@@ -22,7 +22,7 @@
     * Chapter 2: Driving and User Input
       * [WPI_Lesson4 Lesson 4: Using User Input]
       * [WPI_Lesson5 Lesson 5: Controlling Motors]
-      * Lesson 6: Earning Your Driver's License: Driving
+      * [WPI_Lesson6 Lesson 6: Earning Your Driver's License: Driving]
     * Chapter 3: Control
       * Lesson 7: Providing Information
       * Lesson 8: Using Sensors
