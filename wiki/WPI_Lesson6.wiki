@@ -38,7 +38,7 @@ void RobotDrive::ArcadeDrive(float velocity, float rotation)
 ===`ArcadeDrive()` parameters===
 
   * `float velocity`: The desired relative velocity of the robot (forwards/backwards)
-  * `float rotation` the relative velocity at which the robot rotates (left/right)
+  * `float rotation`: the relative velocity at which the robot rotates (left/right)
 
 ===`ArcadeDrive()` use===
 
@@ -92,10 +92,11 @@ Program the robot to do the following:
   * Drive forward and backward with the left stick. 
   * Move left and right with the right stick. 
   * When the start button pressed, toggle between the above "mode" and the following:
-    * Drive forward at half power when Y is held. 
+    * Drive forward when Y is held. 
     * *Rotate* the robot counterclockwise (to the left) when the X button is held
     * *Rotate* the robot clockwise (to the right) when the B button is held. 
-    * Drive backwards at half power when the A button is held. 
+    * Drive backwards when the A button is held.
+    * Run everything at *half power* in this drive mode!
 
 _The joystick drive and the button drive *cannot* be enabled at the same time!_
 
@@ -163,16 +164,16 @@ public:
    {
       if (m_buttonDrive)
       {
-         if (m_gamepad->GetRawButton(1))
-            m_robotDrive->TankDrive(-0.5,-0.5);
-         else if (m_gamepad->GetRawButton(2))
-            m_robotDrive->TankDrive(0.5,-0.5);
-         else if (m_gamepad->GetRawButton(3))
-            m_robotDrive->TankDrive(-0.5,0.5);
-         else if (m_gamepad->GetTawButton(4))
-            m_robotDrive->TankDrive(0.5,-0.5);
-         else
-            m_robotDrive->TankDrive(0.0,0.0);
+	  if (m_gamepad->GetRawButton(1))
+	      m_robotDrive->TankDrive(-0.5,-0.5);
+	  else if (m_gamepad->GetRawButton(2))
+	      m_robotDrive->TankDrive(0.5,-0.5);
+	  else if (m_gamepad->GetRawButton(3))
+	      m_robotDrive->TankDrive(-0.5,0.5);
+	  else if (m_gamepad->GetTawButton(4))
+	      m_robotDrive->TankDrive(0.5,-0.5);
+	  else
+	      m_robotDrive->TankDrive(0.0,0.0);
       }
       else
       {  
@@ -197,9 +198,30 @@ public:
                m_robotDrive->ArcadeDrive(m_speed,m_rotation);
             }
       }
+      
+      switch (m_teleopLoopCounter)
+      {
+	case 0:
+	  if (m_gamepad->GetRawButton(8))
+	  {
+	    if (m_buttonDrive)
+	      m_buttonDrive = false;
+	    else
+	      m_buttonDrive = true;
+	  }
+	  
+	  m_teleopLoopCounter++;
+	  break;
+	case 16:
+	  m_teleopLoopCounter = 0;
+	  break;
+	default:
+	  m_teleopLoopCounter++;
+	  break;
+      }
    }
 };
 START_ROBOT_CLASS(BuiltinDefaultCode)
 }}}
 
-|| <- [WPI_Lesson5 Lesson 5: Controlling Motors || *Lesson 6* || [WPI_Lesson7 Chapter 3: Control - Lesson 7: Providing Information] -> ||
+|| ← [WPI_Lesson5 Lesson 5: Controlling Motors] || *Lesson 6* || [WPI_Lesson7 Chapter 3: Control - Lesson 7: Providing Information] → ||

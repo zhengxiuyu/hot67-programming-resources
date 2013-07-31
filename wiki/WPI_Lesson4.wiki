@@ -145,7 +145,7 @@ The string that you want to write to the driver station. This takes the same for
 
 Note that a single line can hold up to 21 characters. An overflow will *NOT* wrap to the next line.
 
-==Updating the driver station==
+==Updating the Driver Station==
 
 Unlike the `printf()` you're used to, however, `Printf()` does not update the screen immediately. You have to manually update it yourself. So, once you're done writing your data, call this function:
 
