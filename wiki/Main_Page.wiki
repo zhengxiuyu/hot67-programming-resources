@@ -18,7 +18,7 @@ This is for programmers who have the basics of C++ down.
 
 This is written by a student, and as such is not written by nor endorsed by WPI.
 
-It is intended to be easy for new robot programmers to understand. If you have any questions, comments, concerns, or suggestions, leave them in the comments on the page it applies to.
+It is intended to be easy for new robot programmers to understand. If you have any questions, comments, concerns, or suggestions, leave them in the comments on the page it applies to. _(You must [https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=http%3A%2F%2Fcode.google.com%2Fp%2Fhot67-programming-resources%2Fwiki%2FMain_Page&followup=http%3A%2F%2Fcode.google.com%2Fp%2Fhot67-programming-resources%2Fwiki%2FMain_Page sign in to Google] to leave comments)_
 
 [WPI_Lesson1 Begin →]
 

@@ -141,6 +141,8 @@ Encoders are sensors that are used to measure distance. This distance can either
 
 Encoders work by emitting pulses every time a predefined distance has passed after the previous pulse. If you don't want to use the intervals that are hard-wired into the encoders, there is a software function that allows you to change this (we still usually just use the pulses as the distance). However, that will be discussed later.
 
+Encoders always count up (unless driven backwards, then they count down), making them comparable to the odometer of a car.
+
 ====Gear Tooth Sensor====
 <img src="http://www.epcos.com/web/generator/Web/Sections/Components/Applications/2011/08__Digital__gear__tooth__sensors/Figure1,property=Data__en.jpg" />
 
