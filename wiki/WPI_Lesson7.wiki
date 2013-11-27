@@ -90,7 +90,7 @@ When you are dealing with an [WPI_Lesson3#Encoder encoder], you should think of 
 The following functions get the distance (Pulses/set distance) recorded by the encoder, and reset it, respectively.
 
 {{{
-int Encoder::GetDistance()
+float Encoder::GetDistance()
 void Encoder::Reset()
 }}}
 
@@ -137,6 +137,7 @@ What is given below is for the 2013 robot.
     * Climber (`Victor`): PWM 3
       * Climb ratchet (`Relay`): Relay 1
     * Feeder (`Victor`): PWM 7
+      * Run at full speed on specified button press
     * Plate (2, both `Victor`): PWMs 8,10
   * Sensors
     * Drive encoders
@@ -147,13 +148,17 @@ What is given below is for the 2013 robot.
       * Potentiometer: channel ?
       * Limit switch: channel ?
     * Feeder limit switch: channel ?
+  * Control
+    * Drive game controller: 1
+    * Operator game controller: 2
   * Optional
     * Climb indicator light (`Relay`): Relay ?
       
 ==Notes==
+
 In order to use the climber, you must use the ratchet properly.
   
-  * Extend: Pulse the ratchet forward for .125 seconds, then turn the relay off
+  * Extend: Pulse the ratchet forward for .125 seconds, pulse the climber backwards at a value of (-)0.3 for the same period of time, then turn the relay off, and extend the climber.
   * All other states: Pulse the ratchet backwards for .125 seconds, then turn the relay off
   
 If you wish to use the climb indicator light, turn it on whenever the climber switch is pressed.
@@ -161,6 +166,312 @@ If you wish to use the climb indicator light, turn it on whenever the climber sw
 *STOP SCROLLING UNTIL YOU ARE READY TO CHECK YOUR ANSWER*
 
 ==Answer==
+
+Answers may vary depending on the robot you are programming for. Ask your mentor to check your work if you are not programming for the robot outlined above.
+
+{{{
+//Anything shown above with '?' as an index is not mapped correctly here!
+
+#include "WPILib.h"
+#include <cstdlib>
+
+class BuiltinDefaultCode: public IterativeRobot
+{
+public:
+  /** BEGIN SECTION: ACTUATORS **/
+  
+  //Declare a RobotDrive object
+  RobotDrive* m_robotDrive
+  
+  //Declare drive motors
+  Victor* m_lDrive;
+  Victor* m_rDrive;
+  
+  //Declare climb actuators
+  Victor* m_climb;
+  Relay* m_climbRatchet;
+  Relay* m_climbLight;
+  
+  //Declare feeder
+  Victor* m_feeder;
+  
+  //Declare plate motors
+  Victor* m_plate1;
+  Victor* m_plate2;
+  
+  /** END SECTION: ACTUATORS **/
+  
+  /** BEGIN SECTION: SENSORS **/
+  
+  //Declare drive encoders
+  Encoder* m_lEncoder;
+  Encoder* m_rEncoder;
+  
+  //Declare plate potentiometer
+  AnalogChannel* m_platePot;
+  
+  //Declare climbing sensors
+  AnalogChannel* m_climbPot;
+  DigitalInput* m_climbSwitch;
+  
+  //Declare feeder switch
+  DigitalInput* m_feedSwitch;
+  
+  /** END SECTION: SENSORS **/
+  
+  /** BEGIN SECTION: MISCELLANEOUS **/
+  
+  Timer* m_climbTimer;
+  DriverStationLCD* m_dsLCD;
+  
+  Joystick* m_gamepad1;
+  Joystick* m_gamepad2;
+  
+  int m_ratchetCase;
+  
+  /** END SECTION: MISCELLANEOUS **/
+  
+  /** BEGIN SECTION: INIT ROUTINES **/
+  
+  BuiltinDefaultCode()
+  {
+    /*** INITIALIZE: ACTUATORS ***/
+    
+    ///Drive motors
+    m_lDrive = new Victor (1);
+    m_rDrive = new Victor (2);
+    
+    ///Drive object
+    m_robotDrive = new RobotDrive (m_lDrive, m_rDrive);
+    
+    ///Climb actuators
+    m_climb = new Victor (3);
+    m_climbRatchet = new Relay (1);
+    m_climbLight = new Relay (2);
+    
+    ///Feeder
+    m_feeder = new Victor (7);
+    
+    ///Plate motors
+    m_plate1 = new Victor (8);
+    m_plate2 = new Victor (10);
+    
+    /*** END INITIALIZATION: ACTUATORS ***/
+    
+    /*** INITIALIZE: SENSORS ***/
+    
+    ///Drive encoders
+    m_lEncoder = new Encoder (1, 2, true);
+    m_lEncoder->SetDistancePerPulse(1);
+    m_lEncoder->SetMaxPeriod(1.0);
+    m_lEncoder->Start();
+    
+    m_rEncoder = new Encoder (3, 4, false);
+    m_rEncoder->SetDistancePerPulse(1);
+    m_rEncoder->SetMaxPeriod(1.0);
+    m_lEncoder->Start();
+    
+    ///Plate potentiometer
+    m_platePot = new AnalogChannel (1);
+    
+    ///Climb sensors
+    m_climbPot = new AnalogChannel (2);
+    m_climbSwitch = new DigitalInput (5);
+    
+    //Feeder switch
+    m_feedSwitch = new DigitalInput (6);
+    
+    /*** END INITIALIZATION: SENSORS ***/
+    
+    /*** INITIALIZE: MISCELLANEOUS ***/
+    
+    m_climbTimer = new Timer;
+    m_dsLCD = DriverStationLCD::GetInstance();
+    
+    m_gamepad1 = new Joystick (1);
+    m_gamepad2 = new Joystick (2);
+    
+    m_ratchetCase = 0;
+    
+    /*** END INITIALIZATION: MISCELLANEOUS ***/
+  }
+  
+  void RobotInit()
+  {
+  }
+  
+  void DisabledInit()
+  {
+  }
+  
+  void AutonomousInit()
+  {
+  }
+  
+  void TeleopInit()
+  {
+  }
+  
+  /** END SECTION: INIT ROUTINES **/
+  
+  /** BEGIN SECTION: PERIODIC ROUTINES **/
+  
+  void DisabledPeriodic()
+  {
+  }
+  
+  void AutonomousPeriodic()
+  {
+  }
+  
+  void TeleopPeriodic()
+  {
+    TeleopDriverStationUpdate();
+    TeleopSmartDashboardUpdate();
+    TeleopDrive();
+    TeleopClimb();
+    TeleopFeed();
+    TeleopPlateControl();
+  }
+  
+  /** END SECTION: PERIODIC ROUTINES **/
+  
+  /** BEGIN SECTION: ACCESSORY FUNCTIONS **/
+  
+  void TeleopDriverStationUpdate()
+  {
+    ///Remember: you can't Printf() a bool. You can Printf() a C string, however.
+    char climbMessage [6];
+    char feedMessage [6];
+    
+    if (m_climbSwitch->Get())
+      climbMessage = "True";
+    else
+      climbMessage = "False";
+      
+    if (m_feedSwitch->Get())
+      feedMessage = "True";
+    else
+      feedMessage = "False";
+    
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line1,1,"Left Encoder: %f",m_lEncoder->GetDistance());
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line2,1,"Right Encoder: %f",m_rEncoder->GetDistance());
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line3,1,"Plate Pot: %f",m_platePot->GetAverageVoltage());
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line4,1,"Climb Pot: %f",m_climbPot->GetAverageVoltage());
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line5,1,"Climb Switch: %s", climbMessage);
+    m_dsLCD->Printf(DriverStationLCD::kUser_Line6,1,"Feed Switch: %s", feedMessage);
+    
+    m_dsLCD->UpdateLCD();
+  }
+  
+  void TeleopSmartDashboardUpdate()
+  {
+    SmartDashboard::PutNumber("Left Encoder ",m_lEncoder->GetDistance());
+    SmartDashboard::PutNumber("Right Encoder ",m_rEncoder->GetDistance());
+    SmartDashboard::PutNumber("Plate Pot ",m_platePot->GetAverageVoltage());
+    SmartDashboard::PutNumber("Climb Pot ",m_climbPot->GetAverageVoltage());
+    SmartDashboard::PutBoolean("Climb Switch ",m_climbSwitch->Get());
+    SmartDashboard::PutBoolean("Feed Switch ",m_feedSwitch->Get());
+  }
+  
+  void TeleopDrive()
+  {
+    float speed,rotation;
+    if ((fabs(m_gamepad->GetRawAxis(2)) > 0.2) && (fabs(m_gamepad->GetTawAxis(4)) > 0.2))
+    {
+	if (m_gamepad->GetRawAxis(2) > 0.0)
+	  speed = (m_gamepad->GetRawAxis(2)-0.2)*1.25;
+	else
+	  speed = (m_gamepad->GetRawAxis(2)+0.2)*1.25;
+
+	if (m_gamepad->GetRawAxis(4) > 0.0)
+	  rotation = (-m_gamepad->GetRawAxis(4)-0.2)*1.25;
+	else
+	  rotation = (-m_gamepad->GetRawAxis(4)+0.2)*1.25;
+
+	m_robotDrive->ArcadeDrive(speed,rotation);
+    }
+  }
+  
+  void TeleopClimb()
+  {
+    if (m_gamepad1->GetRawAxis(5) > 0.2)
+	    extendClimber(m_gamepad1->GetRawAxis(5));
+    else if (m_Gamepad1->GetRawAxis(RIGHT_Y) < -0.2)
+	    retractClimber((-m_gamepad1->GetRawAxis(RIGHT_Y)+0.2)*0.75);
+    else
+	    retractClimber(0.0);
+  }
+  
+  void TeleopFeed()
+  {
+  }
+  
+  void TeleopPlateControl()
+  {
+  }
+  
+  void lockClimber()
+  {
+    m_climbRatchet->Set(Relay::kReverse);
+  }
+  
+  void unlockClimber()
+  {
+    m_climbRatchet->Set(Relay::kForward);
+    m_climb->Set(-0.3);
+  }
+  
+  void extendClimber(float speed)
+  {
+    switch (m_ratchetCase)
+    {
+      case 0:
+	m_climbTimer->Stop();
+	m_climbTimer->Start();
+	m_climbTimer->Reset();
+	unlockClimber();
+	m_ratchetCase++;
+	break;
+      case 1:
+	if (m_climbTimer->HasPeriodPassed(0.125))
+	  m_ratchetCase++;
+	break;
+      case 2:
+	m_climbRatchet->Set(Relay::kOff);
+	m_climbTimer->Stop();
+	m_climb->Set(speed);
+	m_ratchetCase++;
+	break;
+      case 3:
+	m_climb->Set(speed);
+	break;
+    }
+  }
+  
+  void retractClimber(float speed)
+  {
+    switch (m_ratchetCase)
+    {
+      case 4:
+	m_climbTimer->Stop();
+	m_climbTimer->Start();
+	m_climbTimer->Reset();
+	lockClimber();
+	m_climb->Set(speed);
+	m_ratchetCase++;
+	break;
+      case 5:
+	if (m_climbTimer->HasPeriodPassed(0.125))
+	  m_ratchetCase++;
+	m_climb->Set(speed);
+	break;
+      case 6:
+	m_climbRatchet->Set(Relay::kOff);
+    }
+  }
+}
+}}}
 
 *This section is unfinished. Please check back later.*
 

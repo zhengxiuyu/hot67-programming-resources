@@ -27,7 +27,7 @@ Most distributions should carry Code::Blocks in their repositories.
 
 *Auto-Install*
 
-  * apt://codeblocks (Debian/Ubuntu)
+  * <a href="apt://codeblocks">Debian/Ubuntu</a>
   * [http://software.opensuse.org/ymp/devel:tools:ide/openSUSE_12.3/codeblocks.ymp?base=openSUSE%3A12.3&query=codeblocks OpenSUSE 12.3 (1-Click)]
   * [http://software.opensuse.org/ymp/devel:tools:ide/openSUSE_12.2/codeblocks.ymp?base=openSUSE%3A12.2&query=codeblocks OpenSUSE 12.2 (1-Click)]
   * [http://software.opensuse.org/ymp/home:derselbst/openSUSE_Tumbleweed/codeblocks.ymp?base=openSUSE%3A12.3&query=codeblocks OpenSUSE Tumbleweed (1-Click)]

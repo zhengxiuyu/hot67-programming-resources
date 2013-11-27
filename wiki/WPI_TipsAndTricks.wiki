@@ -8,7 +8,7 @@ If you have not reached lesson 4 yet, you may want to read the note about [WPI_L
 
 <wiki:toc max_depth="2">
 
-=Header Definitions=
+=Defined Constants=
 *Required Level: Lesson 1*
 
 You may have noticed in Lesson 4 that a file called "[https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h]" was mentioned. This header file creates alias terms for the button and axis indicies that are more easily understood by humans. This section will explain exactly how it works, and how you would implement them.

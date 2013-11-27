@@ -141,7 +141,7 @@ An int of some sort. I have no clue what its use is. It is the same on every `Pr
 const char* MSG
 }}}
 
-The string that you want to write to the driver station. This takes the same format as the `cstdio printf()`. It is a `const char*` because that is the real type of a C String.
+The string that you want to write to the driver station. This takes the same format as the `cstdio printf()`. It is a `const char*` because that is the type of a string defined in quotes.
 
 Note that a single line can hold up to 21 characters. An overflow will *NOT* wrap to the next line.
 
