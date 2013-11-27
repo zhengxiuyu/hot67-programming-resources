@@ -98,7 +98,7 @@ m_roller = new Relay (2);
 Like the other controllers, relays use the `Set` function. However, it is used differently than the other functions.
 
 {{{
-Relay::Set(enum relay_state)
+Relay::Set(enum RELAY_STATE)
 }}}
 
 ===Relay `Set` parameters===
