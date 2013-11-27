@@ -21,7 +21,7 @@ where:
   * `ComponentClass` is the class the function originates from.
   * `FunctionName` is the actual name of the function.
   * `OPTIONS` are the specific options that each function takes.
-    *`OPTION_TYPE` is the type of that option.
+    * `OPTION_TYPE` is the type of that option.
   
 What you see printed is NOT exactly what you type in. It is shown in this format for informative purposes.
 
