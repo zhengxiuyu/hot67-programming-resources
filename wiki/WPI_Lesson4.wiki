@@ -12,7 +12,7 @@ One of the important things for this, however, is to understand how the operator
 Now that we're diving into specific functions, it is important that you understand how they are given to you in this tutorial. Whenever you are first given a function, its format will be like this:
 
 {{{
-RETURN_TYPE ComponentClass::FunctionName(OPTIONS)
+RETURN_TYPE ComponentClass::FunctionName(OPTION_TYPE OPTIONS)
 }}}
 
 where:
@@ -20,7 +20,8 @@ where:
   * `RETURN_TYPE` is the type of variable the function returns.
   * `ComponentClass` is the class the function originates from.
   * `FunctionName` is the actual name of the function.
-  * `OPTIONS` will always be in capital letters, and their number and purpose will be explained with the function.
+  * `OPTIONS` are the specific options that each function takes.
+    *`OPTION_TYPE` is the type of that option.
   
 What you see printed is NOT exactly what you type in. It is shown in this format for informative purposes.
 
