@@ -40,7 +40,7 @@ void SmartDashboard::PutBoolean(const char* name, bool value)
   
 ===!SmartDashboard use===
 
-Because there is no object (outside of Live Window) that is required to manage SmartDashboard, so when you want to call these functions, you need to include the `SmartDashboard::` prefix in order for your code to compile.
+Because there is no object (outside of Live Window) that is required to manage !SmartDashboard, so when you want to call these functions, you need to include the `SmartDashboard::` prefix in order for your code to compile.
 
 {{{
 //PutNumber example
