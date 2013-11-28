@@ -499,6 +499,4 @@ public:
 }
 }}}
 
-*This section is unfinished. Please check back later.*
-
 || ← [WPI_Lesson6 Chapter 2: Driving and User Input - Lesson 6: Earning Your Driver's License: Driving] || *Lesson 7* || [WPI_Lesson8 Lesson 8: Concepts of the PID] → ||
