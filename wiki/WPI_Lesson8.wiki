@@ -18,7 +18,13 @@ A PID is implemented with a process or object known as the PID controller. It ha
 
 The PID runs based on something called a _setpoint_. The setpoint is where the PID controller is told to keep the sensor input value as constant as possible using the motor outputs it is given. For example, the cruise control in a car is told to keep the speed at a specific value (the setpoint), so it adjusts the output of the car's engine to keep the speed constant.
 
-The name 'PID' comes from constants that are given to the PID controller that dictate the manner in which it adjusts the output of its motors: *P* roportional, *I* ntegral, and *D* erivative. In their descriptions below, the graphs effectively show a reading from a sensor over time, with the blue being the setpoint. The other lines are examples showing the reading over time given different constant values.
+The name 'PID' comes from constants that are given to the PID controller that dictate the manner in which it adjusts the output of its motors: 
+
+  * *P* roportional
+  * *I* ntegral 
+  * *D* erivative. 
+  
+In the descriptions of the constants below, the graphs effectively show a reading from a sensor over time, with the blue being the setpoint. The other lines are examples showing the reading over time given different constant values.
 
 Just so you know: the PID is much more complex than what is explained here. Both the I and the D terms use calculus functions -- something very few reading this would know. If you want a more thorough explanation of PID theory, go [http://en.wikipedia.org/wiki/PID_controller#PID_controller_theory here].
 
