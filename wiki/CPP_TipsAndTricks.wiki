@@ -206,7 +206,9 @@ cout<<"Not affected"<<setw(30)<<"Affected"<<" Not affected"<<endl;
 }}}
 
 *Output*
-`Not affected                      Affected Not affected`
+{{{
+Not affected                      Affected Not affected
+}}}
 
 ==setfill==
 The `setfill()` function allows you to set the fill character (normally a whitespace). The fill character is used if an output operation contains fewer characters than the [CPP_TipsAndTricks#setw field width].
