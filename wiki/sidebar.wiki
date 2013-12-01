@@ -25,7 +25,7 @@
       * [WPI_Lesson6 Lesson 6: Earning Your Driver's License: Driving]
     * Chapter 3: Control
       * [WPI_Lesson7 Lesson 7: Sensors and Information]
-      * Lesson 8: PID Part 1 - PID Theory
+      * [WPI_Lesson8 Lesson 8: PID Part 1 - PID Theory]
       * Lesson 9: PID Part 2 - Implementing a PID
       * Lesson 10: PID Part 3 - Advanced PID Programming
     * Chapter 4: Disabled and Autonomous
