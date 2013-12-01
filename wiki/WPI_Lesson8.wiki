@@ -1,0 +1,59 @@
+#summary PID Part 1 - PID Theory
+
+In review, you have studied the various components of the robot, how they appear in code, and how to use them. The next three lessons will teach you one of the most important aspects of WPILib and robot programming in general -- the PID.
+
+The PID is split up into three parts here because of its complexity. It is EXTREMELY important (enough that it will distinguish you as an accomplished robot programmer) that you know how to create a PID in your program - so pay close attention.
+
+Robot programming is not the only thing that uses the PID -- it is used heavily in the automotive industry (think cruise control).
+
+_Fun fact:_ PID theory was developed by watching helmsmen steer a ship.
+
+<wiki:toc max_depth="2">
+
+=What is a PID?=
+
+To put it simply: a PID is a method to control various motor outputs using sensor inputs in an intelligent manner.
+
+A PID is implemented with a process or object known as the PID controller. It handles all of the necessary calculations in order to use a PID.
+
+The PID runs based on something called a _setpoint_. The setpoint is where the PID controller is told to keep the sensor input value as constant as possible using the motor outputs it is given. For example, the cruise control in a car is told to keep the speed at a specific value (the setpoint), so it adjusts the output of the car's engine to keep the speed constant.
+
+The name 'PID' comes from constants that are given to the PID controller that dictate the manner in which it adjusts the output of its motors: *P* roportional, *I* ntegral, and *D* erivative. In their descriptions below, the graphs effectively show a reading from a sensor over time, with the blue being the setpoint. The other lines are examples showing the reading over time given different constant values.
+
+Just so you know: the PID is much more complex than what is explained here. Both the I and the D terms use calculus functions -- something very few reading this would know. If you want a more thorough explanation of PID theory, go [http://en.wikipedia.org/wiki/PID_controller#PID_controller_theory here].
+
+==Proportional==
+
+The proportional constant tells the PID controller to send an output *in proportion* to the error from the setpoint -- in other words, it multiplies the error from the setpoint by the proportional constant. When you use a proportional term, think _power_. The further the sensor reading is from the setpoint, the more power it will give to the output.
+
+Making the proportional term negative will make the PID controller move the motor in the opposite direction to correct the error. This can be useful if the PID is moving the value farther away from the setpoint.
+
+<img src="http://upload.wikimedia.org/wikipedia/commons/2/2b/Change_with_Kp.png" title="Plot of PV vs. time" />
+
+==Integral==
+
+The integral constant factors time in with the error from the setpoint. When given a non-zero value, the PID controller measures the average error and adjusts its output accordingly. As it is using average error, and not instantaneous, time and previous readings affect the output. The integral term may cause the output to accelerate very quickly to the setpoint and overshoot it if the average error is high. The integral term will cause the most overshooting out of the three constants.
+
+<img src="http://upload.wikimedia.org/wikipedia/commons/c/c0/Change_with_Ki.png" title="Plot of PV vs. time" />
+
+==Derivative==
+
+When given a non-zero derivative term, the PID controller will look at how the error changes over time and adjusts the output accordingly. Note that it is not affected by all of the past error. How much this affects the output is based on the value of the derivative constant.
+
+PID controllers that are given a non-zero derivative constant may respond in an exaggerated manner to slight changes in the reading of the sensor (_sensor noise_), which may not be due to the movement of the object associated with the sensor.
+
+<img src="http://upload.wikimedia.org/wikipedia/commons/c/c7/Change_with_Kd.png" title="Plot of PV vs. time" />
+
+=Review=
+
+Effectively, what you should remember about each of these terms is:
+
+  * *P*: Proportionally adjusts the power output of the system to make the sensor reading closer to the setpoint. This effectively determines how much _power_ the system uses.
+  * *I*: Adjusts the power output of the system based on how far the reading was from the setpoint in the past. This can be useful for eliminating offsets.
+  * *D*: Adjusts the power output of the system based on how the error is currently changing. This can be useful for making the controller faster and more responsive.
+
+=Activity=
+
+*There is nothing that can be done in an activity for this lesson. Please continue to the next lesson, but be sure to remember the content in this lesson.*
+
+|| ← [WPI_Lesson7 Lesson 7: Sensors and Information] || *Lesson 8* || [WPI_Lesson9 Lesson 9: PID Part 2 - Implementing a PID ] → ||

@@ -25,9 +25,9 @@
       * [WPI_Lesson6 Lesson 6: Earning Your Driver's License: Driving]
     * Chapter 3: Control
       * [WPI_Lesson7 Lesson 7: Sensors and Information]
-      * Lesson 8: PID Part 1: Concepts of the PID
-      * Lesson 9: PID Part 2: Using a PID on the Robot
-      * Lesson 10: PID Part 3: Advanced PID Programming
+      * Lesson 8: PID Part 1 - PID Theory
+      * Lesson 9: PID Part 2 - Implementing a PID
+      * Lesson 10: PID Part 3 - Advanced PID Programming
     * Chapter 4: Disabled and Autonomous
       * Lesson 11: Disabled Routines
       * Lesson 12: Autonomous Routines
