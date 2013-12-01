@@ -13,6 +13,8 @@ If you have not reached lesson 4 yet, you may want to read the note about [WPI_L
 
 You may have noticed in Lesson 4 that a file called "[https://code.google.com/p/hot67-programming-resources/source/browse/trunk/tutorial/Defines.h Defines.h]" was mentioned. This header file creates alias terms for the button and axis indicies that are more easily understood by humans. This section will explain exactly how it works, and how you would implement them.
 
+You can read more about constants [http://www.cplusplus.com/doc/tutorial/constants/ here].
+
 ==The Header Definition==
 
 Aside from providing functions and other utilities for use in a source file, header files can also define specific values that can be accessed using a name in ALL_CAPS_WITH_NO_SPACES. A sample header definition is given below.
