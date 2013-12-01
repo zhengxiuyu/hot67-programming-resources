@@ -22,7 +22,7 @@ The name 'PID' comes from constants that are given to the PID controller that di
 
   * *P* roportional
   * *I* ntegral 
-  * *D* erivative. 
+  * *D* erivative
   
 In the descriptions of the constants below, the graphs effectively show a reading from a sensor over time, with the blue being the setpoint. The other lines are examples showing the reading over time given different constant values.
 
