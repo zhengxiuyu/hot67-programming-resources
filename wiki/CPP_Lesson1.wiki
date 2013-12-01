@@ -22,9 +22,9 @@ http://www.cprogramming.com/tutorial/lesson1.html
 Once you understand the content, complete these assignments.
 
 ==Math 1== 
-Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number and multiple it by the 2nd number.  Display the output of that function.
+Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number and multiply the sum by the 2nd number.  Display the output of that function.
 
 ==Math 2== 
-Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number and divide it by the 2nd number.  Display the output of that function.  Make sure your output has decimals.
+Create a program that asks the user for 3 numbers.  Add the 1st and 3rd number and divide the sum by the 2nd number.  Display the output of that function.  Make sure your output has decimals.
 
 || ← [CPP_GettingReady Getting Ready] || *Lesson 1* || [CPP_Lesson2 Lesson 2: If/Else Statements] → ||

@@ -3,8 +3,8 @@
 
 Read these pages thoroughly:
 
-http://www.cplusplus.com/doc/tutorial/pointers/
-http://www.cplusplus.com/doc/tutorial/dynamic/
+  * [http://www.cplusplus.com/doc/tutorial/pointers/ Pointers]
+  * [http://www.cplusplus.com/doc/tutorial/dynamic/ Dynamic Memory]
 
 =Extra Reading=
 
