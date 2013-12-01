@@ -141,7 +141,7 @@ int my_int = rand() % 20;
 This will generate a number from 0 to 19. If you want to generate numbers in a specific range, use the following formula:
 
 {{{
-rand() % ((max-min)+1) + min
+rand() % ((max-min)+1) + min;
 }}}
 
 _Remember that addition and subtraction ignore the index number (the number you start from). This is why you need to add 1 after the range calculation._
@@ -195,13 +195,18 @@ Place this function *before* the desired output operation.
 
 *Code*
 {{{
-cout<<"Not affected"<<setw(30);` <br /> `cout<<"Affected"<<" Not affected"<<endl;
+cout<<"Not affected"<<setw(30);
+cout<<"Affected"<<" Not affected"<<endl;
+}}}
+
+_or_
+
+{{{
+cout<<"Not affected"<<setw(30)<<"Affected"<<" Not affected"<<endl;
 }}}
 
 *Output*
-{{{
-Not affected                      Affected Not affected
-}}}
+`Not affected                      Affected Not affected`
 
 ==setfill==
 The `setfill()` function allows you to set the fill character (normally a whitespace). The fill character is used if an output operation contains fewer characters than the [CPP_TipsAndTricks#setw field width].
@@ -220,7 +225,7 @@ iomanip::setfill(char_type c)
 Place this function *before* the desired output operation.
 
 || *Code* || *Output* ||
-|| cout<<setfill('+')<<setw(10)<<"hi"<<endl; || ++++++++hi ||
+|| `cout<<setfill('+')<<setw(10)<<"hi"<<endl;` || `++++++++hi` ||
 
 ==Text alignment==
 
@@ -315,4 +320,4 @@ _Note that you may need to double the `cin.ignore()` statement_
 Despite the fact that the `cin` statement is inside the parentheses for the `while` loop, the program still looks for input at that point. If the user inputs the wrong data type, `cin` throws a couple of flags (`fail` and/or `bad`, to be exact). The computer interprets this to be a `false` value, so it runs the loop.
 
 
-_This resource was compiled with reference to the reference pages at [http://www.cplusplus.com]_
+_This resource was compiled with reference to [http://www.cplusplus.com]_
