@@ -1,6 +1,6 @@
 #summary Tips and Tricks
 
-This page details a few tips and tricks you can employ to make your programs faster and more robust. Some of them require a certain level of understanding. That level will be written under each heading.
+This page details a few tips and tricks you can employ to accomplish varying tasks and would not normally be explained in this tutorial. Some of them require a certain level of understanding. That level will be written under each heading.
 
 Note that the levels listed here are the *absolute minimum* levels of knowledge you will need to implement them. It may be easier for you to learn them at a later time.
 
