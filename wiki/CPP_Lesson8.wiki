@@ -1,4 +1,4 @@
-#summary Lesson 6 - Pointers
+#summary Pointers
 =Reading=
 
 Read these pages thoroughly:
