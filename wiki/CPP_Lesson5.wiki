@@ -35,7 +35,7 @@ Write a function `createrect(int x, int y)` that creates a rectangle out of x's.
 i.e.
 
 If you call `createrect(5,4)` you will receive:
-(hint, you will need to use nested for loops like you did in the 'Right Triangle' program.)
+(hint, you will need to use nested `for` loops like you did in the 'Right Triangle' program.)
 
 {{{
 xxxxx
