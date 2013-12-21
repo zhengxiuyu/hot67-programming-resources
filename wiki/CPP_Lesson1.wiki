@@ -8,7 +8,7 @@ Read through the following pages:
  * [http://www.cplusplus.com/doc/tutorial/variables/ Variables/Data Types]
  * [http://www.cplusplus.com/doc/tutorial/operators/ Operators]
  * [http://www.cplusplus.com/doc/tutorial/basic_io/ Basic Input/Output]
- * [CPP_TipsAndTricks#Debuging_and_Fixing_Errors Debugging and Fixing Errors]
+ * [CPP_TipsAndTricks#Debugging_and_Fixing_Errors Debugging and Fixing Errors]
  
  You may read through the following page if you would like, but it is recommended that you do this once you have learned more:
  
