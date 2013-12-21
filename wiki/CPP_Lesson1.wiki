@@ -8,6 +8,7 @@ Read through the following pages:
  * [http://www.cplusplus.com/doc/tutorial/variables/ Variables/Data Types]
  * [http://www.cplusplus.com/doc/tutorial/operators/ Operators]
  * [http://www.cplusplus.com/doc/tutorial/basic_io/ Basic Input/Output]
+ * [CPP_TipsAndTricks#Debuging_and_Fixing_Errors Debugging and Fixing Errors]
  
  You may read through the following page if you would like, but it is recommended that you do this once you have learned more:
  
@@ -16,79 +17,6 @@ Read through the following pages:
 =Extra Reading=
 
 http://www.cprogramming.com/tutorial/lesson1.html
-
-=Debugging and Fixing Errors=
-
-_This section is important!_
-
-When you start building programs, you may notice that your compiler may spit errors at you and not build your program, for example:
-
-{{{
-math1.cpp: In function ‘int main()’:
-math1.cpp:9:12: error: ‘z’ was not declared in this scope
-math1.cpp:11:1: error: expected ‘;’ before ‘return’
-math1.cpp:11:8: error: expected ‘}’ at end of input
-}}}
-
-The errors that you get may look different depending on which compiler you use (what is shown above is from G++, which is what Code::Blocks uses). However, it is important that you know how to fix these errors. This section will show you how to deal with these errors.
-
-Let's look at how to fix some of these errors.
-
-==Errors==
-
-===Finding the error===
-
-Whenever you are given an error, whatever compiler you use should always tell you where the error is. It is important that you know how to determine where the error is. Below are two examples of how to do this with two compilers, G++ and Visual Studio
-
-====G++====
-{{{
-source_file.cpp:line:character: error...
-}}}
-
-Here, G++ will give you the name of the file that it found the error is in, the line number, the character from the left, and then it tells you the problem.
-
-====Visual Studio====
-{{{
-\source_file.cpp(line): error...
-}}}
-
-Here, Visual Studio tells you the name of the file that it found the error in, the line number in parentheses, and then the problem.
-
-===Common errors===
-
-_Note: The errors shown below are examples of errors given by G++. If you are using a different compiler, the language will look slightly different._
-
-====`'variable' was not declared in this scope`====
-
-You did not declare that variable in the current context (given by `In function:` or `In scope:`). There are usually three reasons for this error:
-
-  * You forgot to declare that variable.
-  * You misspelled that variable or its declaration.
-  * You omitted a semicolon at the end of the declaration of the variable directly before this one.
-  
-====`expected 'something' before 'key word'`====
-
-You omitted an important character. These are most often semicolons (`;`), but they can be other symbols.
-
-Your compiler should also give you key words (`return`, a variable name, etc) as to where the error is in addition to the line and character number.
-
-===Additional errors===
-
-There are lots of errors that you might encounter, and most of them depend highly on what you are programming. In general, if you have encountered an error you have not seen before, read it thoroughly. Most errors that your compiler gives you should be detailed enough to explain how to fix it. If it is too complex, then consult the Internet *with the words from the error that you think are important*. 
-
-==Debugging==
-
-Sometimes, your compiler will build your program, but your program will function improperly at runtime. This is usually due to improper code that the compiler was unable to find because the bug requires certain conditions within the program that might not always exist at runtime. In this case, there are a few techniques that you can apply to find the bad code and fix it.
-
-In addition to what is given here, many IDEs (including Code::Blocks) have debugging tools that you can use. These are much more advanced and can help you find particularly elusive bugs.
-
-===Verbose output===
-
-The easiest debugging method is to build it right into your program (this is why production-level software -- e.g. Android -- may contain development tools). You can do this by simply printing the variables that you think might be involved with the problem to the screen. Do this throughout the entirety of the program, and then build and run your program. Look closesly at the output, and see where it starts to look funky. Find that particular part of your code -- that is where the problem is.
-
-===Condition testing===
-
-If the bug only seems to occur when given certain values and conditions, experiment with those variables/conditions (either by hard-coding them or have them input at runtime). Note which values and conditions are causing the bug, and use that to determine exactly what the program is doing to cause the problem.
 
 =Assignments=
 
