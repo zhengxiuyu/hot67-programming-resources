@@ -56,7 +56,7 @@ The integral constant looks at the average error in the system. As such, small, 
 
 Integral control adjusts the output such that the average error eventually reaches 0.
 
-<img src="http://newton.ex.ac.uk/teaching/cdhw/Feedback/Figs/PIDGraph.gif" title="Plot of PV vs. time" />
+<img src="http://newton.ex.ac.uk/teaching/cdhw/Feedback/Figs/PIDGraph.gif" title="Example of PID Control" />
 
 =Review=
 
@@ -80,5 +80,7 @@ Try to accomplish the following:
   * Minimize offset/steady-state error
 
 _Simulation source: Central Michigan University_
+
+_Image credit: University of Exeter_
 
 || ← [WPI_Lesson7 Lesson 7: Sensors and Information] || *Lesson 8* || [WPI_Lesson9 Lesson 9: PID Part 2 - Implementing a PID ] → ||
