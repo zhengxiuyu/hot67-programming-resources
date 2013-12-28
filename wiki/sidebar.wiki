@@ -26,7 +26,7 @@
     * Chapter 3: Control
       * [WPI_Lesson7 Lesson 7: Sensors and Information]
       * [WPI_Lesson8 Lesson 8: PID Part 1 - PID Theory]
-      * Lesson 9: PID Part 2 - Implementing a PID
+      * [WPI_Lesson9 Lesson 9: PID Part 2 - Implementing a PID]
       * Lesson 10: PID Part 3 - Advanced PID Programming
     * Chapter 4: Disabled and Autonomous
       * Lesson 11: Disabled Routines

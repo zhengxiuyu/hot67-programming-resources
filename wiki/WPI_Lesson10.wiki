@@ -1,0 +1,5 @@
+#summary PID Part 3 - Advanced PID Programming
+
+*This page is not yet complete. Please check back later.*
+
+|| ← [WPI_Lesson9 Lesson 9: PID Part 2 - Implementing a PID]  || *Lesson 10* || [WPI_Lesson11 Chapter 4: Disabled and Autonomous - Lesson 11: Disabled Routines] → ||

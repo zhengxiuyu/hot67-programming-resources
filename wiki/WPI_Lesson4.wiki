@@ -164,9 +164,7 @@ If you're still a little confused, this section will help you understand the con
 
 ==Quick Note: Periodic Routines==
 
-If you remember from [WPI_Lesson2#Periodic_Routines lesson 2], `TeleopPeriodic()` will loop until the robot shuts down or another mode is entered. So, you must remember that, for the cases of this program, what you write is constantly running in a loop. Because it is already looping, you should write the program as if it would only run once.
-
-In this case, you shouldn't worry about writing a message to the driver station every loop. _Future note: that is actually good, because then you can write real-time values to the driver station._
+If you remember from [WPI_Lesson2#Periodic_Routines lesson 2], `TeleopPeriodic()` will loop until the robot shuts down or another mode is entered. So, you must remember that, for the cases of this program, what you write is constantly running in a loop. Because it is already looping, you should write the program as if it would only run once. So, if you write something to the driver station in `TeleopPeriodic()`, it will write to the driver station every time the CPU performs another loop. _Future note: that is actually good, because then you can write real-time values to the driver station._
 
 ==Button==
 
