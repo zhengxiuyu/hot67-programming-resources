@@ -71,7 +71,7 @@ Effectively, what you should remember about each of these terms is:
 
 =Activity=
 
-Download the [https://hot67-programming-resources.googlecode.com/svn/trunk/tutorial/PIDSimulation.xls PID Simulation] and open it. Play with the P, I and D constants and see how the output reacts to the different values (the output is the red line, the setpoint is the blue line).
+Download the [https://hot67-programming-resources.googlecode.com/svn/trunk/tutorial/PIDSimulation.xls PID Simulation] and open it. Play with the P, I and D constants and see how the output reacts to different values (the output is the red line, the setpoint is the blue line).
 
 Try to accomplish the following:
 
