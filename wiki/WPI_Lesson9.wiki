@@ -103,4 +103,4 @@ The content in this lesson could be tested, but most of the PID-capable subsyste
 
 If you do have access to a robot with a system that is ready to run a PID that only uses one sensor and one motor, then write code to implement a PID on that system. Otherwise, continue to the next lesson.
 
-|| ← [WPI_Lesson8 Lesson 8: PID Part 1 - PID Theory]  || *Lesson 9* || [WPI_Lesson10 Lesson 10: Pid Part 3 - Advanced PID Programming] → ||
+|| ← [WPI_Lesson8 Lesson 8: PID Part 1 - PID Theory]  || *Lesson 9* || [WPI_Lesson10 Lesson 10: PID Part 3 - Advanced PID Programming] → ||
