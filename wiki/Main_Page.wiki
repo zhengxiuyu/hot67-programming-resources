@@ -22,5 +22,7 @@ It is intended to be easy for new robot programmers to understand. If you have a
 
 [WPI_Lesson1 Begin →]
 
+_Note to other teams: If you're from another team, cool! I hope you find this tutorial useful. However, I would like to point out that some of the activities are optimized for the resources we have available for training new team members (largely robots from previous years). I encourage you to adjust these activities to fit the needs of your team. Please talk to a mentor or an experienced team member about what you should do._
+
 =Wiki=
 For the original wiki list, click [https://code.google.com/p/hot67-programming-resources/w/list here].

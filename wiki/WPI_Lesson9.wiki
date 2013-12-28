@@ -22,7 +22,7 @@ PIDController::PIDController(float p, float i, float d, PIDSource* source, PIDOu
 
   * `float p`: The value of P, or the proportional constant.
   * `float i`: The value of I, or the integral constant.
-  * `float d`: The value of D, or the derivitive constant.
+  * `float d`: The value of D, or the derivative constant.
   * `PIDSource* source`: The sensor input to be used with the PID controller. All sensors inherit the `PIDSource` class.
   * `PIDOutput* output`: The motor controller output to be used with the PID controller. All motor controllers inherit the `PIDOutput` class.
   
@@ -91,7 +91,9 @@ When you are tuning the PID, you need to ask yourself the following questions. B
     * Shy: Raise the P constant.
   * Is it overshooting and not correcting itself?
     * Solution 1: Try lowering the P constant.
-    * Solution 2: Adjust the D constant. Be careful if you are going to do this, and adjust D by values of 0.1 or even 0.01.
+    * Solution 2
+      * Overshooting (try first): Adjust the D constant. Be careful if you are going to do this, and adjust D by values of 0.1 or even 0.01.
+      * Steady-state error: Adjust the I constant. Take similar cautions with I that you would with D.
     
 Knowing how much to change a P, I, or D value is a learned skill and does not really follow a definite algorithm. As suchm it cannot be taught through a tutorial. If you need help, ask someone who has tuned a PID before.
 
