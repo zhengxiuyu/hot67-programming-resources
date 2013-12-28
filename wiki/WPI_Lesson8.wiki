@@ -34,7 +34,7 @@ The proportional constant tells the PID controller to send an output *in proport
 
 Pure proportional control has a few problems. Firstly, if the error is significant, it tends to overshoot the setpoint, then moving back towards it. Secondly, if the proportional term is large enough, the system will not be able to respond as quickly to the changes in the desired output, and as such will lose stability. Finally, proportional control usually does not settle at the setpoint, but rather near it -- this is known as _steady-state error_. This occurs because the signal from the proportional control becomes neglectable, and the output does not change.
 
-<img src="http://newton.ex.ac.uk/teaching/cdhw/Feedback/Figs/ProportionalGraph.gif" title="Example of proportional control, showing increast gain" />
+<img src="http://newton.ex.ac.uk/teaching/cdhw/Feedback/Figs/ProportionalGraph.gif" title="Example of proportional control, showing increasing gain" />
 
 ==Derivative==
 
