@@ -79,7 +79,7 @@ Try to accomplish the following:
   * Minimize overshoot
   * Minimize offset/steady-state error
 
-_Simulation source: Central Michigan University_
+_Simulation source: Carnegie Mellon University ([http://www.cs.cmu.edu/afs/cs/academic/class/15494-s11/lectures/manipulation_with_friction_files/PID%20Simulation.xls original file])_
 
 _Image credit: University of Exeter_
 
