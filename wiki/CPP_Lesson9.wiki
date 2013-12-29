@@ -4,7 +4,7 @@
 
 =Reading=
 
-Read the following pages *thorougly*:
+Read the following pages *thoroughly*:
 
   * [http://www.cplusplus.com/doc/tutorial/classes/ Classes I]
   * [http://www.cplusplus.com/doc/tutorial/classes2/ Classes II]
