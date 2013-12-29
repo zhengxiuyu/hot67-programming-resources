@@ -6,7 +6,7 @@ Go here:
 
 [http://www.cplusplus.com/doc/tutorial/control/ If and Else]
 
-and read through the section titled "Conditional structure: if and else". 
+and read through the end of the section titled "Selection statements: if and else". 
 
 = Extra Reading =
 

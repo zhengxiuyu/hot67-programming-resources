@@ -15,7 +15,7 @@ http://www.cprogramming.com/tutorial/lesson3.html
 
 Once you understand the content, complete these assignments.
 
-=Tip: `printf`=
+==Tip: `printf`==
 
 You are strongly encouraged to give the [CPP_TipsAndTricks#printf printf()] function some consideration when completing the assignments.
 

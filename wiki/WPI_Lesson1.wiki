@@ -40,7 +40,7 @@ The following components are either programmed, affect your program in some way,
 ==cRIO==
 <img src="http://www.ni.com/cms/images/devzone/tut/9076_Empty.jpg"  width=200 height=140px/>
 
-This is the brain of the robot. communicates with the driver station either directly through its LAN port, or through a radio connected to the LAN port. Your code is stored here. When you replace it, you need to reboot this (either using the main breaker or the "Reboot cRIO..." button on the driver station) in order for your changes to take effect.
+This is the brain of the robot. It communicates with the driver station either drirectly through its LAN port, or through a radio connected to the LAN port. Your code is stored here. When you replace it, you need to reboot this (either using the main breaker or the "Reboot cRIO..." button on the driver station) in order for your changes to take effect.
 
 A cRIO usually consists of two ethernet ports, a power input, a serial port, and 4 module ports (on older models: 8), which hold modules to send and receive data to/from various components of the robot.
 
@@ -52,7 +52,7 @@ This is connected to the cRIO through one of the cRIO's modules. You actually do
     * These are located along the left side of the device, labeled 'PWM'
   * Digital I/O (input/output) (1-14), for sensors
     * These are along the upper right of the device, labeled 'DIGITAL I/O'
-  * Relays (1-16), which provide commands for controllers (like a [WPI_Lesson1#Spikes%2FRelays Spike]) for devices that have an on-or off state (e.g. lights).
+  * Relays (1-16), which provide commands for controllers (like a [WPI_Lesson1#Spikes%2FRelays Spike]) for devices that have an on-or-off state (e.g. lights).
     * These are located along the the lower right of the device, labeled 'RELAY'
 
 There are more ports and uses for a digital sidecar, which are listed [http://www.usfirst.org/sites/default/files/uploadedFiles/Robotics_Programs/FRC/Game_and_Season__Info/2012_Assets/Digital%20Sidecar.pdf here].
@@ -72,7 +72,7 @@ In the code, as you will learn later, you program these as if they are the devic
 ===Victors===
 <img src="http://www.vexrobotics.com/media/catalog/product/cache/11/image/296x/5e06319eda06f020e43594a9c230972d/2/1/217-2769-950x950_1.jpg" width=148px height=148px />
 
-Victors are one kind of drive controller. They run off of a PWM output on the digital sidecar, and they translate the PWM signal into a voltage. These are easy to control, as they take a percentage of full speed.
+Victors are one kind of drive controller. They run off of a PWM output on the digital sidecar, and they translate the PWM signal into a voltage.
 
 This team is partial to these drive controllers (at least for the drivetrain), because they don't tend to chicken out when the robot gets into a shoving match.
 
