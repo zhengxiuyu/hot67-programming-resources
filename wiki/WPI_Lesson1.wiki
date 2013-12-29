@@ -166,7 +166,7 @@ The following sensors can all be found plugged into the [WPI_Lesson1#Analog_Brea
 
 Potentiometers are sensors that measure rotation. You may not realize it, but a lot of the electronics you interact with on a day-to-day basis use potentiometers. For example, the volume knob on your car stereo works because there is a potentiometer behind the knob.
 
-The range of a potentiometer's output is usually from 0-6 volts (but nominally 1-5).
+The range of a potentiometer's output is technically from 0-6 volts, but may actually be around 1-5.
 
 <img src="http://fddrsn.net/pcomp/images/potentiometer1.gif" width=236px height=162px title="Mechanism of a potentiometer"/>
 
