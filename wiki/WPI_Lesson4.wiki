@@ -12,7 +12,7 @@ One of the important things for this, however, is to understand how the operator
 Now that we're diving into specific functions, it is important that you understand how they are given to you in this tutorial. Whenever you are first given a function, its format will be like this:
 
 {{{
-RETURN_TYPE ComponentClass::FunctionName(OPTION_TYPE OPTIONS)
+RETURN_TYPE ComponentClass::FunctionName(OPTION_TYPE options)
 }}}
 
 where:
@@ -20,7 +20,7 @@ where:
   * `RETURN_TYPE` is the type of variable the function returns.
   * `ComponentClass` is the class the function originates from.
   * `FunctionName` is the actual name of the function.
-  * `OPTIONS` are the specific options that each function takes.
+  * `options` are the specific options that each function takes.
     * `OPTION_TYPE` is the type of that option.
   
 What you see printed is NOT exactly what you type in. It is shown in this format for informative purposes.
@@ -31,17 +31,17 @@ There are really two different kinds of devices available for controlling the ro
 
 ==Functions==
 
-If you will recall from [WPI_Lesson3#Game%20Controller the last lesson], the game controller uses the `Joystick` class (the joystick does use this class, but it is programmed in a different way), and you need to provide the joystick ID in the constructor. For the purposes of this tutorial, let's say that you declared a pointer to a `Joystick` called `m_gamepad` at ID 1.
+If you recall from [WPI_Lesson3#Game%20Controller the last lesson], the game controller uses the `Joystick` class (the joystick does use this class, but it is programmed in a different way), and you need to provide the joystick ID in the constructor. For the purposes of this tutorial, let's say that you declared a pointer to a `Joystick` called `m_gamepad` at ID 1.
 
 ===Buttons===
 
 Buttons are the simplest to program. They use the following function:
 
 {{{
-bool Joystick::GetRawButton(int BUTTON_INDEX)
+bool Joystick::GetRawButton(int button_index)
 }}}
 
-where `BUTTON_INDEX` is the numerical index of the desired button. For the xbox controller, this is the mapping:
+where `button_index` is the numerical index of the desired button. For the xbox controller, this is the mapping:
 
   * A = 1
   * B = 2
@@ -69,10 +69,10 @@ The joysticks on the game controller are accessed differently than you might thi
 To access the value on any axis, use the following function:
 
 {{{
-float Joystick::GetRawAxis(int AXIS_INDEX)
+float Joystick::GetRawAxis(int axis_index)
 }}}
 
-where `AXIS_INDEX` is the numerical index of the desired axis. This is the mapping:
+where `axis_index` is the numerical index of the desired axis. This is the mapping:
 
   * Left stick / X axis = 1
   * Left stick / Y axis = 2
@@ -119,30 +119,19 @@ If you remember from the [WPI_Lesson3#Driver_Station_LCD last lesson], the drive
 However, this `printf()` is different in its own way.
 
 {{{
-void DriverStationLCD::Printf(enum LINE, 1, const char* MSG)
+void DriverStationLCD::Printf(enum line, 1, const char* msg)
 }}}
 
 For starters, note that the function has a capital 'P', not a lowercase one.
 
 ===Printf parameters===
 
-{{{
-enum LINE
-}}}
-
-The line of the driver station you wish to change. This takes the form `DriverStationLCD::kUser_Line#`, where # is the number of the line (1-6).
-
-{{{
-1
-}}}
-
-An int of some sort. I have no clue what its use is. It is the same on every `Printf()` call I have seen.
-
-{{{
-const char* MSG
-}}}
-
-The string that you want to write to the driver station. This takes the same format as the `cstdio printf()`. It is a `const char*` because that is the type of a string defined in quotes.
+  * `enum LINE`
+    * The line of the driver station you wish to change. This takes the form `DriverStationLCD::kUser_Line#`, where # is the number of the line (1-6).
+  * `1`
+    * An `int`. It should always be 1, so do not worry about this.
+  * `const char* msg`
+    * The string that you want to write to the driver station. This takes the same format as the `cstdio printf()`. It is a `const char*` because that is the type of a string defined in quotes.
 
 Note that a single line can hold up to 21 characters. An overflow will *NOT* wrap to the next line.
 
