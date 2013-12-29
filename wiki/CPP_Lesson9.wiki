@@ -31,29 +31,28 @@ A sample run is shown below. Note that betting $0 is equivalent to skipping a tu
 
 Do NOT allow the player to bet negative money (that's cheating)! _HINT: We're talking about *unsigned* money_
 
-{{{
-You have $100.
-You got a Eight of Diamonds and a Seven of Clubs.
-How much do you want to bet the next card is in between? 200
-You only have $100 to bet! Enter a new bet: 0
-You got a Eight of Hearts.
-TOO BAD! You lose $0.
 
-You have $100.
-You got a Queen of Hearts and a Five of Spades.
-How much do you want to bet the next card is in between? 100
-You got a Jack of Clubs.
-COOL! You win $100.
+  `You have $100.
+  You got a Eight of Diamonds and a Seven of Clubs.
+  How much do you want to bet the next card is in between? 200
+  You only have $100 to bet! Enter a new bet: 0
+  You got a Eight of Hearts.
+  TOO BAD! You lose $0.
 
-You have $200.
-You got a Two of Diamonds and a King of Clubs.
-How much do you want to bet the next card is in between? 200
-You got a Ace of Spades.
-TOO BAD! You lose $200.
+  You have $100.
+  You got a Queen of Hearts and a Five of Spades.
+  How much do you want to bet the next card is in between? 100
+  You got a Jack of Clubs.
+  COOL! You win $100.
 
-You are out of money. GAME OVER.
-Press any key to continue.
-}}}
+  You have $200.
+  You got a Two of Diamonds and a King of Clubs.
+  How much do you want to bet the next card is in between? 200
+  You got a Ace of Spades.
+  TOO BAD! You lose $200.
+
+  You are out of money. GAME OVER.
+  Press any key to continue.`
 
 ===Programming Requirements===
 
