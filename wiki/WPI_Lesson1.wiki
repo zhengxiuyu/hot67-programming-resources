@@ -254,7 +254,7 @@ There are 10 questions.
 
 <img src="http://img.ehowcdn.com/article-new/ehow/images/a05/3r/7k/potentiometer-works-800x800.jpg" width=150px height=94px />
 
-<img src="http://store.arduino.cc/ww/includes/images/Tinkerkit%20Gyroscope%20Sensor%201X_01.jpg" width=225px height=225px />
+<img src="http://www.brain.kyutech.ac.jp/~ishii/Darya_Bird/Ronbun/GyroSensor.png" width=225px height=225px />
 
 <img src="http://team358.org/files/programming/ControlSystem2009-/AnalogModule.JPG" width=200px height=212px />
 
