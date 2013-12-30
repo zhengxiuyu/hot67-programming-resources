@@ -1,4 +1,4 @@
-#summary Autonomous Routines 
+#summary Autonomous Routines
 
 This lesson is all about Autonomous routines. Autonomous mode runs at the beginning of a match (usually for 30 seconds), where the robot is entirely automated (although input from the Kinect has been allowed recently).
 
@@ -51,6 +51,7 @@ void AutonomousPeriodic()
       break;
     //...
   }
+}
 }}}
 
 Notice how the comments say 'function call' and not 'code'. This is because attempting to write all of the cases into the `AutonomousPeriodic()` function will overcomplicate the code and will almost certainly cause extreme amounts of logical problems. It is better to write each case into its own function and call that within your `switch/case` structure than to endure that mess.
@@ -86,6 +87,7 @@ void MyAutonomousStrategy()
       break;
     //...
   }
+}
 }}}
 
 In this case, the `switch/case` statement is used to determine what 'segment' of Autonomous it needs to execute. These 'segments' are the distinct, individual actions (shooting, moving, etc) that the robot performs as part of the Autonomous strategy.
