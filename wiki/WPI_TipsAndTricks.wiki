@@ -23,7 +23,9 @@ Aside from providing functions and other utilities for use in a source file, hea
 #define MY_NUMBER 4
 }}}
 
-Essentially, we are telling the compiler's preprocessor to create a constant called `MY_NUMBER`, with a value of 4.
+Essentially, we are telling the compiler's preprocessor to create a constant called `MY_NUMBER`, with a value of 4. The compiler will then replace any instance of `MY_NUMBER` in associated code with 4.
+
+Remember that you need to include the header file in all other files with which you intend to use the constant.
 
 ==Use==
 
@@ -32,6 +34,8 @@ The use of the header definition is quite simple. Simply write it instead of its
 {{{
 MyFunction(MY_NUMBER);
 }}}
+
+This would be equivalent to calling `MyFunction(4)`. 
 
 ==Why?==
 

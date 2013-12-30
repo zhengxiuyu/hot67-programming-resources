@@ -12,6 +12,8 @@ New programmers should start here. This will guide you through [http://www.cplus
 
 Seriously. Code right. You never know where those pesky velociraptors might be hiding.
 
+_Some C++ assignments were adapted from web resources [http://www.cplusplus.com/forum/articles/12974/ here] and [http://www.math.ucla.edu/~wittman/10a.1.10w/Homework/HW7/homework7.html here]_
+
 =WPILib Tutorial=
 
 This is for programmers who have the basics of C++ down.

@@ -29,7 +29,7 @@ class BuiltinDefaultCode: public IterativeRobot
 
 This creates a new class called `BuiltinDefaultCode` that you will program. It inherits the `IterativeRobot` class, the class the cRIO treats the robot as. Your class *MUST* inherit `IterativeRobot`, otherwise it will not work.
 
-Now, we will look at the structure it put in for you.
+Now, we will look at the structure of the robot class.
 
 =Class Members=
 {{{

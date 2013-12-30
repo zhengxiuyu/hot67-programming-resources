@@ -29,8 +29,8 @@
       * [WPI_Lesson9 Lesson 9: PID Part 2 - Implementing a PID]
       * [WPI_Lesson10 Lesson 10: PID Part 3 - Advanced PID Programming]
     * Chapter 4: Routines
-      * Lesson 11: Initialization Routines
-      * Lesson 12: Disabled Routines
-      * Lesson 13: Autonomous Routines
+      * [WPI_Lesson11 Lesson 11: Initialization Routines]
+      * [WPI_Lesson12 Lesson 12: Disabled Routines]
+      * [WPI_Lesson13 Lesson 13: Autonomous Routines]
     * [WPI_TipsAndTricks Tips and Tricks]
   * [https://code.google.com/p/hot67-programming-resources/w/list Wiki List]

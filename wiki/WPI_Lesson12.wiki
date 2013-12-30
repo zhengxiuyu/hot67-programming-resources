@@ -4,7 +4,7 @@ This lesson is all about the Disabled routines. Disabled mode runs when the robo
 
 <wiki:toc max_depth="2" />
 
-=Rules=
+=Restrictions=
 
 Disabled mode is the most restricted mode. In Disabled, robots *cannot* actuate anything on the robot. This means that victors, jaguars, talons, and even spikes cannot be changed in this mode (even if you have a spike attached to a light and not a motor).
 
@@ -33,4 +33,4 @@ Redo [WPI_Lesson4#Activity the activity from lesson 4] in Disabled mode.
 
 Additionally, have the robot show you all of its sensor values in Disabled mode.
 
-|| ← [WPI_Lesson11 Lesson 11: Initialization Routines]  || *Lesson 12* || [WPI_Lesson12 Lesson 13: Autonomous Routines] → ||
+|| ← [WPI_Lesson11 Lesson 11: Initialization Routines]  || *Lesson 12* || [WPI_Lesson13 Lesson 13: Autonomous Routines] → ||

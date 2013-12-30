@@ -4,7 +4,7 @@ Now that you know what a PID is, you will learn how to apply it to the robot.
 
 <wiki:toc max_depth="2">
 
-=Quick Note=
+=Safety Note=
 
 The most important thing with robotics in general is safety, as you well know by now. One important thing to remember is that the more automated the machine becomes, the more dangerous it can be. As a PID automates the robot to a certain degree, you should always be *VERY CAREFUL* when you are testing one for the first time (although you should always be very careful anyway).
 

@@ -3,7 +3,7 @@
 
 Now that we have laid the foundation, it is time to build upon that foundation. This chapter will teach you how to make the robot move.
 
-One of the important things for this, however, is to understand how the operator interface works. So, we will not actually make the robot do anything until the next chapter.
+One of the important things for this, however, is to understand how the operator interface works. So, we will not actually make the robot do anything until the next lesson.
 
 <wiki:toc max_depth="2">
 
@@ -153,7 +153,7 @@ If you're still a little confused, this section will help you understand the con
 
 ==Quick Note: Periodic Routines==
 
-If you remember from [WPI_Lesson2#Periodic_Routines lesson 2], `TeleopPeriodic()` will loop until the robot shuts down or another mode is entered. So, you must remember that, for the cases of this program, what you write is constantly running in a loop. Because it is already looping, you should write the program as if it would only run once. So, if you write something to the driver station in `TeleopPeriodic()`, it will write to the driver station every time the CPU performs another loop. _Future note: that is actually good, because then you can write real-time values to the driver station._
+If you remember from [WPI_Lesson2#Periodic_Routines lesson 2], `TeleopPeriodic()` will loop until the robot shuts down or another mode is entered. So, you must remember that, for the cases of this program, what you write is constantly running in a loop. Because it is already looping, you should write the `TeleopPeriodic()` function as if the whole thing were a loop. So, if you write something to the driver station in `TeleopPeriodic()`, it will write to the driver station every time the CPU performs another loop. _Future note: that is actually good, because then you can write real-time values to the driver station._
 
 ==Button==
 
@@ -234,7 +234,7 @@ Now, we're ready to start programming the logic. This program will only use the 
 
 ==Joystick==
 
-Now, we will write a program that simply prints the value of axis 1 to the driver station and tells if either trigger is pressed past a threshold of 0.4.
+Now, we will write a program that prints a message to the driver station and tells if either trigger is pressed past a threshold of 0.4.
 
 What we need:
 
@@ -299,12 +299,12 @@ This means actually downloading the code to the robot.
 You may do so, provided that:
 
   * You have your mentor's approval
-  * (You have likely already discussed this) You shout "ENABLING" before you enable the robot -- loud enough for everyone to hear, but not too loud so that it is the last thing they hear. You should ALWAYS do this, regardless of the fact that your program might not do anything to actuate motors, but there is always a chance that something might, so you need to take every precaution.
+  * (You have likely already discussed this) You shout "ENABLING" before you enable the robot -- loud enough for everyone to hear, but not too loud so that it is the last thing they hear. You should ALWAYS do this, regardless of the fact that your program might not do anything to actuate motors, but there is always a chance that something could go badly, so you need to take every precaution.
   
 As for actually downloading the code, this is how you do it:
 
   # Build the project - Ctrl+B x2
-    * As the programs you write grow more complex, you may need to clean as well
+    * As the programs you write grow more complex, you may need to clean as well (Project → Clean)
   # Check the downloader preferences if you haven't already (you don't need to do this every time, only when you switch projects).
     # Go to Windows → Preferences
     # Select "FIRST Downloader Preferences"
@@ -316,7 +316,7 @@ As for actually downloading the code, this is how you do it:
     # Click "OK"
   # Make sure you are connected to the robot -- either by tether or wifi
   # Download the code (FIRST → Deploy)
-    * ENSURE A PROPER CONNECTION THROUGHOUT THE ENTIRETY OF THIS STEP!!!!
+    * ENSURE A SECURE CONNECTION THROUGHOUT THE ENTIRETY OF THIS STEP!!!!
   # Open the FRC Driver Station
   # Navigate to the Diagnostics tab
   # Select "Reboot cRIO.."
@@ -336,7 +336,7 @@ Write a program that does the following:
     * When the left joystick is pulled *BACKWARD*, it counts *DOWN* at a speed determined by how far the stick is pulled back.
     * When the left trigger is pressed, the float becomes negative
     * When the right trigger is pressed, the float becomes positive
-    * Note: many of the controllers do not zero perfectly. Use a deadband of 0.2
+    * Note: many of the controllers do not zero perfectly. Use a deadband of 0.2.
   * Print these numbers to the driver station.
   
 *STOP SCROLLING UNTIL YOU ARE READY TO CHECK YOUR ANSWER*

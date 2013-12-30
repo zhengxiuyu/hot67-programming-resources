@@ -27,4 +27,4 @@ Note that, for each of these functions, (`DisabledInit`, `AutonomousInit`, and `
 There is nothing that can be readily performed in an activity at this point. If you want, you can play around with initialization routines (do so safely and according to mode limitations!), otherwise, continue to the next lesson.
 
 
-|| ← [WPI_Lesson11 Chapter 3: Control - Lesson 10: PID Part 3 - Advanced PID Programming]  || *Lesson 11* || [WPI_Lesson12 Lesson 12: Disabled Routines] → ||
+|| ← [WPI_Lesson10 Chapter 3: Control - Lesson 10: PID Part 3 - Advanced PID Programming]  || *Lesson 11* || [WPI_Lesson12 Lesson 12: Disabled Routines] → ||
