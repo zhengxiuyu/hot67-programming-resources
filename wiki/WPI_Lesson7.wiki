@@ -49,9 +49,7 @@ SmartDashboard::PutNumber("Sensor Value: ",m_sensorValue);
 
 =Reading from Sensors=
 
-|| *(!) The following section is incomplete.* ||
-|| _Reason: Reading from all sensors_ ||
-|| You can help by *leaving a comment* about the missing sensors. ||
+The following section contains a selection of functions from commonly used sensors. Look at the header files for each of the classes for the components for all of them.
 
 ==A Special Function==
 
@@ -126,9 +124,7 @@ What is given below is for the 2013 robot.
 
 ==Wiring Schematic==
 
-|| *(!) The following section is incomplete.* ||
-|| _Reason: complete wiring layout of 2013 robot ||
-|| You can help by *leaving a comment* about the missing device mappings. ||
+_Note that not all of the mappings are posted at this time. I will post them when I get access to the latest version of the code._
 
   * Motors with sensors on them
     * Drivetrain
