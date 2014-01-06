@@ -121,7 +121,13 @@ Window motors are different from most other motors in that they run off of a rel
 ===Servos and Vex Motors===
 <img src="http://www.servocity.com/assets/images/HS-311.jpg" width=180px height=164px />
 
-Servos are special types of motors. These have built-in sensors (e.g. a [WPI_Lesson1#Potentiometer potentiometer]) that help with control.
+Servos are special types of motors. They read directly off of a PWM cable. Doing so permits them to be controlled without a motor controller.
+
+The width of the pulse provided in the PWM determines the endpoint of the motion of the servo.
+
+Servos also have a builtin sensor that determines the rotational angle of the output. This allows you to control the position of whatever is attached to the servo without a PID (in theory).
+
+Servos can have various rotational ranges, from a half-turn to multiple turns.
 
 ====Vex Motors====
 <img src="http://www.pickmarked.net/Robotics/images/2wire269.jpg" width=193px height=214px />
