@@ -17,10 +17,10 @@ Extra Practice should be completed AFTER you complete the main assignment. It wi
 Use the links below to download Code::Blocks
 
 ===Windows===
-http://sourceforge.net/projects/codeblocks/files/Binaries/12.11/Windows/codeblocks-12.11mingw-setup.exe/download
+http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12mingw-setup.exe/download
 
 ===Mac===
-http://sourceforge.net/projects/codeblocks/files/Binaries/12.11/MacOS/codeblocks-12.11-mac.dmg/download
+http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/MacOS/CodeBlocks-13.12-mac.zip/download
 
 ===Linux===
 Most distributions should carry Code::Blocks in their repositories.
@@ -28,9 +28,10 @@ Most distributions should carry Code::Blocks in their repositories.
 *Auto-Install*
 
   * [https://apps.ubuntu.com/cat/applications/codeblocks/ Debian/Ubuntu]
+  * [http://software.opensuse.org/ymp/home:NarkoZ:devel:tools:ide/openSUSE_13.1/codeblocks.ymp?base=openSUSE%3A13.1&query=codeblocks OpenSUSE 13.1 (1-Click)]
   * [http://software.opensuse.org/ymp/devel:tools:ide/openSUSE_12.3/codeblocks.ymp?base=openSUSE%3A12.3&query=codeblocks OpenSUSE 12.3 (1-Click)]
   * [http://software.opensuse.org/ymp/devel:tools:ide/openSUSE_12.2/codeblocks.ymp?base=openSUSE%3A12.2&query=codeblocks OpenSUSE 12.2 (1-Click)]
-  * [http://software.opensuse.org/ymp/home:derselbst/openSUSE_Tumbleweed/codeblocks.ymp?base=openSUSE%3A12.3&query=codeblocks OpenSUSE Tumbleweed (1-Click)]
+  * [http://software.opensuse.org/ymp/home:NarkoZ:devel:tools:ide/openSUSE_Tumbleweed/codeblocks.ymp?base=openSUSE%3A13.1&query=codeblocks OpenSUSE Tumbleweed (1-Click)]
 
 *Package files*
 
