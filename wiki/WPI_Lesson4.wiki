@@ -119,7 +119,7 @@ If you remember from the [WPI_Lesson3#Driver_Station_LCD last lesson], the drive
 However, this `printf()` is different in its own way.
 
 {{{
-void DriverStationLCD::Printf(enum line, 1, const char* msg)
+void DriverStationLCD::Printf(enum line, int column, const char* msg)
 }}}
 
 For starters, note that the function has a capital 'P', not a lowercase one.
@@ -128,8 +128,8 @@ For starters, note that the function has a capital 'P', not a lowercase one.
 
   * `enum LINE`
     * The line of the driver station you wish to change. This takes the form `DriverStationLCD::kUser_Line#`, where # is the number of the line (1-6).
-  * `1`
-    * An `int`. It should always be 1, so do not worry about this.
+  * `int column`
+    * The starting column (horizontal position) of the message.
   * `const char* msg`
     * The string that you want to write to the driver station. This takes the same format as the `cstdio printf()`. It is a `const char*` because that is the type of a string defined in quotes.
 
