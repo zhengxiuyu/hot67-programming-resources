@@ -126,48 +126,6 @@ Please note that printf will not accept C++ strings (variable type `string`) If 
 
 Another way to do this would be to declare a [CPP_Lesson6#C_Strings C string]; however, you need to have learned the concepts in lesson 6 in order to do that.
 
-=getchar=
-*Required Level: Lesson 1*
-
-The function `getchar()` returns a character from standard input (`stdin`). This function does *not* require the use of the enter key.
-
-Note that, when you use this function, the character the user inputs will *not* show on the screen. To make that happen, simply print the character to the screen.
-
-`getchar()` is a part of cstdio, just like `printf()`.
-
-{{{
-int std::getchar()
-}}}
-_This function returns an `int` to deal with errors. You can still put the value in a char using the `=` operator ([CPP_TipsAndTricks#getchar_use See below])_
-
-==getchar use==
-Simply set your `char` variable equal to `getchar`.
-
-*Code*
-{{{
-#include <iostream>
-#include <cstdio>
-using namespace std;
-
-int main()
-{
-  char c;
-  
-  c = getchar();
-  
-  printf("%c",c);
-  
-  cout<<"You entered "<<c<<endl;
-  
-  return 0;
-}
-}}}
-
-[http://www.cplusplus.com/getchar More information on getchar]
-
-|| *Input* || *Output* ||
-|| `g` || `g` <br /> `You entered g` ||
-
 =Random Numbers=
 *Required Level: Lesson 1*
 
@@ -366,10 +324,10 @@ However, the problem with this is that `system()` is a highly insecure function 
 Another way to do it is to include `conio.h` and call this function:
 
 {{{
-clrscr();
+_clrscr();
 
 //If the above doesn't work use this
-_clrscr();
+clrscr();
 }}}
 
 Again, though, `conio.h` is an old library from the days of DOS and is no longer standard.
@@ -409,6 +367,8 @@ If you use this, you will need to link the right library (older Ubuntu systems u
 
 Unbuffered input is basically input that has not been ended by a strike of the enter key. This is useful for writing programs that respond immediately to a key stroke.
 
+Again, unbuffered input depends on the implementation of the terminal you are using, so this is platform-dependent.
+
 ==Unbuffered Input on Windows==
 
 Really, the easiest way to do this is using `conio.h`. There is a way to do it using the Windows API, but it requires knowledge from beyond this tutorial.
@@ -417,11 +377,10 @@ Really, the easiest way to do this is using `conio.h`. There is a way to do it u
 #include <conio.h>
 
 char c;
-c = getch();
-
-//or if getch() doesn't work
-
 c = _getch();
+
+//or if _getch() doesn't work
+c = getch();
 }}}
 
 ==Unbuffered Input on POSIX-compliant systems==
