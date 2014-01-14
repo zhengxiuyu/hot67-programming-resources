@@ -301,7 +301,7 @@ Sets the output stream to put fill characters in the middle of successive output
 The parameter for `internal` is the following output operation, therefore, parentheses are unneccessary.
  
 ====internal use====
-Use `internal` before the output operations to fill internally..
+Use `internal` before the output operations to fill internally.
 
 || *Code* || *Output* ||
 || `cout<<setfill('+')<<setw(10)<<internal<<"hi"<<endl;` || `h++++++++i` ||
