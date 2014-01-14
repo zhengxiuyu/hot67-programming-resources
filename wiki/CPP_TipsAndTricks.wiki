@@ -193,7 +193,7 @@ srand(time(NULL));
 
 This provides a random number seed that changes every time the program is run, because the seed is the time the `srand()` function is called.
 
-_*NOTE*: If you are here from Lesson 9, *DO NOT SEED IN THE CLASS CONSTRUCTOR.* Doing so will not generate random numbers. Instead, seed at the beginning of your `main` routine in main.cpp._
+You should generally always seed the random number generator at the beginning of `main`. Seeding it elsewhere (for example, in a class constructor or in another function) may actually seed it multiple times.
 
 ===rand===
 
@@ -347,6 +347,87 @@ Use `internal` before the output operations to be left-aligned.
 
 || *Code* || *Output* ||
 || `cout<<setfill('+')<<setw(10)<<internal<<"hi"<<endl;` || `h++++++++i` ||
+
+=Clearing the Screen=
+*Required Level: Lesson 1*
+
+Clearing the screen actually depends on which platform you are using, because how the terminal is implemented between different platforms changes.
+
+==Clearing the Screen on Windows==
+
+The simplest way to do it is to include `cstdlib` and call this function when you want to clear the screen:
+
+{{{
+system("CLS");
+}}}
+
+However, the problem with this is that `system()` is a highly insecure function and avoiding its use is generally advised.
+
+Another way to do it is to include `conio.h` and call this function:
+
+{{{
+clrscr();
+
+//If the above doesn't work use this
+_clrscr();
+}}}
+
+Again, though, `conio.h` is an old library from the days of DOS and is no longer standard.
+
+Really, the best way to do it is to use the Windows API to clear every cell on the screen and reposition the cursor. You can see an example of that [http://www.cplusplus.com/articles/4z18T05o/#Windows here].
+
+==Clearing the Screen on POSIX-Compliant Systems==
+
+By POSIX-compliant I basically mean any system derived from Unix -- the two most prominent examples of this are Mac OS X and Linux. This will work for any such system.
+
+Unix-derived systems actually have a rather standard way to do this, since someone developed a library that made terminal handling easier. All you have to do is print the right control sequence to the terminal. The code below (borrowed from [http://www.cplusplus.com/articles/4z18T05o/#POSIX here]) provides a fairly robust way to do it:
+
+{{{
+#include <unistd.h>
+#include <term.h>
+
+void clearScreen()
+{
+  if (!cur_term)
+  {
+    int result;
+    setupterm(NULL, STDOUT_FILENO, &result);
+    if (result <= 0)
+      return;
+  }
+  
+  putp(tigetstr("clear"));
+}
+}}}
+
+The last line (the `putp(tigetstr("clear"))`) basically asks the terminal for the control sequence to clear the screen, and then prints it.
+
+If you use this, you will need to link the right library (older Ubuntu systems use `-lterminfo`, newer Ubuntu systems use `-ltinfo`, other POSIX-compliant systems might use `-lcurses` or so on).
+
+=Reading from Unbuffered Input=
+*Required Level: Lesson 1*
+
+Unbuffered input is basically input that has not been ended by a strike of the enter key. This is useful for writing programs that respond immediately to a key stroke.
+
+==Unbuffered Input on Windows==
+
+Really, the easiest way to do this is using `conio.h`. There is a way to do it using the Windows API, but it requires knowledge from beyond this tutorial.
+
+{{{
+#include <conio.h>
+
+char c;
+c = getch();
+
+//or if getch() doesn't work
+
+c = _getch();
+}}}
+
+==Unbuffered Input on POSIX-compliant systems==
+
+There are multiple different ways to do this. You could set the associated variable with `stty` or you could use the `getch()` function from `curses`. However, the former is a little tricky, and curses is not compatible with `stdin` and `stdout` (i.e. `cin` and `cout`), so you would have to learn all of `curses` to use it. I would suggest looking at [http://stackoverflow.com/a/912796 this].
+
 
 =Input Validation=
 *Required Level: Lesson 3*

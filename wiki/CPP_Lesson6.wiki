@@ -66,7 +66,7 @@ Allow the user (marked by G) to move either up, down, left, or right each turn. 
 
 Add enemies (denoted by E) that move [CPP_TipsAndTricks#Random_Numbers randomly] in any direction once per turn (enemies, just like traps, cause the player to lose if touched). 
 
-If you don't want to have the user hit enter (for example, you want them to use the WASD keys to navigate), look at [http://stackoverflow.com/a/421871 this] for Windows and [http://stackoverflow.com/a/912796 this] for POSIX-compliant systems (Linux, OS X, etc).
+If you don't want to have the user hit enter (for example, you want them to use the WASD keys to navigate), look at [CPP_TipsAndTricks#Reading_from_Unbuffered_Input unbuffered input].
 
 HINT: Don't let the player move off the gameboard! You program will crash if they move off the top or bottom of the board!
 (the same holds true for enemies)
