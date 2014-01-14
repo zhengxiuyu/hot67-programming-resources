@@ -115,7 +115,7 @@ _This table is from the www.cplusplus.com reference page on `printf()`_
 || `u` || Unsigned integer || `435` ||
 || `f` || Floating point number || `58.9784` ||
 || `c` || Character || `g` ||
-|| `s` || C String || `hello` ||
+|| `s` || C String || `"hello"` ||
 
 See [http://www.cplusplus.com/reference/cstdio/printf/ here] for a complete table and more details on `printf`. 
 
