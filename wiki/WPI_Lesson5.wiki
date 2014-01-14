@@ -131,7 +131,7 @@ One thing that should be noted is that lights almost always are left on relays (
 if (m_gamepad->GetRawButton(4))
   m_light->Set(Relay::kForward);
 else
-  m_light->Set(Realy::KOff);
+  m_light->Set(Relay::kOff);
 }}}
 
 The above code will turn a light on if the Y button is held.
