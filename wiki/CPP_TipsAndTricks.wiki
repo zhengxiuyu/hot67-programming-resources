@@ -289,7 +289,7 @@ Sets the output stream to put fill characters before successive output operation
 The parameter for `right` is the following output operation, therefore, parentheses are unneccessary.
  
 ====right use====
-Use `right` before the output operations to be left-aligned.
+Use `right` before the output operations to be right-aligned.
 
 || *Code* || *Output* ||
 || `cout<<setfill('+')<<setw(10)<<right<<"hi"<<endl;` || `++++++++hi` ||
@@ -301,7 +301,7 @@ Sets the output stream to put fill characters in the middle of successive output
 The parameter for `internal` is the following output operation, therefore, parentheses are unneccessary.
  
 ====internal use====
-Use `internal` before the output operations to be left-aligned.
+Use `internal` before the output operations to fill internally..
 
 || *Code* || *Output* ||
 || `cout<<setfill('+')<<setw(10)<<internal<<"hi"<<endl;` || `h++++++++i` ||
