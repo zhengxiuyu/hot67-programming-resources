@@ -53,9 +53,10 @@ class BuiltinDefaultCode : public IterativeRobot
         Victor *m_rDrive;
 
         //Declare Launcher Motors
-        Victor *m_Launcher1;
-        Victor *m_Launcher2;
-        Victor *m_Launcher3;
+        //Front: Front of robot Rear: Next to hopper
+        Victor *m_Launcher1; //Comp bot: Front
+        Victor *m_Launcher2; //Comp bot: Middle
+        Victor *m_Launcher3; //Comp bot: Rear
 
         //Declare Feeder
         Victor *m_Feeder;
@@ -77,26 +78,33 @@ class BuiltinDefaultCode : public IterativeRobot
 
         //Declare Sensors
         AnalogChannel *m_PlatePot;
+        AnalogChannel *m_ClimbPot;
 
 
         //Declare Encoders
         Encoder *m_lDriveEncoder;
         Encoder *m_rDriveEncoder;
+        Encoder *m_climbEncoder;
         
         //Digital I/O
         DigitalOutput *m_clk;
         DigitalOutput *m_mosi;
         DigitalInput *m_miso;
         DigitalOutput *m_cs;
+        DigitalInput *m_climbSwitch;
+        DigitalInput *m_feedSwitch;
         //Accelerometer
         ADXL345_SPI *m_plateAccel;
 
         //Declare Relays
         Relay *m_Ratchet;
+        Relay *m_climbLight;
         //Declare timers
         Timer *m_timer;
         Timer *m_buttonTimer;
         Timer *m_ratchetTimer;
+        Timer *m_feedTimer;
+        //Timer *m_sbTimer;
 
         // Declare a variable to use to access the driver station object
         DriverStationLCD *m_dsLCD;
@@ -126,9 +134,13 @@ class BuiltinDefaultCode : public IterativeRobot
         double m_PlateAccelFilt;
         double m_plateBump;
         double m_drvStraightComp;
+        double m_autonOffset;
+        double m_autonDriveSpeed;
         int m_autonomousCase;
         int m_ratchetCase;
         int m_lockRatchetCase;
+        int m_feedCase;
+        bool m_autonDisabled;
 
 public:
 
@@ -150,8 +162,11 @@ public:
                 m_Launcher2 = new Victor (5);
                 m_Launcher3 = new Victor (6);
                 m_Feeder = new Victor (7);
-                //Initialize Ratchet
+                
+                //Initialize Relays
                 m_Ratchet = new Relay(1);
+                m_climbLight = new Relay(2);
+                
                 //Initialize Plate Motor
                 m_Plate1 = new Victor (8);
                 m_Plate2 = new Victor (10);
@@ -162,15 +177,19 @@ public:
 
                 //Initialize Sensors
                 m_PlatePot = new AnalogChannel(1);
+                m_ClimbPot = new AnalogChannel(2);
                 m_clk = new DigitalOutput(1);
                 m_mosi = new DigitalOutput(2);
                 m_miso = new DigitalInput(3);
                 m_cs = new DigitalOutput(4);
+                m_climbSwitch = new DigitalInput (7);
+                m_feedSwitch = new DigitalInput (9);
                 m_plateAccel = new ADXL345_SPI(m_clk, m_mosi, m_miso, m_cs);
 
                 // Create a robot using standard right/left robot drive on PWMS 1, 2, 3, and #4
                 m_robotDrive = new RobotDrive(m_lDrive, m_rDrive);
                 m_robotDrive->SetSafetyEnabled(false);
+                
                 //Initialize encoders
                 m_lDriveEncoder = new Encoder(1, 2, true);
                 m_lDriveEncoder -> SetDistancePerPulse(1);
@@ -181,11 +200,17 @@ public:
                 m_rDriveEncoder -> SetDistancePerPulse(1);
                 m_rDriveEncoder -> SetMaxPeriod(1.0);
                 m_rDriveEncoder -> Start();
+                
+                m_climbEncoder = new Encoder(5,6, false);
+                m_climbEncoder->SetDistancePerPulse(1);
+                m_climbEncoder->SetMaxPeriod(1.0);
+                m_climbEncoder->Start();
 
 
                 m_timer = new Timer();
                 m_buttonTimer = new Timer();
                 m_ratchetTimer = new Timer();
+                m_feedTimer = new Timer();
 
                 //Initialize the PID for the arm. Check Defines.h for the values.
                 m_PlateHandler = new PlatePIDHandler(m_Plate1, m_Plate2, m_PlatePot, m_plateAccel);
@@ -209,6 +234,7 @@ public:
 
                 // Initialize counters to record the number of loops completed in autonomous and teleop modes
                 m_autoPeriodicLoops = 0;
+                m_autonDriveSpeed = 1.5;
                 m_disabledPeriodicLoops = 0;
                 m_telePeriodicLoops = 0;
                 m_launcherSpeed = 0;
@@ -217,6 +243,10 @@ public:
 				m_autonomousCase = 0;
 				m_ratchetCase = 0;
 				m_lockRatchetCase = 0;
+				m_feedCase = 0;
+				m_autonOffset = 0.0;
+				m_autonDisabled = false;
+				
                 //Start runnning the timer
                 
         }
@@ -254,6 +284,7 @@ public:
                 m_timer->Start();
                 m_timer->Reset();
 
+                //m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON+m_autonOffset);
                 m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON);
                 m_PlatePid->Enable();
 
@@ -274,6 +305,8 @@ public:
                 m_dsLCD->UpdateLCD();
                 m_buttonTimer->Start();
                 m_buttonTimer->Reset();
+                //m_sbTimer->Start();
+                //m_sbTimer->Reset();
                 m_lDriveEncoder->Reset();
                 m_rDriveEncoder->Reset();
         }
@@ -281,78 +314,96 @@ public:
         /********************************** Periodic Routines *************************************/
         void AutonomousPeriodic()
         {
-        	m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON);
-			m_PlatePid->Enable();
-        	switch(m_autonomousCase)
-			{
-			case 0:
-				m_timer->Stop();
-				m_timer->Start();
-				m_timer->Reset();
+        	if (!m_autonDisabled)
+        	{
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "     AUTONOMOUS      ");
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Setpoint: %f         ", (float)(PLATE_PYRAMID_AUTON+m_autonOffset));
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line3, 1, "Default: %f          ", PLATE_PYRAMID_AUTON);
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "Offset: %f           ", (float)m_autonOffset);
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "Plate Pot: %f:       ", (float)m_PlatePot->PIDGet());
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line6, 1, "                     ");
+				m_dsLCD->UpdateLCD();
+				
+				//m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON+m_autonOffset);
 				m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON);
 				m_PlatePid->Enable();
-				m_autonomousCase = 1;
+				switch(m_autonomousCase)
+				{
+				case 0:
+					m_timer->Stop();
+					m_timer->Start();
+					m_timer->Reset();
+					m_autonomousCase = 1;
+					break;
+				case 1:   						
+					m_Launcher1->Set(-(float)m_timer->Get()/2.0);
+					m_Launcher2->Set(-(float)m_timer->Get()/2.0);
+					m_Launcher3->Set(-(float)m_timer->Get()/2.0);
+					
+					if(m_timer->HasPeriodPassed(1.4))
+					{
+						m_Launcher1->Set(-0.7);
+						m_Launcher2->Set(-0.7);
+						m_Launcher3->Set(-0.7);
+						m_autonomousCase = 2;
+						m_timer->Stop();
+						m_timer->Start();
+						m_timer->Reset();
+					}
+					break;
+				case 2:
+					
+					if(m_timer->HasPeriodPassed(8.0))
+					{
+						m_timer->Stop();
+						m_timer->Start();
+						m_timer->Reset();
+						m_autonomousCase = 3;
+						m_Feeder->Set(0.0);
+						
+					}
+					else
+						m_Feeder->Set(-0.5);
 				break;
-			case 1:   						
-				m_Launcher1->Set(-(float)m_timer->Get()/2.0);
-				m_Launcher2->Set(-(float)m_timer->Get()/2.0);
-				m_Launcher3->Set(-(float)m_timer->Get()/2.0);
 				
-				if(m_timer->HasPeriodPassed(1.4))
-				{
-					m_Launcher1->Set(-0.7);
-					m_Launcher2->Set(-0.7);
-					m_Launcher3->Set(-0.7);
-					m_autonomousCase = 2;
-					m_timer->Stop();
-					m_timer->Start();
-					m_timer->Reset();
-				}
+				case 3:
+					m_robotDrive->TankDrive(-0.8,-0.8);
+					m_Feeder->Set(0.0);
+					if(m_timer->HasPeriodPassed(m_autonDriveSpeed))	
+					//This goes to center of field
+					/*
+					m_robotDrive->TankDrive(-0.6,-0.8);
+					if(m_timer->HasPeriodPassed(1.8))*/
+						m_autonomousCase = 4;
 				break;
-			case 2:
-				m_Feeder->Set(-0.5);
-				if(m_timer->HasPeriodPassed(8.0))
+				case 4:
+					m_robotDrive->TankDrive(0.0,0.0);
+				break;
+				}
+	
+				/*if(m_autonCase == 0)
 				{
-					m_timer->Stop();
 					m_timer->Start();
 					m_timer->Reset();
-					m_autonomousCase = 3;
+					m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON);
+					m_PlatePid->Enable();
+					m_autonCase++;      
 				}
-			break;
-			
-			case 3:
-				//DriveStraightEncoder(-0.8);
-				if(m_timer->HasPeriodPassed(2.0))					
-					m_autonomousCase = 4;
-			break;
-			case 4:
-				//m_robotDrive->TankDrive(0.0,0.0);
-			break;
-			}
+				else if (m_timer->Get() <= 1.4)
+				{
+					m_Launcher1->Set(-(float)m_timer->Get()/2.0);
+					m_Launcher2->Set(-(float)m_timer->Get()/2.0);
+					m_Launcher3->Set(-(float)m_timer->Get()/2.0);
+				}
+				else if (m_timer->Get() >= 2.0)
+					m_Feeder->Set(-0.75);
+				m_robotDrive->TankDrive(0.0,0.0);
+				if (m_timer->Get() >= 10.0)
+					DriveStraightEncoder(-0.6);
+				if (m_timer->Get() >= 11.5)
+					DriveStraightEncoder(0);*/
+        	}
         }
-
-/*        	if(m_autonCase == 0)
-        	{
-        		m_timer->Start();
-        		m_timer->Reset();
-        		m_PlatePid->SetSetpoint(PLATE_PYRAMID_AUTON);
-        		m_PlatePid->Enable();
-        		m_autonCase++;      
-        	}
-        	else if (m_timer->Get() <= 1.4)
-			{
-				m_Launcher1->Set(-(float)m_timer->Get()/2.0);
-				m_Launcher2->Set(-(float)m_timer->Get()/2.0);
-				m_Launcher3->Set(-(float)m_timer->Get()/2.0);
-        	}
-        	else if (m_timer->Get() >= 2.0)
-        		m_Feeder->Set(-0.75);
-        	m_robotDrive->TankDrive(0.0,0.0);
-        	if (m_timer->Get() >= 10.0)
-        	DriveStraightEncoder(-0.6);
-        	if (m_timer->Get() >= 11.5)
-        	DriveStraightEncoder(0);
-*/
 
                 void TeleopPeriodic(void)
                 {
@@ -364,15 +415,19 @@ public:
 					TeleopDrive();
 					TeleopSmartDashboardUpdate();
 					TeleopClimberRatchetControl();
+					m_telePeriodicLoops++;
                 }
                 void TeleopClimberRatchetControl()
                 {   	
-                	SmartDashboard::PutNumber("Ratchet Case: ", m_ratchetCase);
-                	SmartDashboard::PutNumber("Ratchet Lock Case: ", m_lockRatchetCase);
-                	SmartDashboard::PutNumber("Timer: ", m_ratchetTimer->Get());
-                	SmartDashboard::PutNumber("GamePad 1 Y: ", m_Gamepad1->GetRawAxis(RIGHT_Y));
+
+                	if (m_climbSwitch->Get() == 1.0)
+                		m_climbLight->Set(Relay::kForward);
+                	else
+                		m_climbLight->Set(Relay::kOff);
+                	
                 	if (m_Gamepad1->GetRawButton(BUTTON_BACK))
                 	{
+                		
                 		if (m_Gamepad1->GetRawButton(BUTTON_RB))
                 		{
                 			m_lockRatchetCase = 0;
@@ -394,7 +449,11 @@ public:
 									}
 									break;
 								case 2:
-									TeleopClimberControl();
+									if (abs(m_Gamepad1->GetRawAxis(RIGHT_Y)) > 0.2)
+										TeleopClimberControl();
+									else
+										m_Climber->Set(0.0);
+									
 									break;
 							}
 						
@@ -453,26 +512,76 @@ public:
 							}
 						}
                 	}
+                	else
+					{
+						m_Climber->Set(0.0);
+						m_ratchetCase = 0;
+						switch(m_lockRatchetCase)
+						{
+							case 0:
+								m_Ratchet->Set(Relay::kReverse);
+								m_ratchetTimer->Stop();
+								m_ratchetTimer->Start();
+								m_ratchetTimer->Reset();
+								m_lockRatchetCase = 1;
+								break;
+							case 1:
+								if(m_ratchetTimer->HasPeriodPassed(0.125))
+								{
+									m_Ratchet->Set(Relay::kOff);
+									m_lockRatchetCase = 2;
+								}
+								break;
+						}
+					}
                 }
                 
                 void TeleopClimberControl()
                 {
-                	if (m_Gamepad1->GetRawAxis(RIGHT_Y) > 0.2)
-						m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)-0.2)*0.75);
-					else if (m_Gamepad1->GetRawAxis(RIGHT_Y) < -0.2)
-						m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)+0.2)*0.75);
-					else
-						m_Climber->Set(0.0);
+                	if (m_ClimbPot->GetAverageVoltage() > 1.447 && m_ClimbPot->GetAverageVoltage() < 2.667)
+                	{
+                		if (m_Gamepad1->GetRawAxis(RIGHT_Y) > 0.2)
+							m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)-0.2)*1.25);
+						else if (m_Gamepad1->GetRawAxis(RIGHT_Y) < -0.2)
+							m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)+0.2)*1.25);
+						else
+							m_Climber->Set(0.0);
+                	}
+                	else
+                	{
+						if (m_Gamepad1->GetRawAxis(RIGHT_Y) > 0.2)
+							m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)-0.2)*0.75);
+						else if (m_Gamepad1->GetRawAxis(RIGHT_Y) < -0.2)
+							m_Climber->Set((-m_Gamepad1->GetRawAxis(RIGHT_Y)+0.2)*0.75);
+						else
+							m_Climber->Set(0.0);
+                	}
+                	
                 }
                 void TeleopSmartDashboardUpdate()
                 {
-                	SmartDashboard::PutNumber("Plate Postition: ", m_PlatePot->GetAverageVoltage()); 
-                	SmartDashboard::PutNumber("Plate PID Position: ", m_PlatePot->PIDGet());
-                	SmartDashboard::PutNumber("Plate Accel PID Position: ", m_plateAccel->GetAcceleration(m_plateAccel->kAxis_X));
-                	SmartDashboard::PutNumber("Plate Pot PID Diff: ",abs(m_PlatePot->PIDGet()-PLATE_PYRAMID_THREE_POINT) );
-                	SmartDashboard::PutNumber("Plate Accel PID Output: ", m_PlateAccelPid->Get());
-                	SmartDashboard::PutNumber("Plate Stick: ", (m_Gamepad2->GetRawAxis(LEFT_Y)));
-                	SmartDashboard::PutNumber("Filtered Accel: ", m_PlateAccelFilt);
+                	//if (m_sbTimer->HasPeriodPassed(0.5))
+                	//{
+						SmartDashboard::PutNumber("Plate Postition: ", m_PlatePot->GetAverageVoltage()); 
+						SmartDashboard::PutNumber("Plate PID Position: ", m_PlatePot->PIDGet());
+						//SmartDashboard::PutNumber("Plate Accel PID Position: ", m_plateAccel->GetAcceleration(m_plateAccel->kAxis_X));
+						//SmartDashboard::PutNumber("Plate Pot PID Diff: ",abs(m_PlatePot->PIDGet()-PLATE_PYRAMID_THREE_POINT) );
+						//SmartDashboard::PutNumber("Plate Accel PID Output: ", m_PlateAccelPid->Get());
+						//SmartDashboard::PutNumber("Plate Stick: ", (m_Gamepad2->GetRawAxis(LEFT_Y)));
+						//SmartDashboard::PutNumber("Filtered Accel: ", m_PlateAccelFilt);
+						SmartDashboard::PutBoolean("Climb Safe?  ", (m_climbSwitch->Get() == 1.0));
+						SmartDashboard::PutNumber("Climb Safe?: ", m_climbSwitch->Get());
+						//SmartDashboard::PutNumber("Ratchet Case: ", m_ratchetCase);
+						//SmartDashboard::PutNumber("Ratchet Lock Case: ", m_lockRatchetCase);
+						//SmartDashboard::PutNumber("Timer: ", m_ratchetTimer->Get());
+						SmartDashboard::PutNumber("GamePad 1 Y: ", m_Gamepad1->GetRawAxis(RIGHT_Y));
+						/*SmartDashboard::PutNumber("Climb Encoder: ", m_climbEncoder->GetDistance());
+						SmartDashboard::PutNumber("Left Drive Encoder: ", m_lDriveEncoder->GetDistance());
+						SmartDashboard::PutNumber("Right Drive Encoder: ", m_rDriveEncoder->GetDistance());*/
+						SmartDashboard::PutNumber("Climb Pot: ", m_ClimbPot->GetAverageVoltage());
+						SmartDashboard::PutBoolean("Feeder Switch: ", m_feedSwitch->Get());
+						//m_sbTimer->Reset();
+                	//}
                 }
 
                 void TeleopDriverStationUpdate(void)
@@ -480,8 +589,21 @@ public:
                 	m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "lDrv Encoder: %f ", m_lDriveEncoder->Get());
                 	m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "rDrv Encoder: %f ", m_rDriveEncoder->Get());
                 	m_dsLCD->Printf(DriverStationLCD::kUser_Line3, 1, "Plate Pot: %f ", m_PlatePot->PIDGet());
-                	m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, " ");
-                	m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, " ");
+                	if (m_feedCase == 5)
+                	{
+                		m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "ERR: No Feeder Input ");
+                		m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "Auto Feeder Shutoff  ");
+                	}
+                	/*else if (m_platePot->PIDGet() == m_PlatePid->GetSetpoint())
+					{
+						m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "						");
+						m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "     DINNERTIME!     ");
+					}*/
+                	else
+                	{
+                		m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "						");
+                		m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "						");
+                	}
                 	m_dsLCD->Printf(DriverStationLCD::kUser_Line6, 1, " ");
                 	m_dsLCD->UpdateLCD();
 
@@ -609,8 +731,7 @@ public:
 					}
                     //BUMP UP! BUMP THE JAM! BUMP IT UP TILL YOU'RE FEELING FUNKY!
                     if(m_Gamepad2->GetRawButton(BUTTON_START) && m_buttonTimer->Get() > 0.5)
-                    { //We should change these buttons (or add a new combination) so as not to interfere with the climber lock.
-                    	
+                    {
                     	m_buttonTimer->Start();
                     	m_buttonTimer->Reset();
                     	m_plateBump = 1;
@@ -637,9 +758,9 @@ public:
 								}
                					else if(m_Gamepad2->GetRawButton(BUTTON_X))
 								{
-									m_Launcher1->Set(-0.3);
-									m_Launcher2->Set(-0.3); //this is front on practice bot, WTF
-									m_Launcher3->Set(-0.4);
+									m_Launcher1->Set(-0.15); //this is front on comp bot
+									m_Launcher2->Set(-0.2); //this is front on practice bot, middle on comp bot
+									m_Launcher3->Set(-0.35); //this is rear on comp bot
 								}
                					else if(m_Gamepad2->GetRawButton(BUTTON_Y))
 								{
@@ -647,17 +768,17 @@ public:
 									m_timer->Reset();
 									m_launcherSpeed = 1.0;
 								}
-               					else if (m_launcherSpeed < m_timer->Get() && m_launcherSpeed != 0)
+               					else if (m_launcherSpeed > (m_timer->Get()/1.0) && m_launcherSpeed != 0)
                                 {
                                 		
-                                		m_Launcher1->Set(-(float)m_timer->Get()/2.0);
-                                		m_Launcher2->Set(-(float)m_timer->Get()/2.0);
-                                		m_Launcher3->Set(-(float)m_timer->Get()/2.0);
+                                		m_Launcher1->Set(-(float)m_timer->Get()/1.0);
+                                		m_Launcher2->Set(-(float)m_timer->Get()/1.0);
+                                		m_Launcher3->Set(-(float)m_timer->Get()/1.0);
                                 }
                                 else
                                 {	
                                 	m_timer->Stop();
-                                	m_Launcher1->Set(-(float)m_launcherSpeed);
+                                 	m_Launcher1->Set(-(float)m_launcherSpeed);
                                 	m_Launcher2->Set(-(float)m_launcherSpeed);
                                 	m_Launcher3->Set(-(float)m_launcherSpeed);
                                 }
@@ -669,156 +790,112 @@ public:
                 	//^ This is Nathan's fault
 					
                 	//Feed if right trigger pressed
-					if((m_Gamepad1->GetRawAxis(TRIGGERS)) < -0.4)
+					if((m_Gamepad1->GetRawAxis(TRIGGERS)) < -0.4 && m_feedCase != 5)
+						m_feedCase = 1;
+					else if((m_Gamepad1->GetRawAxis(TRIGGERS)) < -0.4)
 						m_Feeder->Set(-1.0);
-                                /*else if((m_Gamepad1->GetRawButton(BUTTON_BACK)) && ((m_Gamepad2->GetRawAxis(TRIGGERS)) < -0.4))
-                                                m_Feeder->Set(0.5);*/
-					else
-					{
+					else if (m_feedCase == 5)
 						m_Feeder->Set(0.0);
-					}
-                                // Left Stick Y Axis: 2- Up-Negative Down-Positive
-                                /*if(m_HopRollerOverride == 0 && m_Gamepad2->GetRawAxis(LEFT_Y) > 0.4)
-                                                m_HopRoller->Set(-1.0);
-                                else if(m_HopRollerOverride == 0 && m_Gamepad2->GetRawAxis(LEFT_Y) < -0.4)
-                                                m_HopRoller->Set(1.0);
-                                else
-                                                m_HopRoller->Set(0.0);*/
+					else if (m_telePeriodicLoops == 0)
+						m_feedCase = 1;
+			
+					switch (m_feedCase)
+					{
+					case 1:
+						m_Feeder->Set(-1.0);
+					if (!(m_Gamepad1->GetRawAxis(TRIGGERS) < -0.4))
+							m_feedCase = 2;
+						break;
+					case 2:
+						m_feedTimer->Stop();
+						m_feedTimer->Start();
+						m_feedTimer->Reset();
+						
+						m_feedCase = 3;
+						break;
+					case 3:
+						if (m_feedSwitch->Get())
+						{
+							m_feedCase = 4;
+							m_feedTimer->Stop();
+							m_feedTimer->Start();
+							m_feedTimer->Reset();
+						}
+						else if (m_feedTimer->HasPeriodPassed(1.5))
+						{ //For use when the feeder switch is not being pressed - print a message to the Driver Station
+							m_feedCase = 5;
+							m_feedTimer->Stop();
+						}
+						break;
+					case 4:
+						if (m_feedTimer->HasPeriodPassed(0.25))
+						{ 
+							m_Feeder->Set(0.0);
+							m_feedTimer->Stop();
+						}
+						break;
+					} 
                 }
 
         void DisabledPeriodic(void)  {
-        	/*
-                        m_autonomousCase = 0;
-                //Pick Autonomous mode
-                        if(m_Gamepad1->GetRawButton(BUTTON_START))
-                        {
-							if(m_Gamepad1 -> GetRawButton(BUTTON_B))
-							{
-								m_autonomousSelect = 1;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Top Key CHK Bridge   ");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_Y))
-							{
-								m_autonomousSelect = 2;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Middle Key CHK Bridge");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_X))
-							{
-								m_autonomousSelect = 3;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Bottom Key CHK Bridge");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_R3))
-							{
-								m_autonomousSelect = 4;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Top Key Shoot Only   ");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_L3))
-							{
-								m_autonomousSelect = 5;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Bottom Key Shoot Only");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_LB))
-							{
-								m_autonomousSelect = 6;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Bridge First         ");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_RB))
-							{
-								m_autonomousSelect = 7;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Alliance Bridge      ");
-							}
-                        }
-                        else if(m_Gamepad1->GetRawButton(BUTTON_BACK))
-                        {
-                        	if(m_Gamepad1 -> GetRawButton(BUTTON_B))
-							{
-								m_autonomousSelect = 11;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "QCK Top Key CHK Bridg");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_Y))
-							{
-								m_autonomousSelect = 12;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "QCK Middle Key CHK Br");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_X))
-							{
-								m_autonomousSelect = 13;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "QCK Bottom Key CHK Br");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_R3))
-							{
-								m_autonomousSelect = 14;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Top Key Shoot Only   ");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_L3))
-							{
-								m_autonomousSelect = 15;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Bottom Key Shoot Only");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_LB))
-							{
-								m_autonomousSelect = 16;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Bridge First         ");
-							}
-							if(m_Gamepad1 -> GetRawButton(BUTTON_RB))
-							{
-								m_autonomousSelect = 17;
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-								m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Quick Alliance Bridge");
-							}
-                        }
-                        else if(m_Gamepad1->GetRawButton(BUTTON_L3))
-					    {
-                        	if(m_Gamepad1->GetRawButton(BUTTON_A))
-                        	{
-                        		m_buttonTimer->Start();
-                        		if(m_buttonTimer->HasPeriodPassed(0.2))
-                        		{
-									m_cannonOffset++;
-									m_buttonTimer->Reset();
-								}
-
-							}
-							if(m_Gamepad1->GetRawButton(BUTTON_B))
-							{
-								m_buttonTimer->Start();
-								if(m_buttonTimer->HasPeriodPassed(0.2))
-								{
-									m_cannonOffset--;
-									m_buttonTimer->Reset();
-								}
-							}
-						 }
-					else
+        		m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, " AUTON PLATE OFFSET  ");
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "Setpoint: %f         ", (float)(PLATE_PYRAMID_AUTON+m_autonOffset));
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line3, 1, "Default: %f          ", PLATE_PYRAMID_AUTON);
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "Offset: %f           ", (float)m_autonOffset);
+				m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "						");
+				
+				if (m_autonDisabled)
+					m_dsLCD->Printf(DriverStationLCD::kUser_Line6, 1, "AUTON DISABLED       ");
+				else
+					m_dsLCD->Printf(DriverStationLCD::kUser_Line6, 1, "						");
+				m_dsLCD->UpdateLCD();
+				
+			if (m_Gamepad2->GetRawButton(BUTTON_A))
+			{
+				if (m_Gamepad2->GetRawButton(BUTTON_BACK))
+				{
+					m_buttonTimer->Start();
+					if(m_buttonTimer->HasPeriodPassed(0.2))
 					{
-						m_buttonTimer->Stop();
+						m_autonOffset--;
+						m_buttonTimer->Reset();
 					}
-                    if(m_autonomousSelect == 0)
-                    {
-                        m_autonomousSelect = 12;
-                        m_dsLCD->Printf(DriverStationLCD::kUser_Line1, 1, "Auton:               ");
-                        m_dsLCD->Printf(DriverStationLCD::kUser_Line2, 1, "QCK Middle Key CHK Br");
-                    }
-
-
-                m_dsLCD->Printf(DriverStationLCD::kUser_Line3, 1, "                     ");
-                m_dsLCD->Printf(DriverStationLCD::kUser_Line4, 1, "                     ");
-                m_dsLCD->Printf(DriverStationLCD::kUser_Line5, 1, "Cannon Offset:       ");
-                m_dsLCD->Printf(DriverStationLCD::kUser_Line6, 1, "    %d               ", m_cannonOffset);
-                m_dsLCD->UpdateLCD();*/
+				}
+				else if (m_Gamepad2->GetRawButton(BUTTON_START))
+				{
+					m_buttonTimer->Start();
+					if(m_buttonTimer->HasPeriodPassed(0.2))
+					{
+						m_autonOffset++;
+						m_buttonTimer->Reset();
+					}
+				}
+				else if (m_Gamepad2->GetRawButton(BUTTON_B))
+				{
+					m_buttonTimer->Start();
+					if(m_buttonTimer->HasPeriodPassed(0.2))
+					{
+						m_autonOffset = 0;
+						m_buttonTimer->Reset();
+					}
+				}
+        	}
+			
+			if (m_Gamepad2->GetRawButton(BUTTON_X))
+			{
+				if (m_autonDisabled)
+					m_autonDisabled = false;
+				else
+					m_autonDisabled = true;
+			}
+			
+			/*if (m_Gamepad2->GetRawButton(BUTTON_Y))
+			{
+				if (m_autonDriveSpeed == 1.5)
+					m_autonDriveSpeed = 1.25;
+				else
+					m_autonDriveSpeed = 1.5;
+			}*/
         }
 
         void DisabledInit(void)
