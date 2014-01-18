@@ -275,36 +275,5 @@ Hint: it's a digital input.
 <img src="http://www.lightobject.info/eBay/Images/LimitSWC2.jpg" width=250px height=250px />
 
 <img src="http://i204.photobucket.com/albums/bb190/bennettrossinc/FIRST%20FRC%2009%20cRIO%20Pics%20from%20NI%20Visit/IMG_6967.jpg" width=285px height=214px />
-  
-==Answers==
-
-  # [WPI_Lesson1#cRIO cRIO]
-    * Robot controller/Programmed device
-    * Houses the code for the robot, processes input and sends out output
-  # [WPI_Lesson1#Victors Victor]
-    * Drive controller
-    * Controls the speed of a motor
-  # [WPI_Lesson1#Potentiometer Potentiometer]
-    * Analog sensor
-    * Measures rotation
-  # [WPI_Lesson1#Gyroscope Gyroscope]
-    * Analog sensor
-    * Measures rotation compared to the Earth
-  # [WPI_Lesson1#Analog_Breakout Analog Breakout]
-    * cRIO module
-    * Converts analog signals into digital signals
-  # [WPI_Lesson1#Encoder Encoder]
-    * Digital sensor
-    * Measures distance in pulses
-  # [WPI_Lesson1#CIM CIM Motor]
-    * Motor
-  # [WPI_Lesson1#Notification_light Notification light]
-    * Light that blinks given the robot's connection state
-  # [WPI_Lesson1#Limit_switch Limit switch]
-    * Digital sensor
-    * On/off, depending whether switch is pressed
-  # [WPI_Lesson1#Digital_Sidecar Digital Sidecar]
-    * Connected to cRIO through module
-    * Handles all digital input and output
     
 || ← [Main_Page Main Page] || *Lesson 1* || [WPI_Lesson2 Lesson 2: Program Structure] → ||

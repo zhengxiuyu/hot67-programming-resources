@@ -313,26 +313,7 @@ Clearing the screen actually depends on which platform you are using, because ho
 
 ==Clearing the Screen on Windows==
 
-The simplest way to do it is to include `cstdlib` and call this function when you want to clear the screen:
-
-{{{
-system("CLS");
-}}}
-
-However, the problem with this is that `system()` is a highly insecure function and avoiding its use is generally advised.
-
-Another way to do it is to include `conio.h` and call this function:
-
-{{{
-_clrscr();
-
-//If the above doesn't work use this
-clrscr();
-}}}
-
-Again, though, `conio.h` is an old library from the days of DOS and is no longer standard.
-
-Really, the best way to do it is to use the Windows API to clear every cell on the screen and reposition the cursor. You can see an example of that [http://www.cplusplus.com/articles/4z18T05o/#Windows here].
+Use [http://www.cplusplus.com/articles/4z18T05o/#Windows this function].
 
 ==Clearing the Screen on POSIX-Compliant Systems==
 
