@@ -6,6 +6,8 @@ This guided tutorial will help you learn C++. However, you cannot learn C++ effe
 
 You may also want to read the tutorial's [http://www.cplusplus.com/doc/tutorial/introduction/ introductory notes] before you continue on to the next page.
 
+As part of the effort to migrate these tutorials to our team website, I am making videos for each of these lessons. You may find them on [http://www.youtube.com/playlist?list=PLrScY8_-rKzsCmGYTbqBR_XHP6P-buTvZ the YouTube playlist]
+
 =Note about Extras=
 
 You may notice sections labeled 'Extra Practice' or 'Extra Reading'. These are not required, but are put there *for your benefit*. You do not need to complete them.
@@ -14,7 +16,7 @@ Extra Practice should be completed AFTER you complete the main assignment. It wi
 
 ==Code::Blocks==
 
-Use the links below to download Code::Blocks
+Use the links below to download Code::BlocksG
 
 ===Windows===
 http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12mingw-setup.exe/download
