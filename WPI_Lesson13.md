@@ -1,0 +1,104 @@
+This lesson is all about Autonomous routines. Autonomous mode runs at the beginning of a match (usually for 30 seconds), where the robot is entirely automated (although input from the Kinect has been allowed recently).
+
+
+
+# Restrictions #
+
+Autonomous, as the name implies, runs without any user input. As some may well know (and others not), the drivers are banned from approaching the driver station during this period. Due to this, you do not rely on any user input in Autonomous.
+
+However, you are free to access and actuate any components on the robot, and print to the driver station (this is useful for debugging).
+
+# Programming in Autonomous #
+
+Autonomous is your time to shine! Autonomous relies entirely on programming (with the slight exception of preset autonomous strategies and offsets from Disabled), so make sure to do a good job with the code, but, this is also something you should be proud of!
+
+Again, Autonomous follows the same 'initialization → loop periodic' format as the other routines follow, so take all of the same considerations into effect with Autonomous regarding looping and so on.
+
+In my experience, writing Autonomous code is not as daunting as it sounds. As long as you know what you are trying to accomplish, it should be relatively easy.
+
+The first thing that should be done before you write any Autonomous code is sit down and talk strategy with those involved (usually the drive coach, other strategists, and your mentors). You will want to lay out a plan detailing the following:
+
+  * General ideas for Autonomous
+  * Different strategies for executing Autonomous
+  * Potential issues that could arise during Autonomous in a competition
+  * Potential sources of error
+
+Once those have been established, sit down with other programmers and start working out how the plan will look in code. What components are you going to need to use? What exactly does the robot need to do? How many different cases of Autonomous are going to be needed? You should be asking yourselves these questions throughout this process.
+
+Regardless of what you come up with in the meeting, you should always include a 'do nothing' case in case a physical issue prevents Autonomous from being executed safely. Also, you should remember to allow the drivers to select Autonomous strategies during the Disabled routine.
+
+When you actually start coding Autonomous, it is _crucial_ that you follow good style and clearly mark where the different sections (autonomous cases/strategies, individual operations within those cases) in the code are. This is important so the pit crew can easily locate issues and solve them quickly so no time is wasted in the pits during a competition.
+
+# Structure #
+
+Generally, your Autonomous code should look something like this:
+
+```
+void AutonomousPeriodic()
+{
+  switch(m_strategy)
+  {
+    case 0:
+      //Inactive autonomous
+      break;
+    case 1:
+      //Function call for first autonomous strategy
+      break;
+    case 2:
+      //Function call for second autonomous strategy
+      break;
+    //...
+  }
+}
+```
+
+Notice how the comments say 'function call' and not 'code'. This is because attempting to write all of the cases into the `AutonomousPeriodic()` function will overcomplicate the code and will almost certainly cause extreme amounts of logical problems. It is better to write each case into its own function and call that within your `switch/case` structure than to endure that mess.
+
+When you do this, you should still treat each individual function as if it were its own periodic routine, as one will be effectively run as such throughout the Autonomous period of the match.
+
+## Individual Autonomous Cases ##
+
+Your individual cases will look syntactically similar, although the `switch/case` structure is used for a different purpose.
+
+```
+void MyAutonomousStrategy()
+{
+  switch(m_autonSegment)
+  {
+    case 0:
+      //First segment of Autonomous, e.g. spinning up motors
+      
+      /** The m_autonSegment may also be changed only when 
+        * a certain condition is true, such as a timeout
+        * passing, or a sensor reading is equal to or within
+        * a tolerable range to a certain value.
+        **/
+      m_autonSegment++;
+      break;
+    case 1:
+      //Second segment of Autonomous, e.g. initiating the first action
+      m_autonSegment++;
+      break;
+    case 2:
+      //Second segment of Autonomous
+      m_autonSegment++;
+      break;
+    //...
+  }
+}
+```
+
+In this case, the `switch/case` statement is used to determine what 'segment' of Autonomous it needs to execute. These 'segments' are the distinct, individual actions (shooting, moving, etc) that the robot performs as part of the Autonomous strategy.
+
+Generally, you should only increment the segment tracker variable when you know that the robot has completed the current one and needs to move on to the next. This is generally done through use of a `Timer` or by monitoring sensor readings.
+
+# Safety Note #
+
+As it has been mentioned before, the robot is most dangerous when it is performing tasks by itself. As it is entirely automated during this period, you should be extra careful by being ready to disable the robot at the first sign of trouble, and by ensuring others are a safe distance from the robot.
+
+# Activity #
+
+Form a group and undertake the process of developing an Autonomous routine from start to finish (but only talk with your group members and your mentors, don't bother anyone else) for a specific robot. Ask a mentor or an experienced team member if you do not know the game for which the robot was designed.
+
+| ← [Lesson 12: Disabled Routines](WPI_Lesson12.md)  | **Lesson 13** | _Congratulations, you have completed the tutorial!_ |
+|:-----------------------------------------------------|:--------------|:----------------------------------------------------|
